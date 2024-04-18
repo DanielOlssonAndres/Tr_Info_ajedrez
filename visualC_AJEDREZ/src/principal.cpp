@@ -1,6 +1,10 @@
 #include "freeglut.h"
 #include "ETSIDI.h"
 
+#include "mundo.h"
+
+Mundo mundo;
+
 //NO HACE FALTA LLAMARLAS EXPLICITAMENTE
 void OnDraw(void); //esta funcion sera llamada para dibujar
 void OnTimer(int value); //esta funcion sera llamada cuando transcurra una temporizacion
@@ -13,7 +17,7 @@ int main(int argc,char* argv[])
 	glutInit(&argc, argv);
 	glutInitWindowSize(800,600);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutCreateWindow("MiJuego");
+	glutCreateWindow("GambitoDeDama");
 
 	//habilitar luces y definir perspectiva
 	glEnable(GL_LIGHT0);
@@ -28,7 +32,8 @@ int main(int argc,char* argv[])
 	glutTimerFunc(25,OnTimer,0);//le decimos que dentro de 25ms llame 1 vez a la funcion OnTimer()
 	glutKeyboardFunc(OnKeyboardDown);
 
-	//POSIBLE INICIALIZACION
+	//INICIALIZACION
+	mundo.inicializa();
 		
 	//pasarle el control a GLUT,que llamara a los callbacks
 	glutMainLoop();	
@@ -47,21 +52,7 @@ void OnDraw(void)
 	
 	//funciones de dibujo
 
-	gluLookAt(0, 7.5, 20,  // posicion del ojo
-		0.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
-		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/fondo.png").id);
-	glDisable(GL_LIGHTING);
-	glBegin(GL_POLYGON);
-	glColor3f(1, 1, 1);
-	glTexCoord2d(0, 1); glVertex2f(-10, 0);
-	glTexCoord2d(1, 1); glVertex2f(10, 0);
-	glTexCoord2d(1, 0); glVertex2f(10, 15);
-	glTexCoord2d(0, 0); glVertex2f(-10, 15);
-	glEnd();
-	glEnable(GL_LIGHTING);
-	glDisable(GL_TEXTURE_2D);
+	mundo.dibuja();
 
 	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();

@@ -19,17 +19,31 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Casilla.cpp" />
-    <ClCompile Include="Color.cpp" />
-    <ClCompile Include="Ficha.cpp" />
+    <ClCompile Include="src\alfil.cpp" />
+    <ClCompile Include="src\caballo.cpp" />
+    <ClCompile Include="src\Casilla.cpp" />
+    <ClCompile Include="src\dama.cpp" />
+    <ClCompile Include="src\Ficha.cpp" />
+    <ClCompile Include="src\mundo.cpp" />
+    <ClCompile Include="src\peon.cpp" />
     <ClCompile Include="src\principal.cpp" />
-    <ClCompile Include="Tablero.cpp" />
+    <ClCompile Include="src\rey.cpp" />
+    <ClCompile Include="src\Tablero.cpp" />
+    <ClCompile Include="src\torre.cpp" />
+    <ClCompile Include="src\vector2xy.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Casilla.h" />
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="Ficha.h" />
-    <ClInclude Include="Tablero.h" />
+    <ClInclude Include="src\alfil.h" />
+    <ClInclude Include="src\caballo.h" />
+    <ClInclude Include="src\Casilla.h" />
+    <ClInclude Include="src\dama.h" />
+    <ClInclude Include="src\Ficha.h" />
+    <ClInclude Include="src\mundo.h" />
+    <ClInclude Include="src\peon.h" />
+    <ClInclude Include="src\rey.h" />
+    <ClInclude Include="src\Tablero.h" />
+    <ClInclude Include="src\torre.h" />
+    <ClInclude Include="src\vector2xy.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
