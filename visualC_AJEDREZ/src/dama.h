@@ -1,5 +1,7 @@
 #pragma once
-class Dama
-{
+
+
+class Dama :public Ficha {
+
 };
 

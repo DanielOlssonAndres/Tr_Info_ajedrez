@@ -8,7 +8,7 @@ class Casilla
 	int vx;
 	int vy;
 	int colR, colG, colB;
-	Vector2xy PosF; // Indica la posición de la ficha que se encuentra en esta casilla
+	Vector2xy PosCentro; // Indica la posición de la ficha que se encuentra en esta casilla
 	
 	
 public:

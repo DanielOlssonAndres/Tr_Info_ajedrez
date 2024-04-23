@@ -1,5 +1,7 @@
 #pragma once
-class Torre
-{
+
+
+class Torre :public Ficha {
+
 };
 

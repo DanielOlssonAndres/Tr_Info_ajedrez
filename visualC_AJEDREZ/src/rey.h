@@ -1,5 +1,7 @@
 #pragma once
-class Rey
-{
+
+
+class Rey :public Ficha {
+
 };
 

@@ -1,5 +1,7 @@
 #pragma once
-class Alfil
-{
+
+
+class Alfil :public Ficha {
+
 };
 

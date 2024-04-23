@@ -1,5 +1,7 @@
 #pragma once
-class Peon
-{
+
+
+class Peon :public Ficha {
+
 };
 
