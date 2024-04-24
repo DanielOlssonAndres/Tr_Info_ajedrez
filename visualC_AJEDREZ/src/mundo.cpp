@@ -19,7 +19,8 @@ void Mundo::inicializa()
 	z_look = 0;
 
 	tablero.inicializa();
-	fichas.inicializa();
+	fichas.inicializa_5x6EO();
+	//fichas.inicializa_PETTY(); Según el modo de juego que vayamos a jugar
 
 }
 
