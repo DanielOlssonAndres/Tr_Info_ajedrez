@@ -7,8 +7,7 @@
 #include "Ficha.h"
 
 
-
-void Mundo::inicializa()
+void Mundo::inicializa(int Tjuego = 0)
 {
 	// Punto de vista
 	x_ojo = 15;
@@ -18,9 +17,24 @@ void Mundo::inicializa()
 	y_look = 18;
 	z_look = 0;
 
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+			PosEnCasillas[i][j] = { 3 + j * 6, 3 + i * 6 };
+		}
+	}
+
 	tablero.inicializa();
-	fichas.inicializa_5x6EO();
-	//fichas.inicializa_PETTY(); Según el modo de juego que vayamos a jugar
+
+	if (Tjuego == 0) { //5x6EO();
+		//reyB.inicializa_5x6EO();
+
+	}
+	else { //PETTY
+
+
+	}
+	
+
 
 }
 

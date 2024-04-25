@@ -33,7 +33,8 @@ int main(int argc,char* argv[])
 	glutKeyboardFunc(OnKeyboardDown);
 
 	//INICIALIZACION
-	mundo.inicializa();
+	int Tjuego = 0;
+	mundo.inicializa(Tjuego);
 		
 	//pasarle el control a GLUT,que llamara a los callbacks
 	glutMainLoop();	

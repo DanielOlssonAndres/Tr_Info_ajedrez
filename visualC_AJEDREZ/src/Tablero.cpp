@@ -1,17 +1,19 @@
 #include <iostream>
 #include <vector>
 #include "freeglut.h"
+#include "vector2xy.h"
 
 #include "Tablero.h"
 #include "Casilla.h"
 
 void Tablero::inicializa() {
 	bool m = FALSE;
+	Vector2xy posiciones[6][5];
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 			Mcasillas[i][j].vx = { j*6 };
 			Mcasillas[i][j].vy = { i*6 };
-			CentroCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 };
+			//CentroCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 };
 			if (m == FALSE) {
 				Mcasillas[i][j].colR = { 139 }; //"NEGRA"
 				Mcasillas[i][j].colG = { 69 }; //"NEGRA" 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "vector2xy.h"
 #include "Tablero.h"
 #include "Casilla.h"
 #include "Ficha.h"
@@ -10,12 +11,13 @@
 #include "dama.h"
 #include "rey.h"
 
-#include <vector>
-
 class Mundo
 {
 	double x_ojo, y_ojo, z_ojo;
 	double x_look, y_look, z_look;
+
+	Vector2xy PosEnCasillas[6][5];
+	
 
 	Tablero tablero;
 	Casilla casillas;
@@ -37,11 +39,8 @@ class Mundo
 	Dama damaN;
 	Rey reyN;
 
-
-
-
 public:
-	void inicializa();
+	void inicializa(int Tjuego);
 	void dibuja();
 };
 
