@@ -1,14 +1,15 @@
 #pragma once
 
-enum {BLANCA = 0, NEGRA = 1};
+#include "Vector2xy.h"
+#include "Tablero.h"
+
 
 class Ficha
 {
-	bool color;
+
 
 public:
-	void inicializa();
-	void dibuja();
+
 
 };
 
