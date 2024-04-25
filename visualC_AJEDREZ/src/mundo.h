@@ -17,7 +17,6 @@ class Mundo
 	double x_look, y_look, z_look;
 
 	Vector2xy PosEnCasillas[6][5];
-	
 
 	Tablero tablero;
 	Casilla casillas;

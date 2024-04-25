@@ -2,8 +2,3 @@
 #include "freeglut.h"
 #include "Tablero.h"
 
-void Ficha::dibuja() {
-
-
-
-}
