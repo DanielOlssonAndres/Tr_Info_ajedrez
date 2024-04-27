@@ -23,7 +23,7 @@ void Mundo::inicializa()
 	std::cin >> Tjuego;
 
 	tablero.inicializa();
-	fichas.inicializa(Tjuego);
+	ficha.inicializa(Tjuego);
 }
 
 
@@ -36,6 +36,6 @@ void Mundo::dibuja()
 
 	// dibujo de elementos
 	tablero.dibuja();
-	fichas.dibuja();
+	ficha.dibuja();
 
 }

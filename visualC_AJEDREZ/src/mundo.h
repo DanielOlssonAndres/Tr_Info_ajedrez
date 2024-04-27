@@ -1,9 +1,12 @@
 #pragma once
 
 #include "vector2xy.h"
+
 #include "Tablero.h"
-#include "Casilla.h"
-#include "Ficha.h"
+#include "listafichas.h"
+
+#include "Ficha.h" //...
+
 
 class Mundo
 {
@@ -13,7 +16,9 @@ class Mundo
 	int Tjuego;
 
 	Tablero tablero;
-	Ficha fichas;
+	Listafichas fichas;
+
+	Ficha ficha; //...
 
 public:
 	void inicializa();
