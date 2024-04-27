@@ -1,12 +1,13 @@
 #pragma once
 
 #include "vector2xy.h"
-
 #include "Tablero.h"
-#include "listafichas.h"
-
-#include "Ficha.h" //...
-
+#include "peon.h"
+#include "torre.h"
+#include "caballo.h"
+#include "alfil.h"
+#include "dama.h"
+#include "rey.h"
 
 class Mundo
 {
@@ -14,11 +15,24 @@ class Mundo
 	double x_look, y_look, z_look;
 
 	int Tjuego;
+	Vector2xy PosEnCasillas[6][5];
 
 	Tablero tablero;
-	Listafichas fichas;
-
-	Ficha ficha; //...
+	//Fichas blancas
+	Peon peonB1, peonB2, peonB3, peonB4, peonB5;
+	Torre torreB;
+	Caballo caballoB;
+	Alfil alfilB;
+	Dama damaB;
+	Rey reyB;
+	//Fichas negras
+	Peon peonN1, peonN2, peonN3, peonN4, peonN5;
+	Torre torreN;
+	Caballo caballoN;
+	Alfil alfilN;
+	Dama damaN;
+	Rey reyN;
+	
 
 public:
 	void inicializa();

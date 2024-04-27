@@ -1,13 +1,6 @@
 #include "peon.h"
 #include "freeglut.h"
 
-
-void Peon::inicializa(const Vector2xy& posicion, const float tipo)
-{
-    this->posicion = posicion;
-    this->tipo = tipo;
-}
-
 void Peon::dibuja()
 {
     glPushMatrix();
