@@ -2,6 +2,7 @@
 #include <vector>
 #include "freeglut.h"
 #include "vector2xy.h"
+#include "ETSIDI.h"
 
 #include "Tablero.h"
 #include "Casilla.h"
@@ -38,6 +39,21 @@ void Tablero::dibuja()
 			Mcasillas[i][j].dibuja();
 		}
 	}
+
+	//FONDO
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D,
+		ETSIDI::getTexture("imagenes/fondoaj.png").id);
+	glDisable(GL_LIGHTING);
+	glBegin(GL_POLYGON);
+	glColor3f(1, 1, 1);
+	glTexCoord2d(0, 1); glVertex2d(-15, -15);
+	glTexCoord2d(1, 1); glVertex2d(50, -15);
+	glTexCoord2d(1, 0); glVertex2d(50, 40);
+	glTexCoord2d(0, 0); glVertex2d(-15, 40);
+	glEnd();
+	glEnable(GL_LIGHTING);
+	glDisable(GL_TEXTURE_2D);
 
 }
 
