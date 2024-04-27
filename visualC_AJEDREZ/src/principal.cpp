@@ -34,13 +34,8 @@ int main(int argc,char* argv[])
 	glutKeyboardFunc(OnKeyboardDown);
 
 	//INICIALIZACION
-	int Tjuego = 0;
-	std::cout << "Seleccione Juego:" << std::endl;
-	std::cout << "0. 5x6EO" << std::endl;
-	std::cout << "1. PETTY" << std::endl;
-	std::cin >> Tjuego;
 
-	mundo.inicializa(Tjuego);
+	mundo.inicializa();
 		
 	//pasarle el control a GLUT,que llamara a los callbacks
 	glutMainLoop();	

@@ -1,8 +1,7 @@
 #pragma once
-#include "Ficha.h"
 #include "Vector2xy.h"
 
-class Rey :public Ficha {
+class Rey {
 	Vector2xy posicion;
 	float tipo; // 1.0 = BLANCO  0.3 = NEGRO        ¡¡¡MEJORABLE!!!  
 

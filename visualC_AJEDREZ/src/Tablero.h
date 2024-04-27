@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Casilla.h"
-#include "Ficha.h"
 #include <iostream>
 #include "vector2xy.h"
+#include "Casilla.h"
 
 
 class Tablero
@@ -15,7 +15,5 @@ class Tablero
 public:
 	void inicializa();
 	void dibuja();
-
-	friend class mundo;
 };
 

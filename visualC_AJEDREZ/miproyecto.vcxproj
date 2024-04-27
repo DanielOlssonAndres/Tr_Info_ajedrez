@@ -24,6 +24,7 @@
     <ClCompile Include="src\Casilla.cpp" />
     <ClCompile Include="src\dama.cpp" />
     <ClCompile Include="src\Ficha.cpp" />
+    <ClCompile Include="src\listafichas.cpp" />
     <ClCompile Include="src\mundo.cpp" />
     <ClCompile Include="src\peon.cpp" />
     <ClCompile Include="src\principal.cpp" />
@@ -38,6 +39,7 @@
     <ClInclude Include="src\Casilla.h" />
     <ClInclude Include="src\dama.h" />
     <ClInclude Include="src\Ficha.h" />
+    <ClInclude Include="src\listafichas.h" />
     <ClInclude Include="src\mundo.h" />
     <ClInclude Include="src\peon.h" />
     <ClInclude Include="src\rey.h" />

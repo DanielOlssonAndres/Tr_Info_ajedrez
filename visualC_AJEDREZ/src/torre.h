@@ -1,9 +1,8 @@
 #pragma once
-#include "Ficha.h"
 #include "Vector2xy.h"
 #include "ETSIDI.h"
 
-class Torre :public Ficha {
+class Torre {
 	Vector2xy posicion;
 	float tipo; // 1.0 = BLANCO  0.3 = NEGRO        ¡¡¡MEJORABLE!!!  
 	//ETSIDI::SpriteSequence spriteB{ "imagenes/TBLANC.png", 5 };
