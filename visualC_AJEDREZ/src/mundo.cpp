@@ -17,10 +17,15 @@ void Mundo::inicializa()
 	y_look = 18;
 	z_look = 0;
 
+	// Música de fondo 
+	ETSIDI::play("sonidos/MusicaFondo.wav");
+
 	std::cout << "Seleccione Juego:" << std::endl;
 	std::cout << "0. 5x6EO" << std::endl;
 	std::cout << "1. PETTY" << std::endl;
 	std::cin >> Tjuego;
+
+	ETSIDI::play("sonidos/InicioJuego.wav");
 
 	tablero.inicializa();
 	ficha.inicializa(Tjuego);
