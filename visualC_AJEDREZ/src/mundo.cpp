@@ -6,6 +6,8 @@
 #include "Tablero.h"
 #include "Ficha.h"
 
+using namespace std;
+
 
 void Mundo::inicializa()
 {
@@ -112,5 +114,59 @@ void Mundo::dibuja()
 	peonN3.dibuja();
 	peonN4.dibuja();
 	peonN5.dibuja();
+}
+
+
+
+void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctrlKey) {
+	/////////////////////////
+	// sets state of mouse control buttons + special keys
+
+	/////////
+	//computes cell coordinates from mouse coordinates
+
+	GLint viewport[4];
+	GLdouble modelview[16];
+	GLdouble projection[16];
+	GLfloat winX, winY, winZ;
+	GLdouble posX, posY, posZ;
+
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
+	glGetDoublev(GL_PROJECTION_MATRIX, projection);
+	glGetIntegerv(GL_VIEWPORT, viewport);
+
+	winX = (float)x;
+	winY = (float)viewport[3] - (float)y;
+	glReadPixels(x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
+
+	//finally cell coordinates
+	world2cell(posX, posY, xcell_sel, ycell_sel);
+
+	///////////////////////////	
+	//capture other mouse events
+
+	if (down) {
+		controlKey = ctrlKey;
+		shiftKey = sKey;
+	}
+	else {
+		controlKey = shiftKey = false;
+	}
+
+	if (button == MOUSE_LEFT_BUTTON)
+		leftButton = down;
+	else if (button == MOUSE_RIGHT_BUTTON)
+		rightButton = down;
+	else if (button == MOUSE_MIDDLE_BUTTON)
+		midButton = down;
+	///////////////////////////
+
+		//***WRITE ACTIONS CONNECTED TO MOUSE STATE HERE
+
+		//print cell coordinates after click
+	if (down)
+		cout << "(" << xcell_sel << "," << ycell_sel << ")" << endl;
 
 }
+

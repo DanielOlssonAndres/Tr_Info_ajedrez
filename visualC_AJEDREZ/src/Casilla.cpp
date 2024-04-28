@@ -10,4 +10,6 @@ void Casilla::dibuja()
 	glVertex3f(vx + 6, vy + 6, 0.0f);
 	glVertex3f(vx + 6, vy, 0.0f);
 	glEnd();
+
+	// La casilla es un 6*6
 }
