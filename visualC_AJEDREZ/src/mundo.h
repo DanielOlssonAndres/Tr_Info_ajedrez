@@ -11,6 +11,8 @@
 #include "dama.h"
 #include "rey.h"
 
+using namespace std;
+
 enum { MOUSE_LEFT_BUTTON, MOUSE_MIDDLE_BUTTON, MOUSE_RIGHT_BUTTON };
 enum { KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT };
 
@@ -43,8 +45,7 @@ public:
 	void inicializa();
 	void dibuja();
 	void MouseButton(int x, int y, int button, bool down, bool shiftKey, bool ctrlKey);
-	void KeyDown(unsigned char key);
-	void SpecialKeyDown(unsigned char key);
+	
 	
 
 	void centro_casilla(int cell_x, int cell_y, float& glx, float& gly) {

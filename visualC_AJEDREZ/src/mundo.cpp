@@ -116,14 +116,12 @@ void Mundo::dibuja()
 	peonN5.dibuja();
 }
 
-
-
 void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctrlKey) {
 	/////////////////////////
-	// sets state of mouse control buttons + special keys
+	// posicona el estado del ratón y de las teclas
 
 	/////////
-	//computes cell coordinates from mouse coordinates
+	//computa las coordenadas del ratón
 
 	GLint viewport[4];
 	GLdouble modelview[16];
@@ -144,7 +142,7 @@ void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctr
 	world2cell(posX, posY, xcell_sel, ycell_sel);
 
 	///////////////////////////	
-	//capture other mouse events
+	//Captura los movimientos del ratón
 
 	if (down) {
 		controlKey = ctrlKey;
@@ -162,25 +160,13 @@ void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctr
 		midButton = down;
 	///////////////////////////
 
-		//***WRITE ACTIONS CONNECTED TO MOUSE STATE HERE
+		//*** Escribir acciones relacionadas al ratón
 
-		//print cell coordinates after click
+		//escribir las coordenadas después de hacer click
 	if (down)
 		cout << "(" << xcell_sel << "," << ycell_sel << ")" << endl;
+
 }
 
-void Mundo::KeyDown(unsigned char key) {
-	//////////////////
-	// enlarges or reduces grid by one
 
-	if (key == 's') {
-		//** do something
-		//if(N<=8) N++;
-	}
-
-	if (key == 'a') {
-		//** do something
-		//if(N>=2) N--;
-	}
-}
 

@@ -62,6 +62,7 @@ void OnDraw(void)
 	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();
 }
+
 void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 {
 	//poner aqui el código de teclado
@@ -99,6 +100,7 @@ void OnMouseClick(int b, int state, int x, int y) {
 	bool sKey = specialKey & GLUT_ACTIVE_SHIFT;
 
 
-	scene.MouseButton(x, y, b, down, sKey, ctrlKey);
+	mundo.MouseButton(x, y, b, down, sKey, ctrlKey);
 	glutPostRedisplay();
 }
+
