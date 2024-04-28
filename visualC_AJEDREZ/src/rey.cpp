@@ -1,6 +1,18 @@
 #include "rey.h"
 #include "freeglut.h"
 
+void Rey::inicializa_5x6EO(const Vector2xy& posicion, const float tipo)
+{
+	this->posicion = posicion;
+    this->tipo = tipo;
+}
+
+void Rey::inicializa_PETTY(const Vector2xy& posicion, const float tipo)
+{
+	this->posicion = posicion;
+    this->tipo = tipo;
+}
+
 void Rey::dibuja_blanco()
 {
     glPushMatrix();
@@ -22,4 +34,3 @@ void Rey::dibuja_negro()
     sprite_negro.draw();
     glPopMatrix();
 }
-
