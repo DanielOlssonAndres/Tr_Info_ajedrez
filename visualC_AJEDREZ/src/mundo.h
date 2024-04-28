@@ -9,6 +9,9 @@
 #include "dama.h"
 #include "rey.h"
 
+enum { MOUSE_LEFT_BUTTON, MOUSE_MIDDLE_BUTTON, MOUSE_RIGHT_BUTTON };
+enum { KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT };
+
 class Mundo
 {
 	double x_ojo, y_ojo, z_ojo;

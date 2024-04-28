@@ -4,12 +4,14 @@
 
 #include "mundo.h"
 
+using namespace std;
 Mundo mundo;
 
 //NO HACE FALTA LLAMARLAS EXPLICITAMENTE
 void OnDraw(void); //esta funcion sera llamada para dibujar
 void OnTimer(int value); //esta funcion sera llamada cuando transcurra una temporizacion
 void OnKeyboardDown(unsigned char key, int x, int y); //cuando se pulse una tecla	
+void OnMouseClick(int button, int state, int x, int y); //Control del ratón
 
 int main(int argc,char* argv[])
 {
@@ -32,6 +34,7 @@ int main(int argc,char* argv[])
 	glutDisplayFunc(OnDraw);
 	glutTimerFunc(25,OnTimer,0);//le decimos que dentro de 25ms llame 1 vez a la funcion OnTimer()
 	glutKeyboardFunc(OnKeyboardDown);
+	glutMouseFunc(OnMouseClick); //Callback del ratón
 
 	//INICIALIZACION
 
@@ -74,5 +77,28 @@ void OnTimer(int value)
 
 	//no borrar estas lineas
 	glutTimerFunc(25,OnTimer,0);
+	glutPostRedisplay();
+}
+
+void OnMouseClick(int b, int state, int x, int y) {
+	////////////// 
+	//Captura el click con el ratón con o sin teclas especiales (CTRL or SHIFT)
+	//Da el control al tablero en la escena
+	bool down = (state == GLUT_DOWN);
+	int button;
+	if (b == GLUT_LEFT_BUTTON) {
+		button = MOUSE_LEFT_BUTTON;
+	}
+	if (b == GLUT_RIGHT_BUTTON) {
+		button = MOUSE_RIGHT_BUTTON;
+		cout << "MOUSE_RIGHT_BUTTON" << endl;
+	}
+
+	int specialKey = glutGetModifiers();
+	bool ctrlKey = (specialKey & GLUT_ACTIVE_CTRL) ? true : false;
+	bool sKey = specialKey & GLUT_ACTIVE_SHIFT;
+
+
+	scene.MouseButton(x, y, b, down, sKey, ctrlKey);
 	glutPostRedisplay();
 }
