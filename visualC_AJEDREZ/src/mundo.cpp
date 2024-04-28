@@ -167,6 +167,20 @@ void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctr
 		//print cell coordinates after click
 	if (down)
 		cout << "(" << xcell_sel << "," << ycell_sel << ")" << endl;
+}
 
+void Mundo::KeyDown(unsigned char key) {
+	//////////////////
+	// enlarges or reduces grid by one
+
+	if (key == 's') {
+		//** do something
+		//if(N<=8) N++;
+	}
+
+	if (key == 'a') {
+		//** do something
+		//if(N>=2) N--;
+	}
 }
 

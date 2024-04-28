@@ -43,6 +43,7 @@ public:
 	void inicializa();
 	void dibuja();
 	void MouseButton(int x, int y, int button, bool down, bool shiftKey, bool ctrlKey);
+	void KeyDown(unsigned char key);
 	void SpecialKeyDown(unsigned char key);
 	
 
