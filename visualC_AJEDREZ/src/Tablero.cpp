@@ -15,15 +15,15 @@ void Tablero::inicializa() {
 			Mcasillas[i][j].vy = { i*6 };
 			//CentroCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 }; //para hallar el centro de las casillas
 			if (m == FALSE) {
-				Mcasillas[i][j].colR = { 139 }; //"NEGRA"
-				Mcasillas[i][j].colG = { 69 }; //"NEGRA" 
-				Mcasillas[i][j].colB = { 19 }; //"NEGRA"
+				Mcasillas[i][j].colR = { 100 }; //"NEGRA"
+				Mcasillas[i][j].colG = { 60}; //"NEGRA" 
+				Mcasillas[i][j].colB = { 0 }; //"NEGRA"
 				m = TRUE;
 			}
 			else {
-				Mcasillas[i][j].colR = { 255 }; //"BLANCA"
-				Mcasillas[i][j].colG = { 204 }; //"BLANCA"
-				Mcasillas[i][j].colB = { 153 }; //"BLANCA"
+				Mcasillas[i][j].colR = { 0 }; //"BLANCA"
+				Mcasillas[i][j].colG = { 127 }; //"BLANCA"
+				Mcasillas[i][j].colB = { 180 }; //"BLANCA"
 				m = FALSE;
 			}
 		}
@@ -42,7 +42,7 @@ void Tablero::dibuja()
 	//FONDO
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D,
-		ETSIDI::getTexture("imagenes/fondoaj.png").id);
+		ETSIDI::getTexture("bin/imagenes/fondoaj.png").id);
 	glDisable(GL_LIGHTING);
 	glBegin(GL_POLYGON);
 	glColor3f(1, 1, 1);
@@ -55,4 +55,3 @@ void Tablero::dibuja()
 	glDisable(GL_TEXTURE_2D);
 
 }
-
