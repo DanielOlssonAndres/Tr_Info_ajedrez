@@ -91,27 +91,27 @@ void Mundo::dibuja()
 	tablero.dibuja();
 	
 	//Blancas
-	reyB.dibuja();
-	damaB.dibuja();
-	alfilB.dibuja();
-	caballoB.dibuja();
-	torreB.dibuja();
-	peonB1.dibuja();
-	peonB2.dibuja();
-	peonB3.dibuja();
-	peonB4.dibuja();
-	peonB5.dibuja();
+	reyB.dibuja_blanco();
+	damaB.dibuja_blanco();
+	alfilB.dibuja_blanco();
+	caballoB.dibuja_blanco();
+	torreB.dibuja_blanco();
+	peonB1.dibuja_blanco();
+	peonB2.dibuja_blanco();
+	peonB3.dibuja_blanco();
+	peonB4.dibuja_blanco();
+	peonB5.dibuja_blanco();
 
 	//Negras
-	reyN.dibuja();
-	damaN.dibuja();
-	alfilN.dibuja();
-	caballoN.dibuja();
-	torreN.dibuja();
-	peonN1.dibuja();
-	peonN2.dibuja();
-	peonN3.dibuja();
-	peonN4.dibuja();
-	peonN5.dibuja();
+	reyN.dibuja_negro();
+	damaN.dibuja_negro();
+	alfilN.dibuja_negro();
+	caballoN.dibuja_negro();
+	torreN.dibuja_negro();
+	peonN1.dibuja_negro();
+	peonN2.dibuja_negro();
+	peonN3.dibuja_negro();
+	peonN4.dibuja_negro();
+	peonN5.dibuja_negro();
 
 }
