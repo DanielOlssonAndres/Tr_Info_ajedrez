@@ -1,12 +1,25 @@
 #include "rey.h"
 #include "freeglut.h"
 
-
-void Rey::dibuja()
+void Rey::dibuja_blanco()
 {
     glPushMatrix();
-    glColor3f(tipo, tipo, tipo); 
-    glTranslatef(posicion.x, posicion.y, 0.0f); 
-    glutSolidTeapot(1.5); 
+    glTranslatef(posicion.x - 3, posicion.y - 3, 1);
+
+    sprite_blanco.setSize(5, 5);
+
+    sprite_blanco.draw();
     glPopMatrix();
 }
+
+void Rey::dibuja_negro()
+{
+    glPushMatrix();
+    glTranslatef(posicion.x - 3, posicion.y - 3, 1);
+    
+    sprite_negro.setSize(5, 5);
+
+    sprite_negro.draw();
+    glPopMatrix();
+}
+
