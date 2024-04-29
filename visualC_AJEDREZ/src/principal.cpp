@@ -6,9 +6,8 @@
 
 using namespace std;
 Mundo mundo;
-void casilla_selecc(POINT);
-Vector2xy mov_raton();
-Vector2xy pos_cas;
+
+
 
 //NO HACE FALTA LLAMARLAS EXPLICITAMENTE
 void OnDraw(void); //esta funcion sera llamada para dibujar

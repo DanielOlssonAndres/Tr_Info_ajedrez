@@ -45,7 +45,8 @@ public:
 	void inicializa();
 	void dibuja();
 	void MouseButton(int x, int y, int button, bool down, bool shiftKey, bool ctrlKey);
-	
+	Vector2xy mov_raton();
+	Vector2xy pos_cas;
 	
 
 	void centro_casilla(int cell_x, int cell_y, float& glx, float& gly) {
