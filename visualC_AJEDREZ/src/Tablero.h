@@ -3,7 +3,7 @@
 #include "Casilla.h"
 #include <iostream>
 #include "vector2xy.h"
-#include "Casilla.h"
+#include "Ficha.h"
 
 
 class Tablero
@@ -15,5 +15,6 @@ class Tablero
 public:
 	void inicializa();
 	void dibuja();
+	void casilla(Vector2xy);
 };
 

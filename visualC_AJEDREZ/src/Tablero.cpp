@@ -55,3 +55,10 @@ void Tablero::dibuja()
 	glDisable(GL_TEXTURE_2D);
 
 }
+
+void Tablero::casilla(Vector2xy casilla) 
+{
+	
+	
+
+}

@@ -160,7 +160,7 @@ void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctr
 	{
 		if (xcell_sel >= 0 && xcell_sel <= 5 && ycell_sel >= 0 && ycell_sel <= 4)
 		{
-			cout << "(" << xcell_sel << "," << ycell_sel << ")" << endl;   //??ESTO ES LO QUE SE ACABA ESCRIBIENDO Y GUARDANDO!!!!
+			cout << "(" << xcell_sel << "," << ycell_sel << ")" << endl;   //!!!ESTO ES LO QUE SE ACABA ESCRIBIENDO Y GUARDANDO!!!!
 		}
 		else
 		{

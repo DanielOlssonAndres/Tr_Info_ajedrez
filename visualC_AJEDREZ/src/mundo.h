@@ -46,7 +46,7 @@ public:
 	void MouseButton(int x, int y, int button, bool down, bool shiftKey, bool ctrlKey);
 	int mov_raton();
 
-	Vector2xy casilla;
+	Vector2xy casilla; //Vector que tiene la casilla guardada
 
 
 	void centro_casilla(int cell_x, int cell_y, float& glx, float& gly) {
