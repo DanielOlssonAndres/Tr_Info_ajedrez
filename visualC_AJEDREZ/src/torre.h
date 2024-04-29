@@ -5,8 +5,8 @@
 
 class Torre : public Ficha
 {
-	ETSIDI::Sprite sprite_blanco{ "imagenes/T_TORRE_GIRAFA.png" };
-	ETSIDI::Sprite sprite_negro{ "imagenes/A_TORRES_CANGREJO.png" };
+	ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_TORRE_GIRAFA.png" };
+	ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_TORRES_CANGREJO.png" };
 
 public:
 	void dibuja();
