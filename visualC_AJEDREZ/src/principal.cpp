@@ -113,9 +113,26 @@ Vector2xy mov_raton() {
 	POINT cursorPos;
 	Vector2xy pos_cas;
 
-	while (true) {
-		// OObtiene la posición del ratón y la escribe
-		GetCursorPos(&cursorPos);
+	while (true) 
+	{
+		// Obtener la posición del cursor
+		if (GetCursorPos(&cursorPos)) 
+		{
+			// Verificar si el ratón está dentro del tablero
+			if (cursorPos.x >= 0 && cursorPos.x <= 5 && cursorPos.y >= 0 && cursorPos.y <= 4) 
+			{
+				std::cout << "Posición del ratón - X: " << cursorPos.x << ", Y: " << cursorPos.y << std::endl;
+			}
+			else 
+			{
+				std::cout << "El ratón no se encuentra en el tablero." << std::endl;
+			}
+		}
+
+		else 
+		{
+			std::cerr << "No se pudo obtener la posición del ratón." << std::endl;
+		}
 
 		pos_cas.x = cursorPos.x;
 		pos_cas.y = cursorPos.y;
