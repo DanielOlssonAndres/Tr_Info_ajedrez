@@ -46,7 +46,8 @@ public:
 	void dibuja();
 	void MouseButton(int x, int y, int button, bool down, bool shiftKey, bool ctrlKey);
 	Vector2xy mov_raton();
-	Vector2xy pos_cas;
+
+	Vector2xy casilla;
 	
 
 	void centro_casilla(int cell_x, int cell_y, float& glx, float& gly) {
@@ -56,11 +57,15 @@ public:
 		gly = -cell_x * width - width / 2.0f;
 	}
 
-	//coordenadas globales
+	
 	void world2cell(double x, double y, int& cell_x, int& cell_y) {
-		//world coordinates to cell
-		cell_x = (int)(abs(y / width));
+		//coordenadas globales a la casilla
+		cell_x = (int)(y / width);
 		cell_y = (int)(x / width);
+
+		//guardo la posición de la casilla en un vector
+		casilla.x = cell_x;
+		casilla.y = cell_y;
 	}
 
 

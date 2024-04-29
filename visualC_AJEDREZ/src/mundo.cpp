@@ -164,10 +164,21 @@ void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctr
 
 		//escribir las coordenadas después de hacer click
 	if (down)
-		cout << "(" << xcell_sel << "," << ycell_sel << ")" << endl;
-
+	{
+		if (xcell_sel >= 0 && xcell_sel <= 5 && ycell_sel >= 0 && ycell_sel <= 4)
+		{
+		cout << "(" << xcell_sel << "," << ycell_sel << ")" << endl;   //¡¡¡¡ESTO ES LO QUE SE ACABA ESCRIBIENDO Y GUARDANDO!!!!
+		}
+		else 
+		{
+			std::cout << "El ratón no se encuentra en el tablero." << std::endl;
+		}
+	}
+	
 }
 
+
+//CREO Q AQUÍ NO HACE FALTA GUARDAR EL DATO
 Vector2xy Mundo::mov_raton() {
 
 	POINT cursorPos;
