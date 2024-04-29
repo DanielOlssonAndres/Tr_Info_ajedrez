@@ -171,14 +171,15 @@ void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctr
 		}
 		else 
 		{
-			std::cout << "El ratón no se encuentra en el tablero." << std::endl;
+			std::cout << "El raton no se encuentra en el tablero." << std::endl;
 		}
 	}
 	
 }
 
 
-//CREO Q AQUÍ NO HACE FALTA GUARDAR EL DATO
+// Lectura de dónde se encuentra el ratón
+
 int Mundo::mov_raton() {
 
 	POINT cursorPos;
