@@ -144,13 +144,6 @@ void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctr
 	///////////////////////////	
 	//Captura los movimientos del raton
 
-	if (down) {
-		controlKey = ctrlKey;
-		shiftKey = sKey;
-	}
-	else {
-		controlKey = shiftKey = false;
-	}
 
 	if (button == MOUSE_LEFT_BUTTON)
 		leftButton = down;
