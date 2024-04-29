@@ -76,8 +76,7 @@ protected:
 
 	//mouse+special-keys 
 	//  
-	bool controlKey;
-	bool shiftKey;
+
 	bool leftButton;
 	bool rightButton;
 	bool midButton;
