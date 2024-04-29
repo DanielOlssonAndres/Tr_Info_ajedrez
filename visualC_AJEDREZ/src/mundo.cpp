@@ -179,40 +179,22 @@ void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctr
 
 
 //CREO Q AQUÍ NO HACE FALTA GUARDAR EL DATO
-Vector2xy Mundo::mov_raton() {
+int Mundo::mov_raton() {
 
 	POINT cursorPos;
-	Vector2xy pos_cas;
+	
 
 	while (true)
 	{
 		// Obtener la posición del cursor
-		if (GetCursorPos(&cursorPos))
-		{
-			// Verificar si el ratón está dentro del tablero
-			if (cursorPos.x >= 0 && cursorPos.x <= 5 && cursorPos.y >= 0 && cursorPos.y <= 4)
-			{
-				std::cout << "Posición del ratón - X: " << cursorPos.x << ", Y: " << cursorPos.y << std::endl;
-			}
-			else
-			{
-				std::cout << "El ratón no se encuentra en el tablero." << std::endl;
-			}
-		}
-
-		else
-		{
-			std::cerr << "No se pudo obtener la posición del ratón." << std::endl;
-		}
-
-		pos_cas.x = cursorPos.x;
-		pos_cas.y = cursorPos.y;
+		(GetCursorPos(&cursorPos));
+	
 
 		// Esperar un tiempo antes de volver a obtener la posición del ratón
 		Sleep(200); // Espera 200 milisegundos (0.2 segundos)
 	}
 
-	return pos_cas;
+	return 0;
 }
 
 

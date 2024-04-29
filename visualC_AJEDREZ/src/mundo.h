@@ -45,7 +45,7 @@ public:
 	void inicializa();
 	void dibuja();
 	void MouseButton(int x, int y, int button, bool down, bool shiftKey, bool ctrlKey);
-	Vector2xy mov_raton();
+	int mov_raton();
 
 	Vector2xy casilla;
 	

@@ -106,40 +106,4 @@ void OnMouseClick(int b, int state, int x, int y) {
 	glutPostRedisplay();
 }
 
-// Lectura de dónde se encuentra el ratón
-Vector2xy mov_raton() {
-
-	POINT cursorPos;
-	Vector2xy pos_cas;
-
-	while (true) 
-	{
-		// Obtener la posición del cursor
-		if (GetCursorPos(&cursorPos)) 
-		{
-			// Verificar si el ratón está dentro del tablero
-			if (cursorPos.x >= 0 && cursorPos.x <= 5 && cursorPos.y >= 0 && cursorPos.y <= 4) 
-			{
-				std::cout << "Posición del ratón - X: " << cursorPos.x << ", Y: " << cursorPos.y << std::endl;
-			}
-			else 
-			{
-				std::cout << "El ratón no se encuentra en el tablero." << std::endl;
-			}
-		}
-
-		else 
-		{
-			std::cerr << "No se pudo obtener la posición del ratón." << std::endl;
-		}
-
-		pos_cas.x = cursorPos.x;
-		pos_cas.y = cursorPos.y;
-		
-		// Esperar un tiempo antes de volver a obtener la posición del ratón
-		Sleep(200); // Espera 200 milisegundos (0.2 segundos)
-	}
-
-	return pos_cas;
-}
 
