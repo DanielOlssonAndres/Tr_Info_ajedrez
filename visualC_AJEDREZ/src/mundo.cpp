@@ -6,6 +6,7 @@
 #include "Tablero.h"
 #include "Ficha.h"
 
+using namespace std;
 
 void Mundo::inicializa()
 {
@@ -113,4 +114,86 @@ void Mundo::dibuja()
 	peonN4.dibuja();
 	peonN5.dibuja();
 
+}
+
+void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctrlKey) {
+	/////////////////////////
+	// posicona el estado del raton y de las teclas
+
+	/////////
+	//computa las coordenadas del raton
+
+	GLint viewport[4];
+	GLdouble modelview[16];
+	GLdouble projection[16];
+	GLfloat winX, winY, winZ;
+	GLdouble posX, posY, posZ;
+
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
+	glGetDoublev(GL_PROJECTION_MATRIX, projection);
+	glGetIntegerv(GL_VIEWPORT, viewport);
+
+	winX = (float)x;
+	winY = (float)viewport[3] - (float)y;
+	glReadPixels(x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
+
+	//finally cell coordinates
+	world2cell(posX, posY, xcell_sel, ycell_sel);
+
+	///////////////////////////	
+	//Captura los movimientos del raton
+
+	if (down) {
+		controlKey = ctrlKey;
+		shiftKey = sKey;
+	}
+	else {
+		controlKey = shiftKey = false;
+	}
+
+	if (button == MOUSE_LEFT_BUTTON)
+		leftButton = down;
+	else if (button == MOUSE_RIGHT_BUTTON)
+		rightButton = down;
+	else if (button == MOUSE_MIDDLE_BUTTON)
+		midButton = down;
+	///////////////////////////
+
+		//*** Escribir acciones relacionadas al raton
+
+		//escribir las coordenadas despues de hacer click
+	if (down)
+	{
+		if (xcell_sel >= 0 && xcell_sel <= 5 && ycell_sel >= 0 && ycell_sel <= 4)
+		{
+			cout << "(" << xcell_sel << "," << ycell_sel << ")" << endl;   //??ESTO ES LO QUE SE ACABA ESCRIBIENDO Y GUARDANDO!!!!
+		}
+		else
+		{
+			std::cout << "El raton no se encuentra en el tablero." << std::endl;
+		}
+	}
+
+}
+
+
+// Lectura de donde se encuentra el raton
+
+int Mundo::mov_raton() {
+
+	POINT cursorPos;
+
+
+	while (true)
+	{
+		// Obtener la posicion del cursor
+		(GetCursorPos(&cursorPos));
+
+
+		// Esperar un tiempo antes de volver a obtener la posicion del raton
+		Sleep(200); // Espera 200 milisegundos (0.2 segundos)
+	}
+
+	return 0;
 }
