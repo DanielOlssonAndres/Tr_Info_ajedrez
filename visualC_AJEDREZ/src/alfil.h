@@ -4,8 +4,8 @@
 
 class Alfil : public Ficha
 {
-	ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_ALFIL_PATO.png" };
-	ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_ALFIL_PULPO.png" };
+	ETSIDI::Sprite sprite_blanco{ "imagenes/T_ALFIL_PATO.png" };
+	ETSIDI::Sprite sprite_negro{ "imagenes/A_ALFIL_PULPO.png" };
 	
 public:
 	void dibuja();

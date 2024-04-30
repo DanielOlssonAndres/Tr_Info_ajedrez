@@ -4,8 +4,8 @@
 
 class Caballo : public Ficha
 { 
-	ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_CABALLO_CEBRA.png" };
-	ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
+	ETSIDI::Sprite sprite_blanco{ "imagenes/T_CABALLO_CEBRA.png" };
+	ETSIDI::Sprite sprite_negro{ "imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
 
 public:
 	void dibuja();
