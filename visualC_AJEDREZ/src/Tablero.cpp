@@ -9,13 +9,91 @@
 
 void Tablero::inicializa(const int& TJ) {
 	Tjuego = TJ;
+	//Inicializamos la matriz de punteros tipo FICHA para gestión de movimientos
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+			MatTablero[i][j] = nullptr;
+		}
+	}
 
+	if (Tjuego == 0) { //Modalidad 5x6EO();
+		//blancas
+		MatTablero[0][4] = &reyB;
+		reyB.inicializa({0, 4}, BLANCAS);
+		MatTablero[0][3] = &damaB;
+		damaB.inicializa({ 0, 3 }, BLANCAS);
+		MatTablero[0][2] = &alfilB;
+		alfilB.inicializa({ 0, 2 }, BLANCAS);
+		MatTablero[0][1] = &caballoB;
+		caballoB.inicializa({ 0, 2 }, BLANCAS);
+		MatTablero[0][0] = &torreB;
+		torreB.inicializa({ 0, 0 }, BLANCAS);
+		//negras
+		MatTablero[5][0] = &reyN;
+		reyN.inicializa({ 5, 0 }, NEGRAS);
+		MatTablero[5][1] = &damaN;
+		damaN.inicializa({ 5, 1 }, NEGRAS);
+		MatTablero[5][2] = &alfilN;
+		alfilN.inicializa({ 5, 2 }, NEGRAS);
+		MatTablero[5][3] = &caballoN;
+		caballoN.inicializa({ 5, 3 }, NEGRAS);
+		MatTablero[5][4] = &torreN;
+		torreN.inicializa({ 5, 4 }, NEGRAS);
+	}
+	else { //Modalidad PETTY
+		//blancas
+		MatTablero[0][1] = &reyB;
+		reyB.inicializa({ 0, 1 }, BLANCAS);
+		MatTablero[0][0] = &damaB;
+		damaB.inicializa({ 0, 0 }, BLANCAS);
+		MatTablero[0][2] = &alfilB;
+		alfilB.inicializa({ 0, 2 }, BLANCAS);
+		MatTablero[0][3] = &caballoB;
+		caballoB.inicializa({ 0, 3 }, BLANCAS);
+		MatTablero[0][4] = &torreB;
+		torreB.inicializa({ 0, 4 }, BLANCAS);
+		//negras
+		MatTablero[5][1] = &reyN;
+		reyN.inicializa({ 5, 1 }, NEGRAS);
+		MatTablero[5][0] = &damaN;
+		damaN.inicializa({ 5, 0 }, NEGRAS);
+		MatTablero[5][2] = &alfilN;
+		alfilN.inicializa({ 5, 2 }, NEGRAS);
+		MatTablero[5][3] = &caballoN;
+		caballoN.inicializa({ 5, 3 }, NEGRAS);
+		MatTablero[5][4] = &torreN;
+		torreN.inicializa({ 5, 4 }, NEGRAS);
+	}
+	//peones blancos
+	MatTablero[1][0] = &peonB1;
+	peonB1.inicializa({ 1, 0 }, BLANCAS);
+	MatTablero[1][1] = &peonB2;
+	peonB2.inicializa({ 1, 1 }, BLANCAS);
+	MatTablero[1][2] = &peonB3;
+	peonB3.inicializa({ 1, 2 }, BLANCAS);
+	MatTablero[1][3] = &peonB4;
+	peonB4.inicializa({ 1, 3 }, BLANCAS);
+	MatTablero[1][4] = &peonB5;
+	peonB5.inicializa({ 1, 4 }, BLANCAS);
+	//peones negros
+	MatTablero[4][0] = &peonN1;
+	peonN1.inicializa({ 4, 0 }, NEGRAS);
+	MatTablero[4][1] = &peonN2;
+	peonN2.inicializa({ 4, 1 }, NEGRAS);
+	MatTablero[4][2] = &peonN3;
+	peonN3.inicializa({ 4, 2 }, NEGRAS);
+	MatTablero[4][3] = &peonN4;
+	peonN4.inicializa({ 4, 3 }, NEGRAS);
+	MatTablero[4][4] = &peonN5;
+	peonN5.inicializa({ 4, 4 }, NEGRAS);
+
+	//inicialización de las casillas del tablero
 	bool m = FALSE;
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 			Mcasillas[i][j].vx = { j*6 };
 			Mcasillas[i][j].vy = { i*6 };
-			//CentroCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 }; //para hallar el centro de las casillas
+			//PosEnCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 }; //para hallar el centro de las casillas
 			if (m == FALSE) {
 				Mcasillas[i][j].colR = { 0 }; //"NEGRA"
 				Mcasillas[i][j].colG = { 0}; //"NEGRA" 
@@ -31,54 +109,6 @@ void Tablero::inicializa(const int& TJ) {
 		}
 	}
 
-	for (int i = 0; i < 6; i++) {
-		for (int j = 0; j < 5; j++) {
-			PosEnCasillas[i][j] = { 3 + j * 6, 3 + i * 6 };
-		}
-	}
-
-	//INICIALIZACIÓN DE FICHAS ESPECIALES
-	if (Tjuego == 0) { //Modalidad 5x6EO();
-		//Blancas
-		reyB.inicializa(PosEnCasillas[0][4], BLANCAS);
-		damaB.inicializa(PosEnCasillas[0][3], BLANCAS);
-		alfilB.inicializa(PosEnCasillas[0][2], BLANCAS);
-		caballoB.inicializa(PosEnCasillas[0][1], BLANCAS);
-		torreB.inicializa(PosEnCasillas[0][0], BLANCAS);
-		//Negras
-		reyN.inicializa(PosEnCasillas[5][0], NEGRAS);
-		damaN.inicializa(PosEnCasillas[5][1], NEGRAS);
-		alfilN.inicializa(PosEnCasillas[5][2], NEGRAS);
-		caballoN.inicializa(PosEnCasillas[5][3], NEGRAS);
-		torreN.inicializa(PosEnCasillas[5][4], NEGRAS);
-	}
-	else { //Modalidad PETTY
-		//Blancas
-		reyB.inicializa(PosEnCasillas[0][1], BLANCAS);
-		damaB.inicializa(PosEnCasillas[0][0], BLANCAS);
-		alfilB.inicializa(PosEnCasillas[0][2], BLANCAS);
-		caballoB.inicializa(PosEnCasillas[0][3], BLANCAS);
-		torreB.inicializa(PosEnCasillas[0][4], BLANCAS);
-		//Negras
-		reyN.inicializa(PosEnCasillas[5][1], NEGRAS);
-		damaN.inicializa(PosEnCasillas[5][0], NEGRAS);
-		alfilN.inicializa(PosEnCasillas[5][2], NEGRAS);
-		caballoN.inicializa(PosEnCasillas[5][3], NEGRAS);
-		torreN.inicializa(PosEnCasillas[5][4], NEGRAS);
-	}
-	//INICIALIZACIÓN DE PEONES
-	//Blancos
-	peonB1.inicializa(PosEnCasillas[1][0], BLANCAS);
-	peonB2.inicializa(PosEnCasillas[1][1], BLANCAS);
-	peonB3.inicializa(PosEnCasillas[1][2], BLANCAS);
-	peonB4.inicializa(PosEnCasillas[1][3], BLANCAS);
-	peonB5.inicializa(PosEnCasillas[1][4], BLANCAS);
-	//Negros
-	peonN1.inicializa(PosEnCasillas[4][0], NEGRAS);
-	peonN2.inicializa(PosEnCasillas[4][1], NEGRAS);
-	peonN3.inicializa(PosEnCasillas[4][2], NEGRAS);
-	peonN4.inicializa(PosEnCasillas[4][3], NEGRAS);
-	peonN5.inicializa(PosEnCasillas[4][4], NEGRAS);
 }
 
 
@@ -112,29 +142,13 @@ void Tablero::dibuja()
 	glEnable(GL_LIGHTING);
 	glDisable(GL_TEXTURE_2D);
 
-	//Blancas
-	reyB.dibuja();
-	damaB.dibuja();
-	alfilB.dibuja();
-	caballoB.dibuja();
-	torreB.dibuja();
-	peonB1.dibuja();
-	peonB2.dibuja();
-	peonB3.dibuja();
-	peonB4.dibuja();
-	peonB5.dibuja();
-
-	//Negras
-	reyN.dibuja();
-	damaN.dibuja();
-	alfilN.dibuja();
-	caballoN.dibuja();
-	torreN.dibuja();
-	peonN1.dibuja();
-	peonN2.dibuja();
-	peonN3.dibuja();
-	peonN4.dibuja();
-	peonN5.dibuja();
-
+	//Fichas
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+			if (MatTablero[i][j] != nullptr) {
+				MatTablero[i][j]->dibuja();
+			}
+		}
+	}
 }
 

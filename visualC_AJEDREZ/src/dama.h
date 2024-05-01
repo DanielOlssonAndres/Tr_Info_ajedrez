@@ -8,6 +8,6 @@ class Dama : public Ficha
 	ETSIDI::Sprite sprite_negro{ "imagenes/A_DAMA_BALLENA.png" };
 
 public:
-	void dibuja();
+	void dibuja() override;
 };
 

@@ -74,12 +74,14 @@ void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctr
 	//escribir las coordenadas despues de hacer click
 	if (down)
 	{
-		if (xcell_sel >= 0 && xcell_sel <= 5 && ycell_sel >= 0 && ycell_sel <= 4)
+		if (casillaSelec.x >= 0 && casillaSelec.x <= 5 && casillaSelec.y >= 0 && casillaSelec.y <= 4)
 		{
-			cout << "(" << xcell_sel << "," << ycell_sel << ")" << endl;   
+			cout << "(" << casillaSelec.x << "," << casillaSelec.y << ")" << endl;
 		}
 		else
 		{
+			casillaSelec.x = 0;
+			casillaSelec.y = 0;
 			std::cout << "El raton no se encuentra en el tablero." << std::endl;
 		}
 	}
@@ -114,6 +116,6 @@ void Mundo::world2cell(double x, double y, int& cell_x, int& cell_y) {
 	cell_y = (int)(x / width);
 
 	//guardo la posición de la casilla en un vector
-	casilla.x = cell_x;
-	casilla.y = cell_y;
+	casillaSelec.x = cell_x;
+	casillaSelec.y = cell_y;
 }

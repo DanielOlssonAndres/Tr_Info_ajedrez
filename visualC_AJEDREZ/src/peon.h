@@ -8,7 +8,6 @@ class Peon : public Ficha
 	ETSIDI::Sprite sprite_negro{ "imagenes/A_PEON_GAMBA.png" };
 
 public:
-	void dibuja();
-	
+	void dibuja() override;
 };
 

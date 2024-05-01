@@ -5,7 +5,7 @@ void Torre::dibuja()
 {
     if (tipo == BLANCAS) {
         glPushMatrix();
-        glTranslatef(posicion.x - 3, posicion.y - 3, 1);
+        glTranslatef(PosEnCasillas[pos.x][pos.y].y - 3, PosEnCasillas[pos.x][pos.y].x - 3, 1);
 
         sprite_blanco.setSize(5, 5);
 
@@ -14,7 +14,7 @@ void Torre::dibuja()
     }
     else {
         glPushMatrix();
-        glTranslatef(posicion.x - 3, posicion.y - 3, 1);
+        glTranslatef(PosEnCasillas[pos.x][pos.y].y - 3, PosEnCasillas[pos.x][pos.y].x - 3, 1);
 
         sprite_negro.setSize(5, 5);
 

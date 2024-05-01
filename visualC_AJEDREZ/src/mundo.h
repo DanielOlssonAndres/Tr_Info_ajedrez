@@ -15,7 +15,7 @@ class Mundo
 
 	int Tjuego;
 	Vector2xy PosEnCasillas[6][5];
-	Vector2xy casilla; //Vector que tiene la casilla seleccionada
+	Vector2xy casillaSelec; //Vector que tiene la casilla seleccionada
 
 	Tablero tablero;
 

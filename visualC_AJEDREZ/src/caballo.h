@@ -8,7 +8,7 @@ class Caballo : public Ficha
 	ETSIDI::Sprite sprite_negro{ "imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
 
 public:
-	void dibuja();
+	void dibuja() override;
 
 };
 

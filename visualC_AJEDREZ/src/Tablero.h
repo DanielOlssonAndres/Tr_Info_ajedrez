@@ -22,8 +22,9 @@ class Tablero
 {
 	int Tjuego;
 
-	Vector2xy PosEnCasillas[6][5]; // Indica la posición de la ficha que se encuentra en esta casilla
-	CASILLA Mcasillas[6][5];
+	CASILLA Mcasillas[6][5]; // Para parte GRÁFICA -> Indica posición de esquina de las casillas
+
+	Ficha* MatTablero[6][5];
 
 	//Fichas blancas
 	Peon peonB1, peonB2, peonB3, peonB4, peonB5;
@@ -43,5 +44,7 @@ class Tablero
 public:
 	void inicializa(const int& TJ);
 	void dibuja();
+
+	friend class Ficha;
 };
 
