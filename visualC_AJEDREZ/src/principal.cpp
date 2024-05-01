@@ -36,7 +36,11 @@ int main(int argc,char* argv[])
 	glutDisplayFunc(OnDraw);
 	glutTimerFunc(25,OnTimer,0);//le decimos que dentro de 25ms llame 1 vez a la funcion OnTimer()
 	glutKeyboardFunc(OnKeyboardDown);
+<<<<<<< HEAD
 	glutMouseFunc(OnMouseClick); //Callback del ratón
+=======
+	glutMouseFunc(OnMouseClick); //Callback del raton
+>>>>>>> main
 
 	//INICIALIZACION
 
@@ -104,6 +108,10 @@ void OnMouseClick(int b, int state, int x, int y) {
 
 	mundo.MouseButton(x, y, b, down, sKey, ctrlKey);
 	glutPostRedisplay();
+<<<<<<< HEAD
 }
 
 
+=======
+}
+>>>>>>> main

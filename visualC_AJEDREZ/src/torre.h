@@ -9,7 +9,7 @@ class Torre : public Ficha
 	ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_TORRES_CANGREJO.png" };
 
 public:
-	void dibuja();
+	void dibuja() override;
 	
 };
 

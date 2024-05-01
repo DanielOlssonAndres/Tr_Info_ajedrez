@@ -8,7 +8,6 @@ class Rey : public Ficha
 	ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_REY_TIBURON.png" };
 
 public:
-	void dibuja();
-	
+	void dibuja() override;
 };
 

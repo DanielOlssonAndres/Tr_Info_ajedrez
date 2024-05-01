@@ -8,6 +8,6 @@ class Alfil : public Ficha
 	ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_ALFIL_PULPO.png" };
 	
 public:
-	void dibuja();
+	void dibuja() override;
 
 };
