@@ -47,4 +47,3 @@ public:
 
 	friend class Ficha;
 };
-

@@ -19,7 +19,7 @@ void Tablero::inicializa(const int& TJ) {
 	if (Tjuego == 0) { //Modalidad 5x6EO();
 		//blancas
 		MatTablero[0][4] = &reyB;
-		reyB.inicializa({0, 4}, BLANCAS);
+		reyB.inicializa({ 0, 4 }, BLANCAS);
 		MatTablero[0][3] = &damaB;
 		damaB.inicializa({ 0, 3 }, BLANCAS);
 		MatTablero[0][2] = &alfilB;
@@ -91,12 +91,12 @@ void Tablero::inicializa(const int& TJ) {
 	bool m = FALSE;
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
-			Mcasillas[i][j].vx = { j*6 };
-			Mcasillas[i][j].vy = { i*6 };
+			Mcasillas[i][j].vx = { j * 6 };
+			Mcasillas[i][j].vy = { i * 6 };
 			//PosEnCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 }; //para hallar el centro de las casillas
 			if (m == FALSE) {
 				Mcasillas[i][j].colR = { 0 }; //"NEGRA"
-				Mcasillas[i][j].colG = { 0}; //"NEGRA" 
+				Mcasillas[i][j].colG = { 0 }; //"NEGRA" 
 				Mcasillas[i][j].colB = { 0 }; //"NEGRA"
 				m = TRUE;
 			}
@@ -112,7 +112,7 @@ void Tablero::inicializa(const int& TJ) {
 }
 
 
-void Tablero::dibuja() 
+void Tablero::dibuja()
 {
 	//CASILLAS
 	for (int i = 0; i < 6; i++) {
@@ -130,11 +130,7 @@ void Tablero::dibuja()
 	//FONDO
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D,
-<<<<<<< HEAD
-		ETSIDI::getTexture("bin/imagenes/fondoaj.png").id);
-=======
-		ETSIDI::getTexture("imagenes/FONDO_V1.png").id);
->>>>>>> main
+		ETSIDI::getTexture("bin/imagenes/FONDO_V1.png").id);
 	glDisable(GL_LIGHTING);
 	glBegin(GL_POLYGON);
 	glColor3f(1, 1, 1);
@@ -155,4 +151,3 @@ void Tablero::dibuja()
 		}
 	}
 }
-

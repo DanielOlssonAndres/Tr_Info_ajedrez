@@ -7,10 +7,6 @@
 #include "Ficha.h"
 
 using namespace std;
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 
 void Mundo::inicializa()
 {
@@ -33,7 +29,7 @@ void Mundo::inicializa()
 	ETSIDI::play("sonidos/InicioJuego.wav");
 
 	tablero.inicializa(Tjuego);
-	
+
 }
 
 void Mundo::dibuja()
@@ -45,32 +41,7 @@ void Mundo::dibuja()
 
 	// dibujo de elementos
 	tablero.dibuja();
-	
-<<<<<<< HEAD
-	//Blancas
-	reyB.dibuja();
-	damaB.dibuja();
-	alfilB.dibuja();
-	caballoB.dibuja();
-	torreB.dibuja();
-	peonB1.dibuja();
-	peonB2.dibuja();
-	peonB3.dibuja();
-	peonB4.dibuja();
-	peonB5.dibuja();
 
-	//Negras
-	reyN.dibuja();
-	damaN.dibuja();
-	alfilN.dibuja();
-	caballoN.dibuja();
-	torreN.dibuja();
-	peonN1.dibuja();
-	peonN2.dibuja();
-	peonN3.dibuja();
-	peonN4.dibuja();
-	peonN5.dibuja();
-=======
 }
 
 void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctrlKey) {
@@ -147,89 +118,5 @@ void Mundo::world2cell(double x, double y, int& cell_x, int& cell_y) {
 	//guardo la posición de la casilla en un vector
 	casillaSelec.x = cell_x;
 	casillaSelec.y = cell_y;
->>>>>>> main
 }
-
-void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctrlKey) {
-	/////////////////////////
-	// posicona el estado del ratón y de las teclas
-
-	/////////
-	//computa las coordenadas del ratón
-
-	GLint viewport[4];
-	GLdouble modelview[16];
-	GLdouble projection[16];
-	GLfloat winX, winY, winZ;
-	GLdouble posX, posY, posZ;
-
-	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
-	glGetDoublev(GL_PROJECTION_MATRIX, projection);
-	glGetIntegerv(GL_VIEWPORT, viewport);
-
-	winX = (float)x;
-	winY = (float)viewport[3] - (float)y;
-	glReadPixels(x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
-	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
-
-	//finally cell coordinates
-	world2cell(posX, posY, xcell_sel, ycell_sel);
-
-	///////////////////////////	
-	//Captura los movimientos del ratón
-
-	if (down) {
-		controlKey = ctrlKey;
-		shiftKey = sKey;
-	}
-	else {
-		controlKey = shiftKey = false;
-	}
-
-	if (button == MOUSE_LEFT_BUTTON)
-		leftButton = down;
-	else if (button == MOUSE_RIGHT_BUTTON)
-		rightButton = down;
-	else if (button == MOUSE_MIDDLE_BUTTON)
-		midButton = down;
-	///////////////////////////
-
-		//*** Escribir acciones relacionadas al ratón
-
-		//escribir las coordenadas después de hacer click
-	if (down)
-	{
-		if (xcell_sel >= 0 && xcell_sel <= 5 && ycell_sel >= 0 && ycell_sel <= 4)
-		{
-		cout << "(" << xcell_sel << "," << ycell_sel << ")" << endl;   //¡¡¡¡ESTO ES LO QUE SE ACABA ESCRIBIENDO Y GUARDANDO!!!!
-		}
-		else 
-		{
-			std::cout << "El raton no se encuentra en el tablero." << std::endl;
-		}
-	}
-	
-}
-
-
-// Lectura de dónde se encuentra el ratón
-
-int Mundo::mov_raton() {
-
-	POINT cursorPos;
-	
-
-	while (true)
-	{
-		// Obtener la posición del cursor
-		(GetCursorPos(&cursorPos));
-	
-
-		// Esperar un tiempo antes de volver a obtener la posición del ratón
-		Sleep(200); // Espera 200 milisegundos (0.2 segundos)
-	}
-
-	return 0;
-}
-
 
