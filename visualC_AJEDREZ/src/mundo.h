@@ -10,16 +10,16 @@ enum { KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT };
 
 class Mundo
 {
-
+	
 
 	double x_ojo, y_ojo, z_ojo;
 	double x_look, y_look, z_look;
 
 	int Tjuego;
 	Vector2xy PosEnCasillas[6][5];
-	Vector2xy casillaSelec; //Vector que tiene la casilla seleccionada
+	
 
-	Tablero tablero;
+	
 
 	// VARIABLES PARA SELECCIÓN POR RATÓN----------------------------
 	float width = 6; //Darle un valor al ancho de las casillas
@@ -30,6 +30,8 @@ class Mundo
 	// --------------------------------------------------------------
 
 public:
+	Vector2xy casillaSelec; //Vector que tiene la casilla seleccionada
+	Tablero tablero;
 
 	void inicializa();
 	void dibuja();

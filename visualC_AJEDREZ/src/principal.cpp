@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 	//INICIALIZACION
 
 	mundo.inicializa();
-	void selec_2_casillas(Vector2xy casillaSelec,Ficha* MatTablero[6][5]);
+	/*selec_2_casillas (mundo.casillaSelec, mundo.tablero.MatTablero[6][5]);*/
 
 	//pasarle el control a GLUT,que llamara a los callbacks
 	glutMainLoop();
@@ -104,24 +104,26 @@ void OnMouseClick(int b, int state, int x, int y) {
 	glutPostRedisplay();
 }
 
-void selec_2_casillas(Vector2xy casilla1, Ficha* casilla2 [6][5])
+void selec_2_casillas( Vector2xy casilla1, Ficha* casilla2 [6][5])
 {
-	int i,j,k,l;
+	int i, j;
 	casilla1.x = i;
 	casilla1.y = j;
 	Vector2xy casilladestino;
 	
 	if (casilla2[i][j] != nullptr)
 	{
-		OnMouseClick; //Callback del raton
-		casilla1.x = k;
-		casilla1.y = l;
+		OnMouseClick; //Callback del raton, se debería de renovar la ubicación de casilla1
 
-		if (casilla2[k][l] != nullptr) 
+		if (casilla2[i][j] != nullptr) 
 		{
 			std::cout << "Se moverá a esta casilla" << std::endl;
 			cout << "(" << casilla1.x << "," << casilla1.y << ")" << endl;
 
+		}
+		else 
+		{
+			std::cout << "Seleccione una casilla vacia" << std::endl;
 		}
 
 	}
@@ -130,5 +132,6 @@ void selec_2_casillas(Vector2xy casilla1, Ficha* casilla2 [6][5])
 		std::cout << "Primero seleccione una ficha" << std::endl;
 	}
 
+	std::cout << "La función ha sido llamada" << std::endl;
 
 }
