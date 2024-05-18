@@ -154,6 +154,7 @@ void Tablero::dibuja()
 Tablero::Tablero()
 {
 	//Poner las texturas del tablero
+	//Este sería el tablero del 5x6
 	matriz =
 	{
 		{-1,-2,-3,-4,-5},
@@ -200,7 +201,7 @@ void Tablero::Soltar_Pieza(int x, int y) {
 
 	for (int i = 0; i < 5; i++) {
 		for (int j = 0; j < 6; j++) {
-			if (((color && matriz[i][j] <= 0) || (!color && matriz[i][j] >= 0) && Poder_Mover(i, j)) {
+			if (((color && matriz[i][j] <= 0) || (!color && matriz[i][j] >= 0) && Poder_Mover(i, j))) {
 				ficha[pInd].Set_Posicion(i,j); //Se mueve la ficha a la nueva posicion
 				//Cambiamos los valores de la matriz dejando la nueva casilla con la ficha y la otra dejandola en 0
 				matriz[k][l] = matriz[pI][pJ];
@@ -208,19 +209,163 @@ void Tablero::Soltar_Pieza(int x, int y) {
 				matriz[i][j] =matriz[k][l];
 				flag=0;
 				
-				for (int h = 0; h < (int)ficha.size(); h++) {
+				for (int h = 0; h < (int)ficha.size(); h++) { //Si hay una ficha en la nueva posición se elimina
 					int val = ficha[h].Get_Valor();
-					if (ficha[h].Contener_Posicion(x, y) && ((color && val < 0) || (!color && val > 0)))//Si hay una ficha en la nueva posición se elimina
+					if (ficha[h].Contener_Posicion(x, y) && ((color && val < 0) || (!color && val > 0)))
 						delete ficha[h];
 				}
 
 				Selec_Jaque();
-
+				//Cambio de turno
 				if (color) color = false;
 				else color = true;
+			}
+		}
+	}
+	pInd = -1;
+}
 
+//Creo que esta no hace falta pero la dejo por si nos puede servir
+void Tablero::Actualizar(int x, int y, bool presionado) { 
+	Selec_Jaque();
+	if (pInd != -1 && presionado) {
+		ficha[pInd].Set_Posicion(x, y);
+	}
+	else if (pInd != -1 && !presionado) {
+		Soltar_Pieza(x,y);
+	}
+	else if (pInd == -1 && presionado) {
+		Tomar_Pieza(x, y);
+	}
+}
+
+bool Tablero::Selec_Peon(int i, int j) {
+	if (color) {
+		if (matriz[i][j] == 0 && pI - i == 1 && j == pJ) return true;
+		else if (matriz[i][j] == 0 && pI - i == 2 && j == pJ && pI == 6 && matriz[i + 1][j] == 0) return true;
+		else if (matriz[i][j] > 0 && pI - i == -1 && abs(j - pJ) == 1)return true;
+	}
+	return false;
+}
+
+bool Tablero::Selec_Rey(int i, int j) {
+	if (color) {
+		if (matriz[i][j] == 0 && abs(pI - i)<= 1 && abs(pJ-j)<=0) return true;
+		else {
+			if (abs(pI - i) <= 1 && abs(pJ - j) && matriz[i][j] >= 0) return true;
+		}
+	}
+	return false;
+}
+
+bool Tablero::Selec_Caballo(int i, int j) {
+	if (color) {
+		if (matriz[i][j] <= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2));
+	}
+	else {
+		if (matriz[i][j] >= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2));
+	}
+}
+
+bool Tablero::Selec_Torre(int i, int j) {
+	if (pJ == j) {
+		for (int I = std::min(pI, i) + 1; I < std::max(pI, i); I++) {
+			if (matriz[I][pJ] != 0) return false;
+		}
+		if (color && matriz[i][j] <= 0) return true;
+		else if (!color && matriz[i][j] >= 0)return true;
+	}
+	else if (pI == i) {
+		for (int J = std::min(pJ, j) + 1; J < std::max(pJ, j); J++) {
+			if (matriz[pI][J] != 0) return false;
+		}
+		if (color && matriz[i][j] <= 0) return true;
+		else if (!color && matriz[i][j] >= 0) return true;
+	}
+	return false;
+}
+
+bool Tablero::Selec_Alfil(int i, int j) {
+	if (abs(pJ - j) == abs(pI - i)) {
+		int difI = (pI - i < 0 ? 1 : -1);
+		int difJ = (pJ - j < 0 ? 1 : -1);
+		int I = pI;
+		int J = pJ;
+
+		while (I != i - difI && J != j - difJ) {
+			I += difI;
+			J += difJ;
+			if (matriz[I][J] != 0)return false;
+		}
+		if (color && matriz[i][j] <= 0) return true;
+		else if (!color && matriz[i][j] >= 0)return true;
+	}
+	return false;
+}
+
+bool Tablero::Selec_Dama(int i, int j) {
+	if (Selec_Torre(i, j) || Selec_Alfil(i, j))return true;
+	return false;
+}
+
+bool Tablero::Selec_Mover(int i, int j) {
+
+	switch (abs(matriz[pI][pJ])) {
+	case 6: return Selec_Peon(i, j); break;
+	case 1: return Selec_Rey(i, j); break;
+	case 2: return Selec_Dama(i, j); break;
+	case 3: return Selec_Alfil(i, j); break;
+	case 4: return Selec_Caballo(i, j); break;
+	case 5: return Selec_Torre(i, j); break;
+	}
+	return false;
+}
+
+void Tablero::Selec_Jaque() {
+	int iR = -1, jR = -1;
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 6; j++) {
+			if ((color && matriz[i][j] == -5) || (!color && matriz[i][j] == 5)) {
+				iR = i; jR = j;
+			}
+		}
+	}
+
+	int npI = pI; int npJ = pJ;
+	bool jaq = false;
+	for (int i = 0; i < 5; i++) 
+	{
+		for (int j = 0; j < 6; j++){
+			if ((color && matriz[i][j] < 0) || (!color && matriz[i][j < 0])) continue;
+			pI = i; pJ = j;
+			if(Selec_Mover(iR,jR))
+			{
+				jaq = true;
+				if(color){
+					if (jaqN) jaqMN = true;
+					jaqN = true;
+				}
+				else{
+					if (jaqB) jaqMB = true;
+					jaqB = true;
+				}
 
 			}
 		}
 	}
+	pI = npI; pJ = npJ;
+	if (color && !jaq) jaqB = false;
+	else if (!jaq) jaqN = false;
 }
+
+void Tablero::Consultar_Jaque(bool& jB, bool& jN, bool& jMB, bool& jMN) {
+	jB = jaqB;
+	jN = jaqN;
+	jMB = jaqMB;
+	jMN = jaqMN;
+}
+
+bool Tablero::Consultar_Turno(){
+	return color;
+}
+

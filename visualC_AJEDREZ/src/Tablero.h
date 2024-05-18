@@ -39,7 +39,7 @@ class Tablero
 	std::vector<Ficha> ficha;
 
 	int pInd = -1, pI, pJ;
-	bool color = true, jaqB = false, jaqMB = false, jagN = false, jaqMN = false;
+	bool color = true, jaqB = false, jaqMB = false, jaqN = false, jaqMN = false;
 	void Tomar_Pieza(int, int);
 	void Soltar_Pieza(int, int);
 
@@ -49,7 +49,7 @@ class Tablero
 	bool Selec_Torre(int, int);
 	bool Selec_Caballo(int, int);
 	bool Selec_Alfil(int, int);
-	bool Poder_Mover(int, int);
+	bool Selec_Mover(int, int);
 	void Selec_Jaque();
 
 public:
@@ -57,7 +57,7 @@ public:
 	void dibuja();
 	//-------------------------------------
 	Tablero();
-	void Refrescar(int, int bool);
+	void Actualizar(int, int, bool);
 	void Consultar_Jaque(bool&, bool&, bool&, bool&);
 	bool Consultar_Turno();
 
