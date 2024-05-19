@@ -216,7 +216,7 @@ void Tablero::Soltar_Pieza(int x, int y) {
 
 	for (int i = 0; i < 5; i++) {
 		for (int j = 0; j < 6; j++) {
-			if (((color && matriz[i][j] <= 0) || (!color && matriz[i][j] >= 0) && Poder_Mover(i, j))) {
+			if (((color && matriz[i][j] <= 0) || (!color && matriz[i][j] >= 0) && Selec_Mover(i, j))) {
 				ficha[pInd].Set_Posicion(i,j); //Se mueve la ficha a la nueva posicion
 				//Cambiamos los valores de la matriz dejando la nueva casilla con la ficha y la otra dejandola en 0
 				matriz[k][l] = matriz[pI][pJ];
@@ -224,11 +224,11 @@ void Tablero::Soltar_Pieza(int x, int y) {
 				matriz[i][j] =matriz[k][l];
 				flag=0;
 				
-				for (int h = 0; h < (int)ficha.size(); h++) { //Si hay una ficha en la nueva posición se elimina
-					int val = ficha[h].Get_Valor();
-					if (ficha[h].Contener_Posicion(x, y) && ((color && val < 0) || (!color && val > 0)))
-						delete ficha[h];
-				}
+				//for (int h = 0; h < (int)ficha.size(); h++) { //Si hay una ficha en la nueva posición se elimina
+				//	int val = ficha[h].Get_Valor();
+				//	if (ficha[h].Contener_Posicion(x, y) && ((color && val < 0) || (!color && val > 0)))
+				//		delete ficha[h];
+				//}
 
 				Selec_Jaque();
 				//Cambio de turno

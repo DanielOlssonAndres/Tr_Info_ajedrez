@@ -7,7 +7,7 @@
 #include "Ficha.h"
 
 
-struct CASILLA {
+ struct MI_CASILLA {
 	// Parámetros gráficos de casilla
 	int vx;
 	int vy;
@@ -18,7 +18,7 @@ class Tablero
 {
 	int Tjuego;
 
-	CASILLA Mcasillas[6][5]; // Para parte GRÁFICA -> Indica posición de esquina de las casillas
+	MI_CASILLA Mcasillas[6][5];// Para parte GRÁFICA -> Indica posición de esquina de las casillas
 
 	////Fichas blancas
 	//Peon peonB1, peonB2, peonB3, peonB4, peonB5;
