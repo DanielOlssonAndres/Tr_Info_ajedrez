@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "freeglut.h"
-
+#include <ETSIDI.h>
 #include "Tablero.h"
 #include "Ficha.h"
 

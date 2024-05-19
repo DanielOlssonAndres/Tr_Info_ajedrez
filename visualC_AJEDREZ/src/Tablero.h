@@ -56,7 +56,7 @@ public:
 	void inicializa(const int& TJ);
 	void dibuja();
 	//-------------------------------------
-	Tablero();
+	Tablero(const int& TJ);
 	void Actualizar(int, int, bool);
 	void Consultar_Jaque(bool&, bool&, bool&, bool&);
 	bool Consultar_Turno();

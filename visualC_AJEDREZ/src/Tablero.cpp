@@ -151,26 +151,41 @@ void Tablero::dibuja()
 		}
 	}*/
 }
-Tablero::Tablero()
+Tablero::Tablero(const int& TJ)
 {
+	Tjuego = TJ;
+
 	//Poner las texturas del tablero
 	//Este sería el tablero del 5x6
-	matriz =
-	{
-		{-1,-2,-3,-4,-5},
-		{-6,-6,-6,-6,-6},
-		{0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0},
-		{6, 6, 6, 6, 6},
-		{5, 4, 3, 2, 1}
-	};
 
+	if (Tjuego == 0) { //Modalidad 5x6EO();
+		matriz =
+		{
+			{-1,-2,-3,-4,-5},
+			{-6,-6,-6,-6,-6},
+			{0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0},
+			{6, 6, 6, 6, 6},
+			{5, 4, 3, 2, 1}
+		};
+	}
+	else {//Modalidad PETTY
+		matriz =
+		{
+			{-2,-1,-3,-4,-5},
+			{-6,-6,-6,-6,-6},
+			{0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0},
+			{6, 6, 6, 6, 6},
+			{2, 1, 3, 4, 5}
+		};
+	}
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 6; j++)
 		{
 			if (matriz[i][j] != 0) {
-				Ficha p(56 + j * 56, 56 + i * 56, matriz[i][j]);
+				Ficha p (56 + j * 56, 56 + i * 56, matriz[i][j]);
 				ficha.push_back(p);
 			}
 		}

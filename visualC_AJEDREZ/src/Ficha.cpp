@@ -1,10 +1,30 @@
 #include "Ficha.h"
+#include<ETSIDI.h>
+
 
 Ficha::Ficha(int x, int y, int val) {
 	valor = val;
-	if (valor = 0) // seleccionar las texturas negras
-	else //seleccionar las texturas blancas
+	if (valor = 1)  ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_REY_LEON.png" };
+	if (valor = -1) ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_REY_TIBURON.png" };
+
+	if (valor = 2) ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_DAMA_LEONA.png" };
+	if (valor = -2) ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_DAMA_BALLENA.png" };
+
+	if (valor = 3) ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_ALFIL_PATO.png" };
+	if (valor = -3) ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_ALFIL_PULPO.png" };
+
+	if (valor = 4) ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_CABALLO_CEBRA.png" };
+	if (valor = -4) ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
+
+	if (valor = 5) ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_TORRE_GIRAFA.png" };
+	if (valor = -5) ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_TORRES_CANGREJO.png" };
+
+	if (valor = 6) ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_PEON_CONEJO_2.png" };
+	if (valor = -6) ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_PEON_GAMBA.png" };
+
+
 }
+
 
 Vector2xy Ficha::Get_Posicion() {
 	return posicion;
