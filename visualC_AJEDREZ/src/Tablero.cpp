@@ -7,8 +7,8 @@
 #include "Tablero.h"
 
 
-void Tablero::inicializa(const int& TJ) {
-	Tjuego = TJ;
+//void Tablero::inicializa() {
+	/*Tjuego = TJ;*/
 	//Inicializamos la matriz de punteros tipo FICHA para gestión de movimientos
 	//for (int i = 0; i < 6; i++) {
 	//	for (int j = 0; j < 5; j++) {
@@ -88,28 +88,28 @@ void Tablero::inicializa(const int& TJ) {
 	//peonN5.inicializa({ 4, 4 }, NEGRAS);
 
 	//inicialización de las casillas del tablero
-	bool m = FALSE;
-	for (int i = 0; i < 6; i++) {
-		for (int j = 0; j < 5; j++) {
-			Mcasillas[i][j].vx = { j * 6 };
-			Mcasillas[i][j].vy = { i * 6 };
-			//PosEnCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 }; //para hallar el centro de las casillas
-			if (m == FALSE) {
-				Mcasillas[i][j].colR = { 0 }; //"NEGRA"
-				Mcasillas[i][j].colG = { 0 }; //"NEGRA" 
-				Mcasillas[i][j].colB = { 0 }; //"NEGRA"
-				m = TRUE;
-			}
-			else {
-				Mcasillas[i][j].colR = { 255 }; //"BLANCA"
-				Mcasillas[i][j].colG = { 255 }; //"BLANCA"
-				Mcasillas[i][j].colB = { 255 }; //"BLANCA"
-				m = FALSE;
-			}
-		}
-	}
-
-}
+//bool m = FALSE;
+//for (int i = 0; i < 6; i++) {
+//	for (int j = 0; j < 5; j++) {
+//		Mcasillas[i][j].vx = { j * 6 };
+//		Mcasillas[i][j].vy = { i * 6 };
+//		//PosEnCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 }; //para hallar el centro de las casillas
+//		if (m == FALSE) {
+//			Mcasillas[i][j].colR = { 0 }; //"NEGRA"
+//			Mcasillas[i][j].colG = { 0 }; //"NEGRA" 
+//			Mcasillas[i][j].colB = { 0 }; //"NEGRA"
+//			m = TRUE;
+//		}
+//		else {
+//			Mcasillas[i][j].colR = { 255 }; //"BLANCA"
+//			Mcasillas[i][j].colG = { 255 }; //"BLANCA"
+//			Mcasillas[i][j].colB = { 255 }; //"BLANCA"
+//			m = FALSE;
+//		}
+//	}
+//}
+//
+//}
 
 
 void Tablero::dibuja()
@@ -151,7 +151,8 @@ void Tablero::dibuja()
 		}
 	}*/
 }
-Tablero::Tablero(const int& TJ)
+
+void Tablero::inicializa(const int& TJ)
 {
 	Tjuego = TJ;
 
@@ -190,6 +191,29 @@ Tablero::Tablero(const int& TJ)
 			}
 		}
 	}
+
+	bool m = FALSE;
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+			Mcasillas[i][j].vx = { j * 6 };
+			Mcasillas[i][j].vy = { i * 6 };
+			//PosEnCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 }; //para hallar el centro de las casillas
+			if (m == FALSE) {
+				Mcasillas[i][j].colR = { 0 }; //"NEGRA"
+				Mcasillas[i][j].colG = { 0 }; //"NEGRA" 
+				Mcasillas[i][j].colB = { 0 }; //"NEGRA"
+				m = TRUE;
+			}
+			else {
+				Mcasillas[i][j].colR = { 255 }; //"BLANCA"
+				Mcasillas[i][j].colG = { 255 }; //"BLANCA"
+				Mcasillas[i][j].colB = { 255 }; //"BLANCA"
+				m = FALSE;
+			}
+		}
+	}
+
+
 }
 
 
@@ -275,11 +299,12 @@ bool Tablero::Selec_Rey(int i, int j) {
 
 bool Tablero::Selec_Caballo(int i, int j) {
 	if (color) {
-		if (matriz[i][j] <= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2));
+		if (matriz[i][j] <= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2)) return true;
 	}
 	else {
-		if (matriz[i][j] >= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2));
+		if (matriz[i][j] >= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2))return true;
 	}
+	return false;
 }
 
 bool Tablero::Selec_Torre(int i, int j) {

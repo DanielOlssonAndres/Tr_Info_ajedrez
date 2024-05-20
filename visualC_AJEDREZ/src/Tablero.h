@@ -7,7 +7,8 @@
 #include "Ficha.h"
 
 
- struct MI_CASILLA {
+; struct CASILLA
+ {
 	// Parámetros gráficos de casilla
 	int vx;
 	int vy;
@@ -18,7 +19,7 @@ class Tablero
 {
 	int Tjuego;
 
-	MI_CASILLA Mcasillas[6][5];// Para parte GRÁFICA -> Indica posición de esquina de las casillas
+	CASILLA Mcasillas[6][5];// Para parte GRÁFICA -> Indica posición de esquina de las casillas
 
 	////Fichas blancas
 	//Peon peonB1, peonB2, peonB3, peonB4, peonB5;
@@ -56,7 +57,8 @@ public:
 	void inicializa(const int& TJ);
 	void dibuja();
 	//-------------------------------------
-	Tablero(const int& TJ);
+	//Tablero(const int& TJ);
+
 	void Actualizar(int, int, bool);
 	void Consultar_Jaque(bool&, bool&, bool&, bool&);
 	bool Consultar_Turno();
