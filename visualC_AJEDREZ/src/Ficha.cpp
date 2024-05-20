@@ -1,28 +1,28 @@
 #include "Ficha.h"
-#include<ETSIDI.h>
 
+Ficha::Ficha(int x, int y, int val, Vector2xy PosEnCasillas):
+	valor(val),
+	sprite("imagenes/T_REY_LEON.png"),
+	posicion({ x, y }),
+	ubicacion(PosEnCasillas)
+{
+	if (valor = 1)  sprite = { "imagenes/T_REY_LEON.png" };
+	if (valor = -1) sprite = { "imagenes/A_REY_TIBURON.png" };
 
-Ficha::Ficha(int x, int y, int val) {
-	valor = val;
-	if (valor = 1)  ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_REY_LEON.png" };
-	if (valor = -1) ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_REY_TIBURON.png" };
+	if (valor = 2) sprite = { "imagenes/T_DAMA_LEONA.png" };
+	if (valor = -2) sprite = { "imagenes/A_DAMA_BALLENA.png" };
 
-	if (valor = 2) ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_DAMA_LEONA.png" };
-	if (valor = -2) ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_DAMA_BALLENA.png" };
+	if (valor = 3) sprite = { "imagenes/T_ALFIL_PATO.png" };
+	if (valor = -3) sprite = { "imagenes/A_ALFIL_PULPO.png" };
 
-	if (valor = 3) ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_ALFIL_PATO.png" };
-	if (valor = -3) ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_ALFIL_PULPO.png" };
+	if (valor = 4) sprite = { "imagenes/T_CABALLO_CEBRA.png" };
+	if (valor = -4) sprite = { "imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
 
-	if (valor = 4) ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_CABALLO_CEBRA.png" };
-	if (valor = -4) ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
+	if (valor = 5) sprite = { "imagenes/T_TORRE_GIRAFA.png" };
+	if (valor = -5) sprite = { "imagenes/A_TORRES_CANGREJO.png" };
 
-	if (valor = 5) ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_TORRE_GIRAFA.png" };
-	if (valor = -5) ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_TORRES_CANGREJO.png" };
-
-	if (valor = 6) ETSIDI::Sprite sprite_blanco{ "bin/imagenes/T_PEON_CONEJO_2.png" };
-	if (valor = -6) ETSIDI::Sprite sprite_negro{ "bin/imagenes/A_PEON_GAMBA.png" };
-
-
+	if (valor = 6) sprite = { "imagenes/T_PEON_CONEJO_2.png" };
+	if (valor = -6) sprite = { "imagenes/A_PEON_GAMBA.png" };
 }
 
 
@@ -45,4 +45,25 @@ void Ficha::Contener_Posicion(int x, int y) {//Posicion del ratón
 	// Una vez tengas la casilla nombrala como pInd 
 }
 
+void Ficha::dibuja() {
+
+	if (valor > 0) {
+		glPushMatrix();
+		glTranslatef(ubicacion.x - 3, ubicacion.y - 3, 1);
+
+		sprite.setSize(5, 5);
+
+		sprite.draw();
+		glPopMatrix();
+	}
+	else {
+		glPushMatrix();
+		glTranslatef(ubicacion.x - 3, ubicacion.y - 3, 1);
+
+		sprite.setSize(5, 5);
+
+		sprite.draw();
+		glPopMatrix();
+	}
+}
 

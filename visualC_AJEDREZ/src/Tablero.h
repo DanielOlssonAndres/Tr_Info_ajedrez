@@ -7,8 +7,8 @@
 #include "Ficha.h"
 
 
-; struct CASILLA
- {
+struct CASILLA
+{
 	// Parámetros gráficos de casilla
 	int vx;
 	int vy;
@@ -17,33 +17,20 @@
 
 class Tablero
 {
+private:
+
 	int Tjuego;
-
 	CASILLA Mcasillas[6][5];// Para parte GRÁFICA -> Indica posición de esquina de las casillas
+	Vector2xy PosEnCasillas[6][5];
 
-	////Fichas blancas
-	//Peon peonB1, peonB2, peonB3, peonB4, peonB5;
-	//Torre torreB;
-	//Caballo caballoB;
-	//Alfil alfilB;
-	//Dama damaB;
-	//Rey reyB;
-	////Fichas negras
-	//Peon peonN1, peonN2, peonN3, peonN4, peonN5;
-	//Torre torreN;
-	//Caballo caballoN;
-	//Alfil alfilN;
-	//Dama damaN;
-	//Rey reyN;
-
-	std::vector<std::vector<int>> matriz;
+	int matriz[6][5];           //std::vector<std::vector<int>> matriz;
 	std::vector<Ficha> ficha;
+	
 
 	int pInd = -1, pI, pJ;
 	bool color = true, jaqB = false, jaqMB = false, jaqN = false, jaqMN = false;
 	void Tomar_Pieza(int, int);
 	void Soltar_Pieza(int, int);
-
 	bool Selec_Peon(int, int);
 	bool Selec_Rey(int, int);
 	bool Selec_Dama(int, int);
@@ -62,6 +49,5 @@ public:
 	void Actualizar(int, int, bool);
 	void Consultar_Jaque(bool&, bool&, bool&, bool&);
 	bool Consultar_Turno();
-
 	
 };

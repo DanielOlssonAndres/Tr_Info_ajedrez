@@ -61,7 +61,7 @@ void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctr
 	glReadPixels(x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
 
-	world2cell(posX, posY, xcell_sel, ycell_sel);
+	world2cell(posX, posY, xcas_sel, ycas_sel);
 
 	//Captura los movimientos del raton
 	if (button == MOUSE_LEFT_BUTTON)
@@ -106,14 +106,14 @@ int Mundo::mov_raton() {
 void Mundo::centro_casilla(int cell_x, int cell_y, float& glx, float& gly) {
 	//cell_x, cell_y coordenadas de las casillas en el tablero 
 	//glx, gly se refieren al centro de las casillas 
-	glx = cell_y * width + width / 2.0f;
-	gly = -cell_x * width - width / 2.0f;
+	glx = cell_y * ancho + ancho / 2.0f;
+	gly = -cell_x * ancho - ancho / 2.0f;
 }
 
 void Mundo::world2cell(double x, double y, int& cell_x, int& cell_y) {
 	//coordenadas globales a la casilla
-	cell_x = (int)(y / width);
-	cell_y = (int)(x / width);
+	cell_x = (int)(y / ancho);
+	cell_y = (int)(x / ancho);
 
 	//guardo la posición de la casilla en un vector
 	casillaSelec.x = cell_x;

@@ -114,6 +114,7 @@
 
 void Tablero::dibuja()
 {
+
 	//CASILLAS
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
@@ -130,7 +131,7 @@ void Tablero::dibuja()
 	//FONDO
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D,
-		ETSIDI::getTexture("bin/imagenes/FONDO_V1.png").id);
+		ETSIDI::getTexture("imagenes/FONDO_V1.png").id);
 	glDisable(GL_LIGHTING);
 	glBegin(GL_POLYGON);
 	glColor3f(1, 1, 1);
@@ -141,6 +142,10 @@ void Tablero::dibuja()
 	glEnd();
 	glEnable(GL_LIGHTING);
 	glDisable(GL_TEXTURE_2D);
+
+	for (Ficha guia : ficha) {
+		guia.dibuja();
+	}
 
 	//Fichas
 	/*for (int i = 0; i < 6; i++) {
@@ -156,48 +161,12 @@ void Tablero::inicializa(const int& TJ)
 {
 	Tjuego = TJ;
 
-	//Poner las texturas del tablero
-	//Este sería el tablero del 5x6
-
-	if (Tjuego == 0) { //Modalidad 5x6EO();
-		matriz =
-		{
-			{-1,-2,-3,-4,-5},
-			{-6,-6,-6,-6,-6},
-			{0, 0, 0, 0, 0},
-			{0, 0, 0, 0, 0},
-			{6, 6, 6, 6, 6},
-			{5, 4, 3, 2, 1}
-		};
-	}
-	else {//Modalidad PETTY
-		matriz =
-		{
-			{-2,-1,-3,-4,-5},
-			{-6,-6,-6,-6,-6},
-			{0, 0, 0, 0, 0},
-			{0, 0, 0, 0, 0},
-			{6, 6, 6, 6, 6},
-			{2, 1, 3, 4, 5}
-		};
-	}
-	for (int i = 0; i < 5; i++)
-	{
-		for (int j = 0; j < 6; j++)
-		{
-			if (matriz[i][j] != 0) {
-				Ficha p (56 + j * 56, 56 + i * 56, matriz[i][j]);
-				ficha.push_back(p);
-			}
-		}
-	}
-
 	bool m = FALSE;
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 			Mcasillas[i][j].vx = { j * 6 };
 			Mcasillas[i][j].vy = { i * 6 };
-			//PosEnCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 }; //para hallar el centro de las casillas
+			PosEnCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 }; //para hallar el centro de las casillas
 			if (m == FALSE) {
 				Mcasillas[i][j].colR = { 0 }; //"NEGRA"
 				Mcasillas[i][j].colG = { 0 }; //"NEGRA" 
@@ -212,8 +181,117 @@ void Tablero::inicializa(const int& TJ)
 			}
 		}
 	}
+	//Poner las texturas del tablero
+	//Este sería el tablero del 5x6
 
+	if (Tjuego == 0) { //Modalidad 5x6EO();
+		/*
+		matriz =
+		{
+			{-1,-2,-3,-4,-5},
+			{-6,-6,-6,-6,-6},
+			{0, 0, 0, 0, 0},
+			{0, 0, 0, 0,0 0},
+			{6, 6, 6, 6, 6},
+			{5, 4, 3, 2, 1}
+		};
+		*/
+		matriz[5][0] = 5;
+		matriz[5][1] = 4;
+		matriz[5][2] = 3;
+		matriz[5][3] = 2;
+		matriz[5][4] = 1;
 
+		matriz[4][0] = 6;
+		matriz[4][1] = 6;
+		matriz[4][2] = 6;
+		matriz[4][3] = 6;
+		matriz[4][4] = 6;
+
+		matriz[1][0] = -6;
+		matriz[1][1] = -6;
+		matriz[1][2] = -6;
+		matriz[1][3] = -6;
+		matriz[1][4] = -6;
+
+		matriz[2][0] = 0;
+		matriz[2][1] = 0;
+		matriz[2][2] = 0;
+		matriz[2][3] = 0;
+		matriz[2][4] = 0;
+
+		matriz[3][0] = 0;
+		matriz[3][1] = 0;
+		matriz[3][2] = 0;
+		matriz[3][3] = 0;
+		matriz[3][4] = 0;
+
+		matriz[0][0] = -1;
+		matriz[0][1] = -2;
+		matriz[0][2] = -3;
+		matriz[0][3] = -4;
+		matriz[0][4] = -5;
+	}
+	else {//Modalidad PETTY
+		/*
+		matriz =
+		{
+			{-2,-1,-3,-4,-5},
+			{-6,-6,-6,-6,-6},
+			{0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0},
+			{6, 6, 6, 6, 6},
+			{2, 1, 3, 4, 5}
+		};
+		*/
+
+		matriz[5][0] = 5;
+		matriz[5][1] = 4;
+		matriz[5][2] = 3;
+		matriz[5][3] = 2;
+		matriz[5][4] = 1;
+
+		matriz[4][0] = 6;
+		matriz[4][1] = 6;
+		matriz[4][2] = 6;
+		matriz[4][3] = 6;
+		matriz[4][4] = 6;
+
+		matriz[1][0] = -6;
+		matriz[1][1] = -6;
+		matriz[1][2] = -6;
+		matriz[1][3] = -6;
+		matriz[1][4] = -6;
+
+		matriz[2][0] = 0;
+		matriz[2][1] = 0;
+		matriz[2][2] = 0;
+		matriz[2][3] = 0;
+		matriz[2][4] = 0;
+
+		matriz[3][0] = 0;
+		matriz[3][1] = 0;
+		matriz[3][2] = 0;
+		matriz[3][3] = 0;
+		matriz[3][4] = 0;
+
+		matriz[0][0] = -1;
+		matriz[0][1] = -2;
+		matriz[0][2] = -3;
+		matriz[0][3] = -4;
+		matriz[0][4] = -5;
+
+	}
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 6; j++)
+		{
+			if (matriz[i][j] != 0) {
+				Ficha p(i, j, matriz[i][j], PosEnCasillas[i][j]); //(56 + j * 56, 56 + i * 56, matriz[i][j]);
+				ficha.push_back(p);
+			}
+		}
+	}
 }
 
 
