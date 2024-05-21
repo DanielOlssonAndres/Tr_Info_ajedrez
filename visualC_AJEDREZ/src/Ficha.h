@@ -16,8 +16,6 @@ private:
 
 	int valor;
 	Vector2xy posicion;
-	ETSIDI::Sprite sprite;
-	Vector2xy ubicacion; //parte gráfica
 
 public:
 
@@ -26,7 +24,6 @@ public:
 	void Set_Posicion(int, int);
 	Vector2xy Get_Posicion();
 	int Get_Valor();
-	void dibuja();
 
 };
 

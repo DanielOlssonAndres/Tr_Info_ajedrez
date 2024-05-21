@@ -6,112 +6,6 @@
 
 #include "Tablero.h"
 
-
-//void Tablero::inicializa() {
-	/*Tjuego = TJ;*/
-	//Inicializamos la matriz de punteros tipo FICHA para gestión de movimientos
-	//for (int i = 0; i < 6; i++) {
-	//	for (int j = 0; j < 5; j++) {
-	//		MatTablero[i][j] = nullptr;
-	//	}
-	//}
-
-	//if (Tjuego == 0) { //Modalidad 5x6EO();
-	//	//blancas
-	//	MatTablero[0][4] = &reyB;
-	//	reyB.inicializa({ 0, 4 }, BLANCAS);
-	//	MatTablero[0][3] = &damaB;
-	//	damaB.inicializa({ 0, 3 }, BLANCAS);
-	//	MatTablero[0][2] = &alfilB;
-	//	alfilB.inicializa({ 0, 2 }, BLANCAS);
-	//	MatTablero[0][1] = &caballoB;
-	//	caballoB.inicializa({ 0, 2 }, BLANCAS);
-	//	MatTablero[0][0] = &torreB;
-	//	torreB.inicializa({ 0, 0 }, BLANCAS);
-	//	//negras
-	//	MatTablero[5][0] = &reyN;
-	//	reyN.inicializa({ 5, 0 }, NEGRAS);
-	//	MatTablero[5][1] = &damaN;
-	//	damaN.inicializa({ 5, 1 }, NEGRAS);
-	//	MatTablero[5][2] = &alfilN;
-	//	alfilN.inicializa({ 5, 2 }, NEGRAS);
-	//	MatTablero[5][3] = &caballoN;
-	//	caballoN.inicializa({ 5, 3 }, NEGRAS);
-	//	MatTablero[5][4] = &torreN;
-	//	torreN.inicializa({ 5, 4 }, NEGRAS);
-	//}
-	//else { //Modalidad PETTY
-	//	//blancas
-	//	MatTablero[0][1] = &reyB;
-	//	reyB.inicializa({ 0, 1 }, BLANCAS);
-	//	MatTablero[0][0] = &damaB;
-	//	damaB.inicializa({ 0, 0 }, BLANCAS);
-	//	MatTablero[0][2] = &alfilB;
-	//	alfilB.inicializa({ 0, 2 }, BLANCAS);
-	//	MatTablero[0][3] = &caballoB;
-	//	caballoB.inicializa({ 0, 3 }, BLANCAS);
-	//	MatTablero[0][4] = &torreB;
-	//	torreB.inicializa({ 0, 4 }, BLANCAS);
-	//	//negras
-	//	MatTablero[5][1] = &reyN;
-	//	reyN.inicializa({ 5, 1 }, NEGRAS);
-	//	MatTablero[5][0] = &damaN;
-	//	damaN.inicializa({ 5, 0 }, NEGRAS);
-	//	MatTablero[5][2] = &alfilN;
-	//	alfilN.inicializa({ 5, 2 }, NEGRAS);
-	//	MatTablero[5][3] = &caballoN;
-	//	caballoN.inicializa({ 5, 3 }, NEGRAS);
-	//	MatTablero[5][4] = &torreN;
-	//	torreN.inicializa({ 5, 4 }, NEGRAS);
-	//}
-	////peones blancos
-	//MatTablero[1][0] = &peonB1;
-	//peonB1.inicializa({ 1, 0 }, BLANCAS);
-	//MatTablero[1][1] = &peonB2;
-	//peonB2.inicializa({ 1, 1 }, BLANCAS);
-	//MatTablero[1][2] = &peonB3;
-	//peonB3.inicializa({ 1, 2 }, BLANCAS);
-	//MatTablero[1][3] = &peonB4;
-	//peonB4.inicializa({ 1, 3 }, BLANCAS);
-	//MatTablero[1][4] = &peonB5;
-	//peonB5.inicializa({ 1, 4 }, BLANCAS);
-	////peones negros
-	//MatTablero[4][0] = &peonN1;
-	//peonN1.inicializa({ 4, 0 }, NEGRAS);
-	//MatTablero[4][1] = &peonN2;
-	//peonN2.inicializa({ 4, 1 }, NEGRAS);
-	//MatTablero[4][2] = &peonN3;
-	//peonN3.inicializa({ 4, 2 }, NEGRAS);
-	//MatTablero[4][3] = &peonN4;
-	//peonN4.inicializa({ 4, 3 }, NEGRAS);
-	//MatTablero[4][4] = &peonN5;
-	//peonN5.inicializa({ 4, 4 }, NEGRAS);
-
-	//inicialización de las casillas del tablero
-//bool m = FALSE;
-//for (int i = 0; i < 6; i++) {
-//	for (int j = 0; j < 5; j++) {
-//		Mcasillas[i][j].vx = { j * 6 };
-//		Mcasillas[i][j].vy = { i * 6 };
-//		//PosEnCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 }; //para hallar el centro de las casillas
-//		if (m == FALSE) {
-//			Mcasillas[i][j].colR = { 0 }; //"NEGRA"
-//			Mcasillas[i][j].colG = { 0 }; //"NEGRA" 
-//			Mcasillas[i][j].colB = { 0 }; //"NEGRA"
-//			m = TRUE;
-//		}
-//		else {
-//			Mcasillas[i][j].colR = { 255 }; //"BLANCA"
-//			Mcasillas[i][j].colG = { 255 }; //"BLANCA"
-//			Mcasillas[i][j].colB = { 255 }; //"BLANCA"
-//			m = FALSE;
-//		}
-//	}
-//}
-//
-//}
-
-
 void Tablero::dibuja()
 {
 
@@ -143,18 +37,108 @@ void Tablero::dibuja()
 	glEnable(GL_LIGHTING);
 	glDisable(GL_TEXTURE_2D);
 
-	for (Ficha guia : ficha) {
-		guia.dibuja();
-	}
-
 	//Fichas
-	/*for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
-			if (MatTablero[i][j] != nullptr) {
-				MatTablero[i][j]->dibuja();
+			if (matriz[i][j] == -1) {
+				ETSIDI::Sprite sprite = { "imagenes/A_REY_TIBURON.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
 			}
+			if (matriz[i][j] == -2) {
+				ETSIDI::Sprite sprite = { "imagenes/A_DAMA_BALLENA.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == -3) {
+				ETSIDI::Sprite sprite = { "imagenes/A_ALFIL_PULPO.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == -4) {
+				ETSIDI::Sprite sprite = { "imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == -5) {
+				ETSIDI::Sprite sprite = { "imagenes/A_TORRES_CANGREJO.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == -6) {
+				ETSIDI::Sprite sprite = { "imagenes/A_PEON_GAMBA.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == 1) {
+				ETSIDI::Sprite sprite = { "imagenes/T_REY_LEON.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == 2) {
+				ETSIDI::Sprite sprite = { "imagenes/T_DAMA_LEONA.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == 3) {
+				ETSIDI::Sprite sprite = { "imagenes/T_ALFIL_PATO.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == 4) {
+				ETSIDI::Sprite sprite = { "imagenes/T_CABALLO_CEBRA.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == 5) {
+				ETSIDI::Sprite sprite = { "imagenes/T_TORRE_GIRAFA.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == 6) {
+				ETSIDI::Sprite sprite = { "imagenes/T_PEON_CONEJO_2.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+
 		}
-	}*/
+	}
 }
 
 void Tablero::inicializa(const int& TJ)

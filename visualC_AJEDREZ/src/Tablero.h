@@ -20,8 +20,8 @@ class Tablero
 private:
 
 	int Tjuego;
-	CASILLA Mcasillas[6][5];// Para parte GRÁFICA -> Indica posición de esquina de las casillas
-	Vector2xy PosEnCasillas[6][5];
+	CASILLA Mcasillas[6][5];	// Para parte GRÁFICA -> Indica posición de esquina de las casillas
+	Vector2xy PosEnCasillas[6][5];	//Para parte GRÁFICA -> Indica posición del centro de las casilas
 
 	int matriz[6][5];           //std::vector<std::vector<int>> matriz;
 	std::vector<Ficha> ficha;
