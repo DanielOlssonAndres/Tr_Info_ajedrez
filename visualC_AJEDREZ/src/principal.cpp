@@ -79,10 +79,9 @@ void OnTimer(int value)
 	glutPostRedisplay();
 }
 
-void OnMouseClick(int b, int state, int x, int y) {
-	////////////// 
-	//Captura el click con el ratón con o sin teclas especiales (CTRL or SHIFT)
-	//Da el control al tablero en la escena
+void OnMouseClick(int b, int state, int x, int y) 
+{
+
 	bool down = (state == GLUT_DOWN);
 	int button;
 	if (b == GLUT_LEFT_BUTTON) {

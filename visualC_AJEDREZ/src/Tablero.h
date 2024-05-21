@@ -45,6 +45,25 @@ public:
 	void inicializa(const int& TJ);
 	void dibuja();
 
+<<<<<<< Updated upstream
 	friend class Ficha;
 };
 
+=======
+	void Tomar_Pieza(Vector2xy origen); //Obtener los índices de la pieza seleccionada según la posición del ratón
+	void Soltar_Pieza(Vector2xy destino);  //Dejar la pieza en una posición según la posición del ratón
+	// Comprobar si los movimientos son posibles según la pieza que estemos moviendo
+	bool Selec_Peon(int, int); 
+	bool Selec_Rey(int, int);
+	bool Selec_Dama(int, int);
+	bool Selec_Torre(int, int);
+	bool Selec_Caballo(int, int);
+	bool Selec_Alfil(int, int);
+	bool Selec_Mover(int, int); //Llama a la comprobación correspondiente según la pieza que seleccionemos
+	void Selec_Jaque(); //Detección de jaque y jaque mate
+
+	void Consultar_Jaque(bool&, bool&, bool&, bool&); //Se encarga de indicar al programa si se produce jaque o jaque mate
+	bool Consultar_Turno(); //Indica al programa de quién es el turno
+	
+};
+>>>>>>> Stashed changes
