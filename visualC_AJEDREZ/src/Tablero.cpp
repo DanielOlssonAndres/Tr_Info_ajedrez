@@ -263,6 +263,11 @@ bool Tablero::Selec_Peon(int i, int j) {
 		else if (matriz[i][j] == 0 && pI - i == 2 && j == pJ && pI == 6 && matriz[i + 1][j] == 0) return true;
 		else if (matriz[i][j] > 0 && pI - i == -1 && abs(j - pJ) == 1)return true;
 	}
+	else {
+		if (matriz[i][j] == 0 && pI - i == -1 && j == pJ) return true;
+		else if (matriz[i][j] == 0 && pI - i == -2 && j == pJ && pI == 1 && matriz[i + 1][j] == 0) return true;
+		else if (matriz[i][j] > 0 && pI - i == -1 && abs(j - pJ) == 1)return true;
+	}
 	return false;
 }
 
@@ -270,7 +275,7 @@ bool Tablero::Selec_Rey(int i, int j) {
 	if (color) {
 		if (matriz[i][j] == 0 && abs(pI - i)<= 1 && abs(pJ-j)<=0) return true;
 		else {
-			if (abs(pI - i) <= 1 && abs(pJ - j) && matriz[i][j] >= 0) return true;
+			if (matriz[i][j] >= 0 && (abs(pI - i) <= 1 && abs(pJ - j) <= 1)) return true;
 		}
 	}
 	return false;
@@ -342,8 +347,8 @@ bool Tablero::Selec_Mover(int i, int j) {
 
 void Tablero::Selec_Jaque() {
 	int iR = -1, jR = -1;
-	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < 6; j++) {
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
 			if ((color && matriz[i][j] == -5) || (!color && matriz[i][j] == 5)) {
 				iR = i; jR = j;
 			}
@@ -352,9 +357,9 @@ void Tablero::Selec_Jaque() {
 
 	int npI = pI; int npJ = pJ;
 	bool jaq = false;
-	for (int i = 0; i < 5; i++) 
+	for (int i = 0; i < 6; i++) 
 	{
-		for (int j = 0; j < 6; j++){
+		for (int j = 0; j < 5; j++){
 			if ((color && matriz[i][j] < 0) || (!color && matriz[i][j < 0])) continue;
 			pI = i; pJ = j;
 			if(Selec_Mover(iR,jR))
