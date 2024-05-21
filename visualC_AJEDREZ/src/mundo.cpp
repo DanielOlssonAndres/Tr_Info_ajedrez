@@ -62,20 +62,19 @@ void Mundo::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool 
 		glReadPixels(x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
 		gluUnProject(winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
 
-		if (boton == GLUT_LEFT_BUTTON) {
-			CasillaOrigen.x = (int)(posY / ancho);
-			CasillaOrigen.y = (int)(posX / ancho);
-			if (CasillaOrigen.x > 5 || CasillaOrigen.x < 0) CasillaOrigen.x = -1;
-			if (CasillaOrigen.y > 4 || CasillaOrigen.y < 0) CasillaOrigen.y = -1;
-			tablero.Tomar_Pieza(CasillaOrigen);
-		}
+		if (posY >= 0 && posY <= 36 && posX >= 0 && posX <= 30) {
+			if (boton == GLUT_LEFT_BUTTON) {
 
-		if (boton == GLUT_RIGHT_BUTTON) {
-			CasillaDestino.x = (int)(posY / ancho);
-			CasillaDestino.y = (int)(posX / ancho);
-			if (CasillaDestino.x > 5 || CasillaDestino.x < 0) CasillaDestino.x = -1;
-			if (CasillaDestino.y > 4 || CasillaDestino.y < 0) CasillaDestino.y = -1;
-			tablero.Soltar_Pieza(CasillaDestino);
+				CasillaOrigen.x = (int)(posY / ancho);
+				CasillaOrigen.y = (int)(posX / ancho);
+				tablero.Tomar_Pieza(CasillaOrigen);
+			}
+
+			if (boton == GLUT_RIGHT_BUTTON) {
+				CasillaDestino.x = (int)(posY / ancho);
+				CasillaDestino.y = (int)(posX / ancho);
+				tablero.Soltar_Pieza(CasillaDestino);
+			}
 		}
 	}
 

@@ -233,7 +233,7 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 {
 	bool flag = 1;
 	
-	if (destino.x != -1 && destino.y != -1 && pInd != -1 && pI != -1 && pJ != -1) { // Si es una casilla permitida
+	if (pInd != -1 && pI != -1 && pJ != -1) { // Si es una casilla permitida
 		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && TRUE/*Selec_Mover(destino.x, destino.y)*/) { //Si el movimiento que quieres hacer está permitido 
 			//Código que haga que si hay una ficha del otro color en el destino, que se elimine (comer)
 			if ((color && matriz[destino.x][destino.y] < 0) || (!color && matriz[destino.x][destino.y] > 0)) {
