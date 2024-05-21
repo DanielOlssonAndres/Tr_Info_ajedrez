@@ -65,13 +65,16 @@ void Mundo::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool 
 		if (boton == GLUT_LEFT_BUTTON) {
 			CasillaOrigen.x = (int)(posY / ancho);
 			CasillaOrigen.y = (int)(posX / ancho);
+			if (CasillaOrigen.x > 5 || CasillaOrigen.x < 0) CasillaOrigen.x = -1;
+			if (CasillaOrigen.y > 4 || CasillaOrigen.y < 0) CasillaOrigen.y = -1;
 			tablero.Tomar_Pieza(CasillaOrigen);
 		}
 
 		if (boton == GLUT_RIGHT_BUTTON) {
 			CasillaDestino.x = (int)(posY / ancho);
 			CasillaDestino.y = (int)(posX / ancho);
-			cout << "CASILLA DESTINO: (" << CasillaDestino.x << "," << CasillaDestino.y << ")" << endl;
+			if (CasillaDestino.x > 5 || CasillaDestino.x < 0) CasillaDestino.x = -1;
+			if (CasillaDestino.y > 4 || CasillaDestino.y < 0) CasillaDestino.y = -1;
 			tablero.Soltar_Pieza(CasillaDestino);
 		}
 	}

@@ -203,25 +203,29 @@ void Tablero::inicializa(const int& TJ)
 
 void Tablero::Tomar_Pieza(Vector2xy origen) //posicion del raton -> origen
 {
-	for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
-		if (fichas[z].Get_PosicionX() == origen.x && fichas[z].Get_PosicionY() == origen.y) {
-			pInd = z;
-			break;
+	pInd = -1;
+	pI = -1;
+	pJ = -1;
+	if (origen.x != -1 && origen.y != -1 && matriz[origen.x][origen.y] != 0) { //Si hemos seleccionado una casilla dentro del tablero
+		for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su índice del vector en pInd
+			if (fichas[z].Get_PosicionX() == origen.x && fichas[z].Get_PosicionY() == origen.y) {
+				pInd = z;
+				break;
+			}
 		}
-	}
-	if (color && fichas[pInd].Get_Valor() < 0) { //Si la pieza es negra y es el turno del blanco
-		pInd = -1;
-		std::cout << "No puedes mover esa ficha en tu turno." << std::endl;
-	}
-	else if (!color && fichas[pInd].Get_Valor() > 0) { //Si la pieza es blanca y es el turno del negro
-		pInd = -1;
-		std::cout << "No puedes mover esa ficha en tu turno." << std::endl;
-	}
-/// puede q esto no funcione correctamente //////////
-	if (pInd != -1) {
-		pI = origen.x;
-		pJ = origen.y;
-		std::cout << "Se ha seleccionado la ficha " << matriz[pI][pJ]<< std::endl;
+		if (pInd != -1) {
+			if ((color && fichas[pInd].Get_Valor() < 0) || (!color && fichas[pInd].Get_Valor() > 0)) { //Si la pieza no corresponde con el color del turno
+				pInd = -1;
+				std::cout << "No puedes mover esa ficha en tu turno." << std::endl;
+			}
+
+			if (pInd != -1) {
+				pI = origen.x;
+				pJ = origen.y;
+				std::cout << "Se ha seleccionado la ficha " << matriz[pI][pJ] << std::endl;
+			}
+		}
+		
 	}
 }
 
@@ -229,31 +233,30 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 {
 	bool flag = 1;
 	
-	if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && TRUE/*Selec_Mover(destino.x, destino.y)*/) { //Si el movimiento que quieres hacer está permitido 
-		fichas[pInd].Set_Posicion(destino.x, destino.y);
-	//Código que haga que si hay una ficha del otro color en el destino, que se elimine (comer)
-		if ((color && matriz[destino.x][destino.y] < 0) || (!color && matriz[destino.x][destino.y] > 0)) {
-			for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
-				if (fichas[z].Get_PosicionX() == destino.x && fichas[z].Get_PosicionY() == destino.y) {
-					delete& fichas[z];
-					break;
+	if (destino.x != -1 && destino.y != -1 && pInd != -1 && pI != -1 && pJ != -1) { // Si es una casilla permitida
+		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && TRUE/*Selec_Mover(destino.x, destino.y)*/) { //Si el movimiento que quieres hacer está permitido 
+			//Código que haga que si hay una ficha del otro color en el destino, que se elimine (comer)
+			if ((color && matriz[destino.x][destino.y] < 0) || (!color && matriz[destino.x][destino.y] > 0)) {
+				for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
+					if (fichas[z].Get_PosicionX() == destino.x && fichas[z].Get_PosicionY() == destino.y) {
+						std::cout << "se elimina la ficha " << matriz[destino.x][destino.y] << std::endl;
+						fichas.erase(fichas.begin() + z);
+					}	
 				}
 			}
+			fichas[pInd].Set_Posicion(destino.x, destino.y);
+			//Actualización de los valores
+			matriz[destino.x][destino.y] = matriz[pI][pJ];
+			matriz[pI][pJ] = 0;
+			flag = 0;
 		}
-	//Actualización de los valores
-		matriz[destino.x][destino.y] = matriz[pI][pJ];
-		matriz[pI][pJ] = 0;
-		flag = 0;
-	}
-	//Selec_Jaque();
+		//Selec_Jaque();
 
-	//Cambio de turno
-	if (color) color = false;
-	else color = true;
-
-	if (flag == 1) {
-		fichas[pInd].Set_Posicion(pI, pJ);
+		//Cambio de turno
+		if (color) color = false;
+		else color = true;
 	}
+
 	pInd = -1;
 }
 
