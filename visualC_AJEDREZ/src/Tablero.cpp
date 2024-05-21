@@ -234,7 +234,8 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 	bool flag = 1;
 	
 	if (pInd != -1 && pI != -1 && pJ != -1) { // Si es una casilla permitida
-		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && TRUE/*Selec_Mover(destino.x, destino.y)*/) { //Si el movimiento que quieres hacer está permitido 
+		//Si el movimiento que quieres hacer está permitido 
+		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && Selec_Mover(destino.x, destino.y)) { //CAMBIAR  Selec_Mover por TRUE PARA DESHABILITAR LAS LIMITACIONES DE MOVIMIENTO
 			//Código que haga que si hay una ficha del otro color en el destino, que se elimine (comer)
 			if ((color && matriz[destino.x][destino.y] < 0) || (!color && matriz[destino.x][destino.y] > 0)) {
 				for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
@@ -250,7 +251,8 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 			matriz[pI][pJ] = 0;
 			flag = 0;
 		}
-		//Selec_Jaque();
+
+		//Selec_Jaque(); LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
 
 		//Cambio de turno
 		if (color) color = false;
