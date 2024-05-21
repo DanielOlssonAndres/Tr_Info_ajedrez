@@ -5,6 +5,7 @@
 #include "mundo.h"
 
 Mundo mundo;
+Tablero tablero;
 
 //NO HACE FALTA LLAMARLAS EXPLICITAMENTE
 void OnDraw(void); //esta funcion sera llamada para dibujar
@@ -39,6 +40,13 @@ int main(int argc, char* argv[])
 	//INICIALIZACION
 
 	mundo.inicializa();
+
+	//Llamada de las funciones
+	/*tablero.Tomar_Pieza(mundo.casillaSelec.x, mundo.casillaSelec.y);
+	tablero.Soltar_Pieza(mundo.casillaSelec.x, mundo.casillaSelec.y);*/
+
+	tablero.Actualizar(mundo.casillaSelec.x, mundo.casillaSelec.y, mundo.botonIzq);
+
 	/*selec_2_casillas (mundo.casillaSelec, mundo.tablero.MatTablero[6][5]);*/
 
 	//pasarle el control a GLUT,que llamara a los callbacks
@@ -88,10 +96,10 @@ void OnMouseClick(int b, int state, int x, int y) {
 	bool down = (state == GLUT_DOWN);
 	int button;
 	if (b == GLUT_LEFT_BUTTON) {
-		button = MOUSE_LEFT_BUTTON;
+		button = BOTON_RATON_IZQ;
 	}
 	if (b == GLUT_RIGHT_BUTTON) {
-		button = MOUSE_RIGHT_BUTTON;
+		button = BOTON_RATON_DRCH;
 		cout << "MOUSE_RIGHT_BUTTON" << endl;
 	}
 

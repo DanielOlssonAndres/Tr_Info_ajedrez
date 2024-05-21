@@ -44,7 +44,7 @@ void Mundo::dibuja()
 
 }
 
-void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctrlKey) {
+void Mundo::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) { // Probar si funciona eliminando los últimos bool
 	// posicona el estado del raton y de las teclas
 	GLint viewport[4];
 	GLdouble modelview[16];
@@ -64,15 +64,15 @@ void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctr
 	world2cell(posX, posY, xcas_sel, ycas_sel);
 
 	//Captura los movimientos del raton
-	if (button == MOUSE_LEFT_BUTTON)
-		leftButton = down;
-	else if (button == MOUSE_RIGHT_BUTTON)
-		rightButton = down;
-	else if (button == MOUSE_MIDDLE_BUTTON)
-		midButton = down;
+	if (boton == BOTON_RATON_IZQ)
+		botonIzq = abajo;
+	else if (boton == BOTON_RATON_DRCH)
+		botonDrch = abajo;
+	else if (boton == BOTON_RATON_MED)
+		botonMed = abajo;
 
 	//escribir las coordenadas despues de hacer click
-	if (down)
+	if (abajo)
 	{
 		if (casillaSelec.x >= 0 && casillaSelec.x <= 5 && casillaSelec.y >= 0 && casillaSelec.y <= 4)
 		{
@@ -103,20 +103,20 @@ int Mundo::mov_raton() {
 	return 0;
 }
 
-void Mundo::centro_casilla(int cell_x, int cell_y, float& glx, float& gly) {
+void Mundo::centro_casilla(int cas_x, int cas_y, float& glx, float& gly) {
 	//cell_x, cell_y coordenadas de las casillas en el tablero 
 	//glx, gly se refieren al centro de las casillas 
-	glx = cell_y * ancho + ancho / 2.0f;
-	gly = -cell_x * ancho - ancho / 2.0f;
+	glx = cas_y * ancho + ancho / 2.0f;
+	gly = -cas_x * ancho - ancho / 2.0f;
 }
 
-void Mundo::world2cell(double x, double y, int& cell_x, int& cell_y) {
+void Mundo::world2cell(double x, double y, int& cas_x, int& cas_y) {
 	//coordenadas globales a la casilla
-	cell_x = (int)(y / ancho);
-	cell_y = (int)(x / ancho);
+	cas_x = (int)(y / ancho);
+	cas_y = (int)(x / ancho);
 
 	//guardo la posición de la casilla en un vector
-	casillaSelec.x = cell_x;
-	casillaSelec.y = cell_y;
+	casillaSelec.x = cas_x;
+	casillaSelec.y = cas_y;
 }
 

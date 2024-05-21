@@ -29,6 +29,13 @@ private:
 
 	int pInd = -1, pI, pJ;
 	bool color = true, jaqB = false, jaqMB = false, jaqN = false, jaqMN = false;
+
+
+public:
+	void inicializa(const int& TJ);
+	void dibuja();
+	//-------------------------------------
+	//Tablero(const int& TJ);
 	void Tomar_Pieza(int, int);
 	void Soltar_Pieza(int, int);
 	bool Selec_Peon(int, int);
@@ -40,11 +47,6 @@ private:
 	bool Selec_Mover(int, int);
 	void Selec_Jaque();
 
-public:
-	void inicializa(const int& TJ);
-	void dibuja();
-	//-------------------------------------
-	//Tablero(const int& TJ);
 
 	void Actualizar(int, int, bool);
 	void Consultar_Jaque(bool&, bool&, bool&, bool&);
