@@ -22,7 +22,7 @@ class Mundo
 
 	// VARIABLES PARA SELECCIÓN POR RATÓN----------------------------
 	float ancho = 6; //Darle un valor al ancho de las casillas
-	/*int xcas_sel, ycas_sel;*/	//casilla seleccionada con el ratón 
+	int xcas_sel, ycas_sel;	//casilla seleccionada con el ratón 
 	
 	bool botonDrch;
 	bool botonMed;
