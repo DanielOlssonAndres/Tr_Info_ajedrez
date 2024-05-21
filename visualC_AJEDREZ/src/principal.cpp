@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 	/*tablero.Tomar_Pieza(mundo.casillaSelec.x, mundo.casillaSelec.y);
 	tablero.Soltar_Pieza(mundo.casillaSelec.x, mundo.casillaSelec.y);*/
 
-	tablero.Actualizar(mundo.casillaSelec.x, mundo.casillaSelec.y, mundo.botonIzq);
+	
 
 	/*selec_2_casillas (mundo.casillaSelec, mundo.tablero.MatTablero[6][5]);*/
 

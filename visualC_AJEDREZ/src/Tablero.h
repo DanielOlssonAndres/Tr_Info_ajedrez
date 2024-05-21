@@ -2,9 +2,10 @@
 
 #include <iostream>
 #include <vector>
-
+#include "ETSIDI.h"
 #include "vector2xy.h"
 #include "Ficha.h"
+
 
 
 struct CASILLA
@@ -24,7 +25,7 @@ private:
 	Vector2xy PosEnCasillas[6][5];	//Para parte GRÁFICA -> Indica posición del centro de las casilas
 
 	int matriz[6][5];           //std::vector<std::vector<int>> matriz;
-	std::vector<Ficha> ficha;
+	std::vector<Ficha> fichas;
 	
 
 	int pInd = -1, pI, pJ;

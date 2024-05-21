@@ -1,8 +1,5 @@
-#include <iostream>
-#include <vector>
+
 #include "freeglut.h"
-#include "vector2xy.h"
-#include "ETSIDI.h"
 
 #include "Tablero.h"
 
@@ -25,7 +22,7 @@ void Tablero::dibuja()
 	//FONDO
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D,
-		ETSIDI::getTexture("imagenes/FONDO_V1.png").id);
+		ETSIDI::getTexture("bin/imagenes/FONDO_V1.png").id);
 	glDisable(GL_LIGHTING);
 	glBegin(GL_POLYGON);
 	glColor3f(1, 1, 1);
@@ -272,7 +269,7 @@ void Tablero::inicializa(const int& TJ)
 		{
 			if (matriz[i][j] != 0) {
 				Ficha p(i, j, matriz[i][j], PosEnCasillas[i][j]); //(56 + j * 56, 56 + i * 56, matriz[i][j]);
-				ficha.push_back(p);
+				fichas.push_back(p);
 			}
 		}
 	}
@@ -282,9 +279,9 @@ void Tablero::inicializa(const int& TJ)
 void Tablero::Tomar_Pieza(int x, int y) //posicion del raton
 {
 
-	if (color && ficha[pInd].Get_Valor() < 0) //Si es blanca y es el turno del negro 
+	if (color && fichas[pInd].Get_Valor() < 0) //Si es blanca y es el turno del negro 
 		pInd = -1;
-	else if (!color && ficha[pInd].Get_Valor() > 0) //Si es negra y es el turno del blanco 
+	else if (!color && fichas[pInd].Get_Valor() > 0) //Si es negra y es el turno del blanco 
 		pInd = -1;
 	if (pInd = -1) std::cout << "No puedes mover esa ficha en tu turno." << std::endl;
 
@@ -303,7 +300,7 @@ void Tablero::Soltar_Pieza(int x, int y) {
 	for (int i = 0; i < 5; i++) {
 		for (int j = 0; j < 6; j++) {
 			if (((color && matriz[i][j] <= 0) || (!color && matriz[i][j] >= 0) && Selec_Mover(i, j))) {
-				ficha[pInd].Set_Posicion(i,j); //Se mueve la ficha a la nueva posicion
+				fichas[pInd].Set_Posicion(i,j); //Se mueve la ficha a la nueva posicion
 				//Cambiamos los valores de la matriz dejando la nueva casilla con la ficha y la otra dejandola en 0
 				matriz[k][l] = matriz[pI][pJ];
 				matriz[pI][pJ] = 0;
@@ -330,7 +327,7 @@ void Tablero::Soltar_Pieza(int x, int y) {
 void Tablero::Actualizar(int x, int y, bool presionado) { 
 	Selec_Jaque();
 	if (pInd != -1 && presionado) {
-		ficha[pInd].Set_Posicion(x, y);
+		fichas[pInd].Set_Posicion(x, y);
 	}
 	else if (pInd != -1 && !presionado) {
 		Soltar_Pieza(x,y);

@@ -85,6 +85,8 @@ void Mundo::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool 
 			std::cout << "El raton no se encuentra en el tablero." << std::endl;
 		}
 	}
+
+	tablero.Actualizar(casillaSelec.x, casillaSelec.y, botonIzq);
 }
 
 int Mundo::mov_raton() {
