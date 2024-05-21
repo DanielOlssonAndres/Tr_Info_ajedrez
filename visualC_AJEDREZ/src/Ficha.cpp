@@ -25,3 +25,4 @@ void Ficha::Contener_Posicion(int x, int y) {//Posicion del ratón
 	// Una vez tengas la casilla nombrala como pInd 
 }
 
+

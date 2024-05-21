@@ -265,7 +265,7 @@ void Tablero::inicializa(const int& TJ)
 	}
 	for (int i = 0; i < 5; i++)
 	{
-		for (int j = 0; j < 6; j++)
+		for (int j = 0; j < 4; j++)
 		{
 			if (matriz[i][j] != 0) {
 				Ficha p(i, j, matriz[i][j], PosEnCasillas[i][j]); //(56 + j * 56, 56 + i * 56, matriz[i][j]);
@@ -278,6 +278,18 @@ void Tablero::inicializa(const int& TJ)
 
 void Tablero::Tomar_Pieza(int x, int y) //posicion del raton
 {
+
+	for (int h = 0; h < 29; h++) {
+		for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 4; j++)
+		{
+			if ((x == fichas[h].posicion.x) && (y == fichas[h].posicion.y)) {
+				h = pInd;
+			}
+		}
+	}
+	}
+	
 
 	if (color && fichas[pInd].Get_Valor() < 0) //Si es blanca y es el turno del negro 
 		pInd = -1;
@@ -298,7 +310,7 @@ void Tablero::Soltar_Pieza(int x, int y) {
 	int k, l;
 
 	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < 6; j++) {
+		for (int j = 0; j < 4; j++) {
 			if (((color && matriz[i][j] <= 0) || (!color && matriz[i][j] >= 0) && Selec_Mover(i, j))) {
 				fichas[pInd].Set_Posicion(i,j); //Se mueve la ficha a la nueva posicion
 				//Cambiamos los valores de la matriz dejando la nueva casilla con la ficha y la otra dejandola en 0
@@ -340,7 +352,12 @@ void Tablero::Actualizar(int x, int y, bool presionado) {
 bool Tablero::Selec_Peon(int i, int j) {
 	if (color) {
 		if (matriz[i][j] == 0 && pI - i == 1 && j == pJ) return true;
-		else if (matriz[i][j] == 0 && pI - i == 2 && j == pJ && pI == 6 && matriz[i + 1][j] == 0) return true;
+		else if (matriz[i][j] == 0 && pI - i == 2 && j == pJ && pI == 5 && matriz[i + 1][j] == 0) return true;
+		else if (matriz[i][j] > 0 && pI - i == -1 && abs(j - pJ) == 1)return true;
+	}
+	else {
+		if (matriz[i][j] == 0 && pI - i == -1 && j == pJ) return true;
+		else if (matriz[i][j] == 0 && pI - i == -2 && j == pJ && pI == 1 && matriz[i + 1][j] == 0) return true;
 		else if (matriz[i][j] > 0 && pI - i == -1 && abs(j - pJ) == 1)return true;
 	}
 	return false;
@@ -348,9 +365,9 @@ bool Tablero::Selec_Peon(int i, int j) {
 
 bool Tablero::Selec_Rey(int i, int j) {
 	if (color) {
-		if (matriz[i][j] == 0 && abs(pI - i)<= 1 && abs(pJ-j)<=0) return true;
+		if (matriz[i][j] == 0 && abs(pI - i)<= 1 && abs(pJ-j)<=1) return true;
 		else {
-			if (abs(pI - i) <= 1 && abs(pJ - j) && matriz[i][j] >= 0) return true;
+			if (matriz[i][j] >= 0 && (abs(pI - i)<= 1 && abs(pJ - j)<= 1)) return true;
 		}
 	}
 	return false;
@@ -423,7 +440,7 @@ bool Tablero::Selec_Mover(int i, int j) {
 void Tablero::Selec_Jaque() {
 	int iR = -1, jR = -1;
 	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < 6; j++) {
+		for (int j = 0; j < 4; j++) {
 			if ((color && matriz[i][j] == -5) || (!color && matriz[i][j] == 5)) {
 				iR = i; jR = j;
 			}
@@ -434,7 +451,7 @@ void Tablero::Selec_Jaque() {
 	bool jaq = false;
 	for (int i = 0; i < 5; i++) 
 	{
-		for (int j = 0; j < 6; j++){
+		for (int j = 0; j < 4; j++){
 			if ((color && matriz[i][j] < 0) || (!color && matriz[i][j < 0])) continue;
 			pI = i; pJ = j;
 			if(Selec_Mover(iR,jR))

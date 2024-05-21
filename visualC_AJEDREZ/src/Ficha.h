@@ -13,11 +13,12 @@ enum Forma {Peon = 1, Caballo, Alfil, Torre, Dama, Rey};
 class Ficha
 {
 private:
-
+	
 	int valor;
-	Vector2xy posicion;
+
 
 public:
+	Vector2xy posicion;
 
 	Ficha(int x, int y, int val, Vector2xy PosEnCasillas);
 	void Contener_Posicion(int, int);

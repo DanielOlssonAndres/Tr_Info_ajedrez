@@ -77,6 +77,9 @@ void Mundo::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool 
 		if (casillaSelec.x >= 0 && casillaSelec.x <= 5 && casillaSelec.y >= 0 && casillaSelec.y <= 4)
 		{
 			cout << "(" << casillaSelec.x << "," << casillaSelec.y << ")" << endl;
+			//-------------------------------------------------------------
+			tablero.Actualizar(casillaSelec.x, casillaSelec.y, botonIzq);
+			//-------------------------------------------------------------
 		}
 		else
 		{
@@ -86,7 +89,7 @@ void Mundo::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool 
 		}
 	}
 
-	tablero.Actualizar(casillaSelec.x, casillaSelec.y, botonIzq);
+
 }
 
 int Mundo::mov_raton() {
