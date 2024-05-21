@@ -1,0 +1,35 @@
+#pragma once
+
+#include "vector2xy.h"
+#include "Tablero.h"
+
+using namespace std;
+
+enum { BOTON_RATON_IZQ, BOTON_RATON_DRCH};
+
+class Mundo
+{
+public:
+
+	Tablero tablero;
+
+	double x_ojo, y_ojo, z_ojo;
+	double x_look, y_look, z_look;
+
+	int Tjuego;
+	Vector2xy PosEnCasillas[6][5];
+	
+	// VARIABLES PARA SELECCIÓN POR RATÓN----------------------------
+	float ancho = 6; //Darle un valor al ancho de las casillas
+	Vector2xy CasillaOrigen;	//casilla seleccionada con el ratón ORIGEN
+	Vector2xy CasillaDestino; //casilla seleccionada con el ratón DESTINO
+	// --------------------------------------------------------------
+
+	void inicializa();
+	void dibuja();
+
+	// FUNCIONES RELACIONADAS CON LA SELECCIÓN POR RATÓN---------------------------------------------------
+	void MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr);
+	// ----------------------------------------------------------------------------------------------------
+
+};
