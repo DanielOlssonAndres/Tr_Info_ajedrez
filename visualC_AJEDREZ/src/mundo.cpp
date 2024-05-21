@@ -44,6 +44,7 @@ void Mundo::dibuja()
 	
 }
 
+<<<<<<< Updated upstream
 void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctrlKey) {
 	// posicona el estado del raton y de las teclas
 	GLint viewport[4];
@@ -51,16 +52,22 @@ void Mundo::MouseButton(int x, int y, int button, bool down, bool sKey, bool ctr
 	GLdouble projection[16];
 	GLfloat winX, winY, winZ;
 	GLdouble posX, posY, posZ;
+=======
+void Mundo::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) {
+	if (abajo) {
+>>>>>>> Stashed changes
 
-	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
-	glGetDoublev(GL_PROJECTION_MATRIX, projection);
-	glGetIntegerv(GL_VIEWPORT, viewport);
+		GLint viewport[4];
+		GLdouble modelview[16];
+		GLdouble projection[16];
+		GLfloat winX, winY, winZ;
+		GLdouble posX, posY, posZ;
 
-	winX = (float)x;
-	winY = (float)viewport[3] - (float)y;
-	glReadPixels(x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
-	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
+		glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
+		glGetDoublev(GL_PROJECTION_MATRIX, projection);
+		glGetIntegerv(GL_VIEWPORT, viewport);
 
+<<<<<<< Updated upstream
 	world2cell(posX, posY, xcell_sel, ycell_sel);
 
 	//Captura los movimientos del raton
@@ -119,3 +126,26 @@ void Mundo::world2cell(double x, double y, int& cell_x, int& cell_y) {
 	casillaSelec.x = cell_x;
 	casillaSelec.y = cell_y;
 }
+=======
+		winX = (float)x;
+		winY = (float)viewport[3] - (float)y;
+		glReadPixels(x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+		gluUnProject(winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
+
+		if (boton == GLUT_LEFT_BUTTON) {
+			CasillaOrigen.x = (int)(posY / ancho);
+			CasillaOrigen.y = (int)(posX / ancho);
+			tablero.Tomar_Pieza(CasillaOrigen);
+		}
+
+		if (boton == GLUT_RIGHT_BUTTON) {
+			CasillaDestino.x = (int)(posY / ancho);
+			CasillaDestino.y = (int)(posX / ancho);
+			cout << "CASILLA DESTINO: (" << CasillaDestino.x << "," << CasillaDestino.y << ")" << endl;
+			tablero.Soltar_Pieza(CasillaDestino);
+		}
+	}
+
+}
+
+>>>>>>> Stashed changes

@@ -5,6 +5,7 @@
 #include "ETSIDI.h"
 
 #include "Tablero.h"
+#include "mundo.h"
 
 
 void Tablero::inicializa(const int& TJ) {
@@ -145,10 +146,361 @@ void Tablero::dibuja()
 	//Fichas
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
+<<<<<<< Updated upstream
 			if (MatTablero[i][j] != nullptr) {
 				MatTablero[i][j]->dibuja();
+=======
+			if (matriz[i][j] == -1) {
+				ETSIDI::Sprite sprite = { "imagenes/A_REY_TIBURON.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == -2) {
+				ETSIDI::Sprite sprite = { "imagenes/A_DAMA_BALLENA.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == -3) {
+				ETSIDI::Sprite sprite = { "imagenes/A_ALFIL_PULPO.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == -4) {
+				ETSIDI::Sprite sprite = { "imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == -5) {
+				ETSIDI::Sprite sprite = { "imagenes/A_TORRES_CANGREJO.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == -6) {
+				ETSIDI::Sprite sprite = { "imagenes/A_PEON_GAMBA.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == 1) {
+				ETSIDI::Sprite sprite = { "imagenes/T_REY_LEON.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == 2) {
+				ETSIDI::Sprite sprite = { "imagenes/T_DAMA_LEONA.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == 3) {
+				ETSIDI::Sprite sprite = { "imagenes/T_ALFIL_PATO.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == 4) {
+				ETSIDI::Sprite sprite = { "imagenes/T_CABALLO_CEBRA.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == 5) {
+				ETSIDI::Sprite sprite = { "imagenes/T_TORRE_GIRAFA.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+			if (matriz[i][j] == 6) {
+				ETSIDI::Sprite sprite = { "imagenes/T_PEON_CONEJO_2.png" };
+				glPushMatrix();
+				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
+				sprite.setSize(5, 5);
+				sprite.draw();
+				glPopMatrix();
+			}
+
+		}
+	}
+}
+
+void Tablero::inicializa(const int& TJ)
+{
+	Tjuego = TJ;
+
+	bool m = FALSE;
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+			Mcasillas[i][j].vx = { j * 6 };
+			Mcasillas[i][j].vy = { i * 6 };
+			PosEnCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 }; //para hallar el centro de las casillas
+			if (m == FALSE) {
+				Mcasillas[i][j].colR = { 0 }; //"NEGRA"
+				Mcasillas[i][j].colG = { 0 }; //"NEGRA" 
+				Mcasillas[i][j].colB = { 0 }; //"NEGRA"
+				m = TRUE;
+			}
+			else {
+				Mcasillas[i][j].colR = { 255 }; //"BLANCA"
+				Mcasillas[i][j].colG = { 255 }; //"BLANCA"
+				Mcasillas[i][j].colB = { 255 }; //"BLANCA"
+				m = FALSE;
+			}
+		}
+	}
+
+	if (Tjuego == 0) { //Modalidad 5x6EO
+		matriz =
+		{
+			{-1,-2,-3,-4,-5},
+			{-6,-6,-6,-6,-6},
+			{0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0},
+			{6, 6, 6, 6, 6},
+			{5, 4, 3, 2, 1}
+		};
+	}
+	else { //Modalidad PETTY
+		
+		matriz =
+		{
+			{-2,-1,-3,-4,-5},
+			{-6,-6,-6,-6,-6},
+			{0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0},
+			{6, 6, 6, 6, 6},
+			{2, 1, 3, 4, 5}
+		};
+
+	}
+	for (int i = 0; i < 6; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (matriz[i][j] != 0) {
+				Ficha p(i, j, matriz[i][j]); 
+				fichas.push_back(p);
+>>>>>>> Stashed changes
 			}
 		}
 	}
 }
 
+<<<<<<< Updated upstream
+=======
+
+void Tablero::Tomar_Pieza(Vector2xy origen) //posicion del raton -> origen
+{
+	for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
+		if (fichas[z].Get_PosicionX() == origen.x && fichas[z].Get_PosicionY() == origen.y) {
+			pInd = z;
+			break;
+		}
+	}
+	if (color && fichas[pInd].Get_Valor() < 0) { //Si la pieza es negra y es el turno del blanco
+		pInd = -1;
+		std::cout << "No puedes mover esa ficha en tu turno." << std::endl;
+	}
+	else if (!color && fichas[pInd].Get_Valor() > 0) { //Si la pieza es blanca y es el turno del negro
+		pInd = -1;
+		std::cout << "No puedes mover esa ficha en tu turno." << std::endl;
+	}
+/// puede q esto no funcione correctamente //////////
+	if (pInd != -1) {
+		pI = origen.x;
+		pJ = origen.y;
+		std::cout << "Se ha seleccionado la ficha " << matriz[pI][pJ]<< std::endl;
+	}
+}
+
+void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
+{
+	bool flag = 1;
+	
+	if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && TRUE/*Selec_Mover(destino.x, destino.y)*/) { //Si el movimiento que quieres hacer está permitido 
+		fichas[pInd].Set_Posicion(destino.x, destino.y);
+	//Código que haga que si hay una ficha del otro color en el destino, que se elimine (comer)
+		if ((color && matriz[destino.x][destino.y] < 0) || (!color && matriz[destino.x][destino.y] > 0)) {
+			for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
+				if (fichas[z].Get_PosicionX() == destino.x && fichas[z].Get_PosicionY() == destino.y) {
+					delete& fichas[z];
+					break;
+				}
+			}
+		}
+	//Actualización de los valores
+		matriz[destino.x][destino.y] = matriz[pI][pJ];
+		matriz[pI][pJ] = 0;
+		flag = 0;
+	}
+	//Selec_Jaque();
+
+	//Cambio de turno
+	if (color) color = false;
+	else color = true;
+
+	if (flag == 1) {
+		fichas[pInd].Set_Posicion(pI, pJ);
+	}
+	pInd = -1;
+}
+
+bool Tablero::Selec_Peon(int i, int j) {
+	if (color) {
+		if (matriz[i][j] == 0 && pI - i == 1 && j == pJ) return true;
+		else if (matriz[i][j] == 0 && pI - i == 2 && j == pJ && pI == 6 && matriz[i + 1][j] == 0) return true;
+		else if (matriz[i][j] > 0 && pI - i == -1 && abs(j - pJ) == 1)return true;
+	}
+	return false;
+}
+
+bool Tablero::Selec_Rey(int i, int j) {
+	if (color) {
+		if (matriz[i][j] == 0 && abs(pI - i)<= 1 && abs(pJ-j)<=0) return true;
+		else {
+			if (abs(pI - i) <= 1 && abs(pJ - j) && matriz[i][j] >= 0) return true;
+		}
+	}
+	return false;
+}
+
+bool Tablero::Selec_Caballo(int i, int j) {
+	if (color) {
+		if (matriz[i][j] <= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2)) return true;
+	}
+	else {
+		if (matriz[i][j] >= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2))return true;
+	}
+	return false;
+}
+
+bool Tablero::Selec_Torre(int i, int j) {
+	if (pJ == j) {
+		for (int I = std::min(pI, i) + 1; I < std::max(pI, i); I++) {
+			if (matriz[I][pJ] != 0) return false;
+		}
+		if (color && matriz[i][j] <= 0) return true;
+		else if (!color && matriz[i][j] >= 0)return true;
+	}
+	else if (pI == i) {
+		for (int J = std::min(pJ, j) + 1; J < std::max(pJ, j); J++) {
+			if (matriz[pI][J] != 0) return false;
+		}
+		if (color && matriz[i][j] <= 0) return true;
+		else if (!color && matriz[i][j] >= 0) return true;
+	}
+	return false;
+}
+
+bool Tablero::Selec_Alfil(int i, int j) {
+	if (abs(pJ - j) == abs(pI - i)) {
+		int difI = (pI - i < 0 ? 1 : -1);
+		int difJ = (pJ - j < 0 ? 1 : -1);
+		int I = pI;
+		int J = pJ;
+
+		while (I != i - difI && J != j - difJ) {
+			I += difI;
+			J += difJ;
+			if (matriz[I][J] != 0)return false;
+		}
+		if (color && matriz[i][j] <= 0) return true;
+		else if (!color && matriz[i][j] >= 0)return true;
+	}
+	return false;
+}
+
+bool Tablero::Selec_Dama(int i, int j) {
+	if (Selec_Torre(i, j) || Selec_Alfil(i, j))return true;
+	return false;
+}
+
+bool Tablero::Selec_Mover(int i, int j) {
+
+	switch (abs(matriz[pI][pJ])) {
+	case 6: return Selec_Peon(i, j); break;
+	case 1: return Selec_Rey(i, j); break;
+	case 2: return Selec_Dama(i, j); break;
+	case 3: return Selec_Alfil(i, j); break;
+	case 4: return Selec_Caballo(i, j); break;
+	case 5: return Selec_Torre(i, j); break;
+	}
+	return false;
+}
+
+void Tablero::Selec_Jaque() {
+	int iR = -1, jR = -1;
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 6; j++) {
+			if ((color && matriz[i][j] == -5) || (!color && matriz[i][j] == 5)) {
+				iR = i; jR = j;
+			}
+		}
+	}
+
+	int npI = pI; int npJ = pJ;
+	bool jaq = false;
+	for (int i = 0; i < 5; i++) 
+	{
+		for (int j = 0; j < 6; j++){
+			if ((color && matriz[i][j] < 0) || (!color && matriz[i][j < 0])) continue;
+			pI = i; pJ = j;
+			if(Selec_Mover(iR,jR))
+			{
+				jaq = true;
+				if(color){
+					if (jaqN) jaqMN = true;
+					jaqN = true;
+				}
+				else{
+					if (jaqB) jaqMB = true;
+					jaqB = true;
+				}
+
+			}
+		}
+	}
+	pI = npI; pJ = npJ;
+	if (color && !jaq) jaqB = false;
+	else if (!jaq) jaqN = false;
+}
+
+void Tablero::Consultar_Jaque(bool& jB, bool& jN, bool& jMB, bool& jMN) {
+	jB = jaqB;
+	jN = jaqN;
+	jMB = jaqMB;
+	jMN = jaqMN;
+}
+
+bool Tablero::Consultar_Turno(){
+	return color;
+}
+
+>>>>>>> Stashed changes

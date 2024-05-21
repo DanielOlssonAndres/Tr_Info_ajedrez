@@ -35,8 +35,12 @@ public:
 	int mov_raton();
 
 	// FUNCIONES RELACIONADAS CON LA SELECCIÓN POR RATÓN---------------------------------------------------
+<<<<<<< Updated upstream
 	void centro_casilla(int cell_x, int cell_y, float& glx, float& gly);
 	void world2cell(double x, double y, int& cell_x, int& cell_y);
+=======
+	void MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr);
+>>>>>>> Stashed changes
 	// ----------------------------------------------------------------------------------------------------
 	
 };
