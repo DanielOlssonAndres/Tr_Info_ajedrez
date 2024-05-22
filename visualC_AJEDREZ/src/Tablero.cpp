@@ -11,7 +11,10 @@ void Tablero::dibuja()
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 			glBegin(GL_POLYGON);
-			glColor3ub(Mcasillas[i][j].colR, Mcasillas[i][j].colG, Mcasillas[i][j].colB);
+			int C_R;
+			if (pI == i && pJ == j)C_R = 100;
+			else C_R = Mcasillas[i][j].colR;
+			glColor3ub(C_R, Mcasillas[i][j].colG, Mcasillas[i][j].colB);
 			glVertex3f(Mcasillas[i][j].vx, Mcasillas[i][j].vy, 0.0f);
 			glVertex3f(Mcasillas[i][j].vx, Mcasillas[i][j].vy + 6, 0.0f);
 			glVertex3f(Mcasillas[i][j].vx + 6, Mcasillas[i][j].vy + 6, 0.0f);
@@ -19,6 +22,25 @@ void Tablero::dibuja()
 			glEnd();
 		}
 	}
+
+	//INDICADOR DE TURNO
+	glPushMatrix();
+	if (color == FALSE) {
+		colorR = 0;
+		colorG = 105;
+		colorB = 148;
+
+	}
+	else {
+		colorR = 139;
+		colorG = 69;
+		colorB = 19;
+	}
+	glTranslatef(-7, 18, 1);
+	glColor3ub(colorR, colorG, colorB);
+	glutSolidSphere(3, 30, 30);
+	glPopMatrix();
+
 
 	//FONDO
 	glEnable(GL_TEXTURE_2D);
@@ -260,6 +282,8 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 	}
 
 	pInd = -1;
+	pI = -1;
+	pJ = -1;
 }
 
 bool Tablero::Selec_Peon(int i, int j) {
@@ -347,7 +371,7 @@ bool Tablero::Selec_Mover(int i, int j) {
 	case 4: return Selec_Caballo(i, j); break;
 	case 5: return Selec_Torre(i, j); break;
 	}
-	return false;
+	//return false;
 }
 
 void Tablero::Selec_Jaque() {
