@@ -29,9 +29,11 @@ private:
 	std::vector<Ficha> fichas;
 	
 	int pInd = -1; //Índice de la pieza que estamos seleccionando (-1 en caso de no seleccionar ninguna)
-	int pI, pJ; //Guardar la posición de la pieza seleccionada
+	int pI= -1, pJ= -1; //Guardar la posición de la pieza seleccionada
 	bool color = true; //Indica de quién es el turno TRUE = BLANCAS / FALSE = NEGRAS
 	bool jaqB = false, jaqMB = false, jaqN = false, jaqMN = false; //Identificación de Jaque y Jaque mate de NEGRAS y BLANCAS
+
+	int colorR, colorG, colorB; //Para indicador de turno
 
 public:
 	void inicializa(const int& TJ);
@@ -51,5 +53,6 @@ public:
 
 	void Consultar_Jaque(bool&, bool&, bool&, bool&); //Se encarga de indicar al programa si se produce jaque o jaque mate
 	bool Consultar_Turno(); //Indica al programa de quién es el turno
+
 	
 };
