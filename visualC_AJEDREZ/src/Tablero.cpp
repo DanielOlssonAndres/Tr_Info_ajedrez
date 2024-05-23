@@ -45,7 +45,7 @@ void Tablero::dibuja()
 	//FONDO
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D,
-		ETSIDI::getTexture("bin/imagenes/FONDO_V1.png").id);
+		ETSIDI::getTexture("imagenes/FONDO_V1.png").id);
 	glDisable(GL_LIGHTING);
 	glBegin(GL_POLYGON);
 	glColor3f(1, 1, 1);
@@ -61,7 +61,7 @@ void Tablero::dibuja()
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 			if (matriz[i][j] == -1) {
-				ETSIDI::Sprite sprite = { "bin/imagenes/A_REY_TIBURON.png" };
+				ETSIDI::Sprite sprite = { "imagenes/A_REY_TIBURON.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -69,7 +69,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -2) {
-				ETSIDI::Sprite sprite = { "bin/imagenes/A_DAMA_BALLENA.png" };
+				ETSIDI::Sprite sprite = { "imagenes/A_DAMA_BALLENA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -77,7 +77,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -3) {
-				ETSIDI::Sprite sprite = { "bin/imagenes/A_ALFIL_PULPO.png" };
+				ETSIDI::Sprite sprite = { "imagenes/A_ALFIL_PULPO.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -85,7 +85,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -4) {
-				ETSIDI::Sprite sprite = { "bin/imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
+				ETSIDI::Sprite sprite = { "imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -93,7 +93,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -5) {
-				ETSIDI::Sprite sprite = { "bin/imagenes/A_TORRES_CANGREJO.png" };
+				ETSIDI::Sprite sprite = { "imagenes/A_TORRES_CANGREJO.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -101,7 +101,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -6) {
-				ETSIDI::Sprite sprite = { "bin/imagenes/A_PEON_GAMBA.png" };
+				ETSIDI::Sprite sprite = { "imagenes/A_PEON_GAMBA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -109,7 +109,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 1) {
-				ETSIDI::Sprite sprite = { "bin/imagenes/T_REY_LEON.png" };
+				ETSIDI::Sprite sprite = { "imagenes/T_REY_LEON.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -117,7 +117,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 2) {
-				ETSIDI::Sprite sprite = { "bin/imagenes/T_DAMA_LEONA.png" };
+				ETSIDI::Sprite sprite = { "imagenes/T_DAMA_LEONA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -125,7 +125,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 3) {
-				ETSIDI::Sprite sprite = { "bin/imagenes/T_ALFIL_PATO.png" };
+				ETSIDI::Sprite sprite = { "imagenes/T_ALFIL_PATO.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -133,7 +133,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 4) {
-				ETSIDI::Sprite sprite = { "bin/imagenes/T_CABALLO_CEBRA.png" };
+				ETSIDI::Sprite sprite = { "imagenes/T_CABALLO_CEBRA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -141,7 +141,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 5) {
-				ETSIDI::Sprite sprite = { "bin/imagenes/T_TORRE_GIRAFA.png" };
+				ETSIDI::Sprite sprite = { "imagenes/T_TORRE_GIRAFA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -149,7 +149,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 6) {
-				ETSIDI::Sprite sprite = { "bin/imagenes/T_PEON_CONEJO_2.png" };
+				ETSIDI::Sprite sprite = { "imagenes/T_PEON_CONEJO_2.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -287,17 +287,17 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 }
 
 bool Tablero::Selec_Peon(int i, int j) {
+	bool sol = FALSE;
+
 	if (color) {
-		if (matriz[i][j] == 0 && pI - i == 1 && j == pJ) return true;
-		else if (matriz[i][j] == 0 && pI - i == 2 && j == pJ && pI == 6 && matriz[i + 1][j] == 0) return true;
-		else if (matriz[i][j] > 0 && pI - i == -1 && abs(j - pJ) == 1)return true;
+		if (matriz[i][j] == 0 && j == pJ && i == (pI + 1)) { sol = TRUE; } //movimiento sin comer
+		if (matriz[i][j] < 0 && (j == (pJ + 1) || j == (pJ - 1)) && i == (pI + 1)) {sol = TRUE;} //movimiento comiendo
 	}
-	else {
-		if (matriz[i][j] == 0 && pI - i == -1 && j == pJ) return true;
-		else if (matriz[i][j] == 0 && pI - i == -2 && j == pJ && pI == 1 && matriz[i + 1][j] == 0) return true;
-		else if (matriz[i][j] > 0 && pI - i == -1 && abs(j - pJ) == 1)return true;
+	else{
+		if (matriz[i][j] == 0 && j == pJ && i == (pI - 1)) { sol = TRUE; } //movimiento sin comer
+		if (matriz[i][j] > 0 && (j == (pJ + 1) || j == (pJ - 1)) && i == (pI - 1)) { sol = TRUE; }; //movimiento comiendo
 	}
-	return false;
+	return sol;
 }
 
 bool Tablero::Selec_Rey(int i, int j) {
@@ -370,8 +370,8 @@ bool Tablero::Selec_Mover(int i, int j) {
 	case 3: return Selec_Alfil(i, j); break;
 	case 4: return Selec_Caballo(i, j); break;
 	case 5: return Selec_Torre(i, j); break;
+	default: return FALSE; break;
 	}
-	//return false;
 }
 
 void Tablero::Selec_Jaque() {
