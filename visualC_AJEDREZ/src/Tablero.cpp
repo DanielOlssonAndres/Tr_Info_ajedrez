@@ -289,11 +289,11 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 bool Tablero::Selec_Peon(int i, int j) {
 	bool sol = FALSE;
 
-	if (color) {
+	if (color) { //blancas
 		if (matriz[i][j] == 0 && j == pJ && i == (pI + 1)) { sol = TRUE; } //movimiento sin comer
 		if (matriz[i][j] < 0 && (j == (pJ + 1) || j == (pJ - 1)) && i == (pI + 1)) {sol = TRUE;} //movimiento comiendo
 	}
-	else{
+	else{ //negras
 		if (matriz[i][j] == 0 && j == pJ && i == (pI - 1)) { sol = TRUE; } //movimiento sin comer
 		if (matriz[i][j] > 0 && (j == (pJ + 1) || j == (pJ - 1)) && i == (pI - 1)) { sol = TRUE; }; //movimiento comiendo
 	}
@@ -301,13 +301,12 @@ bool Tablero::Selec_Peon(int i, int j) {
 }
 
 bool Tablero::Selec_Rey(int i, int j) {
-	if (color) {
-		if (matriz[i][j] == 0 && abs(pI - i)<= 1 && abs(pJ-j)<=0) return true;
-		else {
-			if (matriz[i][j] >= 0 && (abs(pI - i) <= 1 && abs(pJ - j) <= 1)) return true;
-		}
-	}
-	return false;
+	bool sol = FALSE;
+	//NO SE TIENE EN CUENTA EL POSIBLE JAQUE EN EL MOVIMIENTO, HABRÍA QUE AÑADIRLO
+	if (matriz[i][j] == 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2) ) { sol = TRUE; }                       
+	if (color && matriz[i][j] < 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2)) { sol = TRUE; } //Blanco
+	if (!color && matriz[i][j] > 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2)) { sol = TRUE; } //Negro
+	return sol;
 }
 
 bool Tablero::Selec_Caballo(int i, int j) {
