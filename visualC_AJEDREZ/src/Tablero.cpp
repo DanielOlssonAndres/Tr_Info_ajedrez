@@ -274,7 +274,11 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 			flag = 0;
 		}
 
-		//Selec_Jaque(); LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
+		Selec_Jaque(); // LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
+		if (jaqB == true || jaqMB == true || jaqN == true || jaqMN == true) {
+			std::cout << "JAQUE O JAQUE-MATE" << std::endl;
+		}
+
 
 		//Cambio de turno
 		if (color) color = false;
@@ -310,34 +314,35 @@ bool Tablero::Selec_Rey(int i, int j) {
 }
 
 bool Tablero::Selec_Caballo(int i, int j) {
+	bool sol = FALSE;
 	if (color) {
-		if (matriz[i][j] <= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2)) return true;
+		if (matriz[i][j] <= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2)) sol = TRUE;
 	}
 	else {
-		if (matriz[i][j] >= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2))return true;
+		if (matriz[i][j] >= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2)) sol = TRUE;
 	}
-	return false;
+	return sol;
 }
 
-bool Tablero::Selec_Torre(int i, int j) {
+bool Tablero::Selec_Torre(int i, int j) { 
 	if (pJ == j) {
 		for (int I = std::min(pI, i) + 1; I < std::max(pI, i); I++) {
 			if (matriz[I][pJ] != 0) return false;
 		}
 		if (color && matriz[i][j] <= 0) return true;
-		else if (!color && matriz[i][j] >= 0)return true;
+		if (!color && matriz[i][j] >= 0)return true;
 	}
-	else if (pI == i) {
+	if (pI == i) {
 		for (int J = std::min(pJ, j) + 1; J < std::max(pJ, j); J++) {
 			if (matriz[pI][J] != 0) return false;
 		}
 		if (color && matriz[i][j] <= 0) return true;
-		else if (!color && matriz[i][j] >= 0) return true;
+		if (!color && matriz[i][j] >= 0) return true;
 	}
 	return false;
 }
 
-bool Tablero::Selec_Alfil(int i, int j) {
+bool Tablero::Selec_Alfil(int i, int j) { 
 	if (abs(pJ - j) == abs(pI - i)) {
 		int difI = (pI - i < 0 ? 1 : -1);
 		int difJ = (pJ - j < 0 ? 1 : -1);
