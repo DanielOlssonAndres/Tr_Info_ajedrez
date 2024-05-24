@@ -189,24 +189,24 @@ void Tablero::inicializa(const int& TJ)
 	if (Tjuego == 0) { //Modalidad 5x6EO
 		matriz =
 		{
-			{5,4,3,2,1},
-			{6,6,6,6,6},
+			{5,4,3,2,1},				// BLANCAS
+			{6,6,6,6,6},				// BLANCAS
 			{0, 0, 0, 0, 0},
 			{0, 0, 0, 0, 0},
-			{-6, -6, -6, -6, -6},
-			{-1, -2, -3, -4, -5}
+			{-6, -6, -6, -6, -6},		// NEGRAS
+			{-1, -2, -3, -4, -5}		// NEGRAS
 		};
 	}
 	else { //Modalidad PETTY
 		
 		matriz =
 		{
-			{2,1,3,4,5},
-			{6,6,6,6,6},
+			{2,1,3,4,5},				// BLANCAS
+			{6,6,6,6,6},				// BLANCAS
 			{0, 0, 0, 0, 0},
 			{0, 0, 0, 0, 0},
-			{-6, -6, -6, -6, -6},
-			{-2, -1, -3, -4, -5}
+			{-6, -6, -6, -6, -6},		// NEGRAS
+			{-2, -1, -3, -4, -5}		// NEGRAS
 		};
 
 	}
@@ -215,11 +215,12 @@ void Tablero::inicializa(const int& TJ)
 		for (int j = 0; j < 5; j++)
 		{
 			if (matriz[i][j] != 0) {
-				Ficha p(i, j, matriz[i][j]); 
+				Ficha* p = new Ficha(i, j, matriz[i][j]); 
 				fichas.push_back(p);
 			}
 		}
 	}
+
 }
 
 
@@ -230,13 +231,13 @@ void Tablero::Tomar_Pieza(Vector2xy origen) //posicion del raton -> origen
 	pJ = -1;
 	if (origen.x != -1 && origen.y != -1 && matriz[origen.x][origen.y] != 0) { //Si hemos seleccionado una casilla dentro del tablero
 		for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su índice del vector en pInd
-			if (fichas[z].Get_PosicionX() == origen.x && fichas[z].Get_PosicionY() == origen.y) {
+			if (fichas[z]->Get_PosicionX() == origen.x && fichas[z]->Get_PosicionY() == origen.y) {
 				pInd = z;
 				break;
 			}
 		}
 		if (pInd != -1) {
-			if ((color && fichas[pInd].Get_Valor() < 0) || (!color && fichas[pInd].Get_Valor() > 0)) { //Si la pieza no corresponde con el color del turno
+			if ((color && fichas[pInd]->Get_Valor() < 0) || (!color && fichas[pInd]->Get_Valor() > 0)) { //Si la pieza no corresponde con el color del turno
 				pInd = -1;
 				std::cout << "No puedes mover esa ficha en tu turno." << std::endl;
 			}
@@ -256,38 +257,60 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 	bool flag = 1;
 	
 	if (pInd != -1 && pI != -1 && pJ != -1) { // Si es una casilla permitida
+		
 		//Si el movimiento que quieres hacer está permitido 
 		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && Selec_Mover(destino.x, destino.y)) { //CAMBIAR  Selec_Mover por TRUE PARA DESHABILITAR LAS LIMITACIONES DE MOVIMIENTO
+		
+			ETSIDI::play("sonidos/MoverFicha.wav");
+
 			//Código que haga que si hay una ficha del otro color en el destino, que se elimine (comer)
 			if ((color && matriz[destino.x][destino.y] < 0) || (!color && matriz[destino.x][destino.y] > 0)) {
+				
 				for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
-					if (fichas[z].Get_PosicionX() == destino.x && fichas[z].Get_PosicionY() == destino.y) {
+					if (fichas[z]->Get_PosicionX() == destino.x && fichas[z]->Get_PosicionY() == destino.y) {
 						std::cout << "se elimina la ficha " << matriz[destino.x][destino.y] << std::endl;
-						fichas.erase(fichas.begin() + z);
-					}	
+						ETSIDI::play("sonidos/ComerFicha.wav");
+						delete fichas[z];
+					}
 				}
+				
 			}
-			fichas[pInd].Set_Posicion(destino.x, destino.y);
+
+			fichas[pInd]->Set_Posicion(destino.x, destino.y);
 			//Actualización de los valores
 			matriz[destino.x][destino.y] = matriz[pI][pJ];
 			matriz[pI][pJ] = 0;
 			flag = 0;
+
+			//Cambio de turno
+			if (color) color = false;		// Ahora es turno de las NEGRAS
+			else color = true;				// Ahora es turno de las BLANCAS 
 		}
 
+		
 		Selec_Jaque(); // LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
 		if (jaqB == true || jaqMB == true || jaqN == true || jaqMN == true) {
 			std::cout << "JAQUE O JAQUE-MATE" << std::endl;
 		}
 
-
-		//Cambio de turno
-		if (color) color = false;
-		else color = true;
 	}
 
 	pInd = -1;
 	pI = -1;
 	pJ = -1;
+}
+
+bool Tablero::Selec_Mover(int i, int j) {			// i = FILAS, j = COLUMNAS
+
+	switch (abs(matriz[pI][pJ])) {
+	case 6: return Selec_Peon(i, j); break;
+	case 1: return Selec_Rey(i, j); break;
+	case 2: return Selec_Dama(i, j); break;
+	case 3: return Selec_Alfil(i, j); break;
+	case 4: return Selec_Caballo(i, j); break;
+	case 5: return Selec_Torre(i, j); break;
+	default: return FALSE; break;
+	}
 }
 
 bool Tablero::Selec_Peon(int i, int j) {
@@ -326,18 +349,47 @@ bool Tablero::Selec_Caballo(int i, int j) {
 
 bool Tablero::Selec_Torre(int i, int j) { 
 	if (pJ == j) {
+		if (pI > i) {
+			for (int I = pI - 1; I > i; I--) {
+				
+				if (matriz[I][pJ] != 0) return false;
+			}
+		}
+		else {
+			for (int I = pI + 1; I < i; I++) {
+				if (matriz[I][pJ] != 0) return false;
+			}
+		}
+		/*
 		for (int I = std::min(pI, i) + 1; I < std::max(pI, i); I++) {
 			if (matriz[I][pJ] != 0) return false;
 		}
-		if (color && matriz[i][j] <= 0) return true;
-		if (!color && matriz[i][j] >= 0)return true;
+		*/
+		if (matriz[i][j] == 0) return true;
+		if (color && matriz[i][j] < 0) return true;
+		if (!color && matriz[i][j] > 0)return true;
 	}
 	if (pI == i) {
+		if (pJ > j) {
+			for (int J = pJ - 1; J > j; J--) {
+				if (matriz[pI][J] != 0) return false;
+			}
+		}
+		else {
+			for (int J = pJ + 1; J < j; J++) {
+				if (matriz[pI][J] != 0) return false;
+			}
+		}
+
+
+		/*
 		for (int J = std::min(pJ, j) + 1; J < std::max(pJ, j); J++) {
 			if (matriz[pI][J] != 0) return false;
 		}
-		if (color && matriz[i][j] <= 0) return true;
-		if (!color && matriz[i][j] >= 0) return true;
+		*/
+		if (matriz[i][j] == 0) return true;
+		if (color && matriz[i][j] < 0) return true;
+		if (!color && matriz[i][j] > 0) return true;
 	}
 	return false;
 }
@@ -363,19 +415,6 @@ bool Tablero::Selec_Alfil(int i, int j) {
 bool Tablero::Selec_Dama(int i, int j) {
 	if (Selec_Torre(i, j) || Selec_Alfil(i, j))return true;
 	return false;
-}
-
-bool Tablero::Selec_Mover(int i, int j) {
-
-	switch (abs(matriz[pI][pJ])) {
-	case 6: return Selec_Peon(i, j); break;
-	case 1: return Selec_Rey(i, j); break;
-	case 2: return Selec_Dama(i, j); break;
-	case 3: return Selec_Alfil(i, j); break;
-	case 4: return Selec_Caballo(i, j); break;
-	case 5: return Selec_Torre(i, j); break;
-	default: return FALSE; break;
-	}
 }
 
 void Tablero::Selec_Jaque() {

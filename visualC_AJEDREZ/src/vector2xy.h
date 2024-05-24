@@ -2,7 +2,7 @@
 
 struct Vector2xy
 {
-	int x;
-	int y;
+	int x;		// FILAS
+	int y;		// COLUMNAS
 };
 
