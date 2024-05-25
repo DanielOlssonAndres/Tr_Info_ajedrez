@@ -10,7 +10,7 @@
 
 struct CASILLA
 {
-	// Par醡etros gr醘icos de casilla
+	// Par谩metros gr谩ficos de casilla
 	int vx;
 	int vy;
 	int colR, colG, colB;
@@ -22,8 +22,8 @@ private:
 
 	int Tjuego; //Tipo de juego al que vamos a jugar
 
-	CASILLA Mcasillas[6][5];	// Para parte GR罠ICA -> Indica posici髇 de esquina inferior izquierda de las casillas
-	Vector2xy PosEnCasillas[6][5];	// Para parte GR罠ICA -> Indica posici髇 del centro de las casilas
+	CASILLA Mcasillas[6][5];	// Para parte GR脕FICA -> Indica posici贸n de esquina inferior izquierda de las casillas
+	Vector2xy PosEnCasillas[6][5];	// Para parte GR脕FICA -> Indica posici贸n del centro de las casilas
 
 	// i = FILAS , j = COLUMNAS		[filas][columnas]
 
@@ -33,10 +33,10 @@ private:
 	std::vector<std::vector<int>> matriz;    //int matriz[6][5];
 	std::vector<Ficha*> fichas;
 	
-	int pInd = -1; //蚽dice de la pieza que estamos seleccionando (-1 en caso de no seleccionar ninguna)
-	int pI= -1, pJ= -1; //Guardar la posici髇 de la pieza seleccionada
-	bool color = true; //Indica de qui閚 es el turno TRUE = BLANCAS (MARR覰) / FALSE = NEGRAS (AZUL)
-	bool jaqB = false, jaqMB = false, jaqN = false, jaqMN = false; //Identificaci髇 de Jaque y Jaque mate de NEGRAS y BLANCAS
+	int pInd = -1; //脥ndice de la pieza que estamos seleccionando (-1 en caso de no seleccionar ninguna)
+	int pI= -1, pJ= -1; //Guardar la posici贸n de la pieza seleccionada
+	bool color = true; //Indica de qui茅n es el turno TRUE = BLANCAS (MARR脫N) / FALSE = NEGRAS (AZUL)
+	bool jaqB = false, jaqMB = false, jaqN = false, jaqMN = false; //Identificaci贸n de Jaque y Jaque mate de NEGRAS y BLANCAS
 
 	int colorR, colorG, colorB; //Para indicador de turno
 
@@ -44,20 +44,21 @@ public:
 	void inicializa(const int& TJ);
 	void dibuja();
 
-	void Tomar_Pieza(Vector2xy origen); //Obtener los 韓dices de la pieza seleccionada seg鷑 la posici髇 del rat髇
-	void Soltar_Pieza(Vector2xy destino);  //Dejar la pieza en una posici髇 seg鷑 la posici髇 del rat髇
-	// Comprobar si los movimientos son posibles seg鷑 la pieza que estemos moviendo
+	void Tomar_Pieza(Vector2xy origen); //Obtener los 铆ndices de la pieza seleccionada seg煤n la posici贸n del rat贸n
+	void Soltar_Pieza(Vector2xy destino);  //Dejar la pieza en una posici贸n seg煤n la posici贸n del rat贸n
+	// Comprobar si los movimientos son posibles seg煤n la pieza que estemos moviendo
 	bool Selec_Peon(int, int); 
 	bool Selec_Rey(int, int);
 	bool Selec_Dama(int, int);
 	bool Selec_Torre(int, int);
 	bool Selec_Caballo(int, int);
 	bool Selec_Alfil(int, int);
-	bool Selec_Mover(int, int); //Llama a la comprobaci髇 correspondiente seg鷑 la pieza que seleccionemos
-	void Selec_Jaque(); //Detecci髇 de jaque y jaque mate
+	bool Selec_Mover(int, int); //Llama a la comprobaci贸n correspondiente seg煤n la pieza que seleccionemos
+	void Selec_Jaque(); //Detecci贸n de jaque y jaque mate
 
+	bool Consulta_color(int R, int G, int B);
 	void Consultar_Jaque(); //Se encarga de indicar al programa si se produce jaque o jaque mate
-	bool Consultar_Turno(); //Indica al programa de qui閚 es el turno
+	bool Consultar_Turno(); //Indica al programa de qui茅n es el turno
 	bool Mirar_Jaque(int iR, int jR);
 
 };
