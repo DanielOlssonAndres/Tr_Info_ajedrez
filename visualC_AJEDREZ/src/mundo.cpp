@@ -18,7 +18,7 @@ void Mundo::inicializa()
 	y_look = 18;
 	z_look = 0;
 
-	// M鷖ica de fondo 
+	// M煤sica de fondo 
 	ETSIDI::play("sonidos/MusicaFondo.wav");
 
 	std::cout << "Seleccione Juego:" << std::endl;
@@ -26,7 +26,7 @@ void Mundo::inicializa()
 	std::cout << "1. PETTY" << std::endl;
 	std::cin >> Tjuego;
 
-	ETSIDI::play("sonidos/InicioJuego.wav");
+	ETSIDI::play("bin/sonidos/InicioJuego.wav");
 
 	tablero.inicializa(Tjuego);
 
@@ -42,6 +42,39 @@ void Mundo::dibuja()
 	// dibujo de elementos
 	tablero.dibuja();
 
+	//INDICADOR DE TURNO
+	if (tablero.Consulta_color(139,69,19)==TRUE)
+	{
+	
+		ETSIDI::setTextColor(0, 0, 0);//negro
+		ETSIDI::setFont("bin/fuentes/Arial.ttf", 10);
+		ETSIDI::printxy("Turno: Tierra", -10, 22);
+	}
+	else {
+		ETSIDI::setTextColor(1, 1, 1);//blanco
+		ETSIDI::setFont("bin/fuentes/Arial.ttf", 10);
+		ETSIDI::printxy("Turno: Agua", -10, 22);
+	}
+
+	//Titulos dentro de la pantalla de juego
+	//fichas del mar
+	ETSIDI::setTextColor(1, 1, 1);//blanco
+	ETSIDI::setFont("bin/fuentes/Arial.ttf", 10);
+	ETSIDI::printxy("Reina: ballena ", 33, 34);
+	ETSIDI::printxy("Rey: tibur贸n ", 33, 32);
+	ETSIDI::printxy("Caballo: caballito mar", 33, 30);
+	ETSIDI::printxy("Alfil: pulpo", 33, 28);
+	ETSIDI::printxy("Torre: cangrejo", 33, 26);
+	ETSIDI::printxy("Pe贸n: gambas", 33, 24);
+
+	ETSIDI::setTextColor(0, 0, 0);//negro
+	ETSIDI::setFont("bin/fuentes/Arial.ttf", 10);
+	ETSIDI::printxy("Reina: leona ", 33, 12);
+	ETSIDI::printxy("Rey: le贸n ", 33, 10);
+	ETSIDI::printxy("Caballo: cebra", 33, 8);
+	ETSIDI::printxy("Alfil: pato ", 33, 6);
+	ETSIDI::printxy("Torre: girafa", 33, 4);
+	ETSIDI::printxy("Pe贸n: conejos", 33, 2);
 }
 
 void Mundo::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) {
