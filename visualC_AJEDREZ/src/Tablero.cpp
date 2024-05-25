@@ -25,7 +25,7 @@ void Tablero::dibuja()
 
 	//INDICADOR DE TURNO
 	glPushMatrix();
-	if (color == FALSE) {
+	if (!color) {
 		colorR = 0;
 		colorG = 105;
 		colorB = 148;
@@ -165,23 +165,23 @@ void Tablero::inicializa(const int& TJ)
 {
 	Tjuego = TJ;
 
-	bool m = FALSE;
+	bool m = false;
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 			Mcasillas[i][j].vx = { j * 6 };
 			Mcasillas[i][j].vy = { i * 6 };
 			PosEnCasillas[i][j] = { Mcasillas[i][j].vx + 3, Mcasillas[i][j].vy + 3 }; //para hallar el centro de las casillas
-			if (m == FALSE) {
+			if (m == false) {
 				Mcasillas[i][j].colR = { 0 }; //"NEGRA"
 				Mcasillas[i][j].colG = { 0 }; //"NEGRA" 
 				Mcasillas[i][j].colB = { 0 }; //"NEGRA"
-				m = TRUE;
+				m = true;
 			}
 			else {
 				Mcasillas[i][j].colR = { 255 }; //"BLANCA"
 				Mcasillas[i][j].colG = { 255 }; //"BLANCA"
 				Mcasillas[i][j].colB = { 255 }; //"BLANCA"
-				m = FALSE;
+				m = false;
 			}
 		}
 	}
@@ -271,6 +271,7 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 						std::cout << "se elimina la ficha " << matriz[destino.x][destino.y] << std::endl;
 						ETSIDI::play("sonidos/ComerFicha.wav");
 						delete fichas[z];
+						fichas.erase(fichas.begin() + z);
 					}
 				}
 				
@@ -282,16 +283,19 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 			matriz[pI][pJ] = 0;
 			flag = 0;
 
+			Selec_Jaque(); // LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
+			Consultar_Jaque();
+
 			//Cambio de turno
 			if (color) color = false;		// Ahora es turno de las NEGRAS
 			else color = true;				// Ahora es turno de las BLANCAS 
 		}
-
 		
-		Selec_Jaque(); // LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
+		/*
 		if (jaqB == true || jaqMB == true || jaqN == true || jaqMN == true) {
 			std::cout << "JAQUE O JAQUE-MATE" << std::endl;
 		}
+		*/
 
 	}
 
@@ -309,49 +313,72 @@ bool Tablero::Selec_Mover(int i, int j) {			// i = FILAS, j = COLUMNAS
 	case 3: return Selec_Alfil(i, j); break;
 	case 4: return Selec_Caballo(i, j); break;
 	case 5: return Selec_Torre(i, j); break;
-	default: return FALSE; break;
+	default: return false; break;
 	}
 }
 
 bool Tablero::Selec_Peon(int i, int j) {
-	bool sol = FALSE;
+	bool sol = false;
 
 	if (color) { //blancas
-		if (matriz[i][j] == 0 && j == pJ && i == (pI + 1)) { sol = TRUE; } //movimiento sin comer
-		if (matriz[i][j] < 0 && (j == (pJ + 1) || j == (pJ - 1)) && i == (pI + 1)) {sol = TRUE;} //movimiento comiendo
+		if (matriz[i][j] == 0 && j == pJ && i == (pI + 1)) { sol = true; } //movimiento sin comer
+		if (matriz[i][j] < 0 && (j == (pJ + 1) || j == (pJ - 1)) && i == (pI + 1)) {sol = true;} //movimiento comiendo
 	}
 	else{ //negras
-		if (matriz[i][j] == 0 && j == pJ && i == (pI - 1)) { sol = TRUE; } //movimiento sin comer
-		if (matriz[i][j] > 0 && (j == (pJ + 1) || j == (pJ - 1)) && i == (pI - 1)) { sol = TRUE; }; //movimiento comiendo
+		if (matriz[i][j] == 0 && j == pJ && i == (pI - 1)) { sol = true; } //movimiento sin comer
+		if (matriz[i][j] > 0 && (j == (pJ + 1) || j == (pJ - 1)) && i == (pI - 1)) { sol = true; }; //movimiento comiendo
 	}
 	return sol;
 }
 
 bool Tablero::Selec_Rey(int i, int j) {
-	bool sol = FALSE;
+	bool sol = false;
 	//NO SE TIENE EN CUENTA EL POSIBLE JAQUE EN EL MOVIMIENTO, HABRÍA QUE AÑADIRLO
-	if (matriz[i][j] == 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2) ) { sol = TRUE; }                       
-	if (color && matriz[i][j] < 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2)) { sol = TRUE; } //Blanco
-	if (!color && matriz[i][j] > 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2)) { sol = TRUE; } //Negro
+	if (matriz[i][j] == 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2) ) { sol = true; }                       
+	if (color && matriz[i][j] < 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2)) { sol = true; } //Blanco
+	if (!color && matriz[i][j] > 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2)) { sol = true; } //Negro
 	return sol;
 }
 
 bool Tablero::Selec_Caballo(int i, int j) {
-	bool sol = FALSE;
+	bool sol = false;
 	if (color) {
-		if (matriz[i][j] <= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2)) sol = TRUE;
+		if (matriz[i][j] <= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2)) sol = true;
 	}
 	else {
-		if (matriz[i][j] >= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2)) sol = TRUE;
+		if (matriz[i][j] >= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2)) sol = true;
 	}
 	return sol;
 }
 
 bool Tablero::Selec_Torre(int i, int j) { 
 	if (pJ == j) {
+		
+		for (int I = std::min(pI, i) + 1; I < std::max(pI, i); I++) {
+			if (matriz[I][pJ] != 0) return false;
+		}
+		
+		if (matriz[i][j] == 0) return true;
+		if (color && matriz[i][j] < 0) return true;
+		if (!color && matriz[i][j] > 0)return true;
+	}
+	if (pI == i) {
+		
+		for (int J = std::min(pJ, j) + 1; J < std::max(pJ, j); J++) {
+			if (matriz[pI][J] != 0) return false;
+		}
+		
+		if (matriz[i][j] == 0) return true;
+		if (color && matriz[i][j] < 0) return true;
+		if (!color && matriz[i][j] > 0) return true;
+	}
+	return false;
+}
+
+/*
 		if (pI > i) {
 			for (int I = pI - 1; I > i; I--) {
-				
+
 				if (matriz[I][pJ] != 0) return false;
 			}
 		}
@@ -360,16 +387,7 @@ bool Tablero::Selec_Torre(int i, int j) {
 				if (matriz[I][pJ] != 0) return false;
 			}
 		}
-		/*
-		for (int I = std::min(pI, i) + 1; I < std::max(pI, i); I++) {
-			if (matriz[I][pJ] != 0) return false;
-		}
-		*/
-		if (matriz[i][j] == 0) return true;
-		if (color && matriz[i][j] < 0) return true;
-		if (!color && matriz[i][j] > 0)return true;
-	}
-	if (pI == i) {
+
 		if (pJ > j) {
 			for (int J = pJ - 1; J > j; J--) {
 				if (matriz[pI][J] != 0) return false;
@@ -380,19 +398,8 @@ bool Tablero::Selec_Torre(int i, int j) {
 				if (matriz[pI][J] != 0) return false;
 			}
 		}
+*/
 
-
-		/*
-		for (int J = std::min(pJ, j) + 1; J < std::max(pJ, j); J++) {
-			if (matriz[pI][J] != 0) return false;
-		}
-		*/
-		if (matriz[i][j] == 0) return true;
-		if (color && matriz[i][j] < 0) return true;
-		if (!color && matriz[i][j] > 0) return true;
-	}
-	return false;
-}
 
 bool Tablero::Selec_Alfil(int i, int j) { 
 	if (abs(pJ - j) == abs(pI - i)) {
@@ -412,56 +419,193 @@ bool Tablero::Selec_Alfil(int i, int j) {
 	return false;
 }
 
+
 bool Tablero::Selec_Dama(int i, int j) {
 	if (Selec_Torre(i, j) || Selec_Alfil(i, j))return true;
 	return false;
 }
 
+
+/*
+bool Tablero::Selec_Dama(int i, int j) {
+
+	// MOVIMIENTO TORRE
+	if (pJ == j) {
+
+		for (int I = std::min(pI, i) + 1; I < std::max(pI, i); I++) {
+			if (matriz[I][pJ] != 0) return false;
+		}
+
+		if (matriz[i][j] == 0) return true;
+		if (color && matriz[i][j] < 0) return true;
+		if (!color && matriz[i][j] > 0)return true;
+	}
+	if (pI == i) {
+
+		for (int J = std::min(pJ, j) + 1; J < std::max(pJ, j); J++) {
+			if (matriz[pI][J] != 0) return false;
+		}
+
+		if (matriz[i][j] == 0) return true;
+		if (color && matriz[i][j] < 0) return true;
+		if (!color && matriz[i][j] > 0) return true;
+	}
+
+	// MOVIMIENTO ALFIL
+	if (abs(pJ - j) == abs(pI - i)) {
+		int difI = (pI - i < 0 ? 1 : -1);
+		int difJ = (pJ - j < 0 ? 1 : -1);
+		int I = pI;
+		int J = pJ;
+
+		while (I != i - difI && J != j - difJ) {
+			I += difI;
+			J += difJ;
+			if (matriz[I][J] != 0)return false;
+		}
+		if (color && matriz[i][j] <= 0) return true;
+		else if (!color && matriz[i][j] >= 0)return true;
+	}
+	return false;
+
+}
+*/
+
 void Tablero::Selec_Jaque() {
 	int iR = -1, jR = -1;
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
+
 			if ((color && matriz[i][j] == -5) || (!color && matriz[i][j] == 5)) {
 				iR = i; jR = j;
 			}
+
 		}
 	}
 
 	int npI = pI; int npJ = pJ;
 	bool jaq = false;
-	for (int i = 0; i < 6; i++) 
-	{
-		for (int j = 0; j < 5; j++){
-			if ((color && matriz[i][j] < 0) || (!color && matriz[i][j < 0])) continue;
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+
+			if ((color && matriz[i][j] < 0) || (!color && matriz[i][j] > 0)) continue;
 			pI = i; pJ = j;
-			if(Selec_Mover(iR,jR))
-			{
+
+			if (Selec_Mover(iR, jR)) {
+
 				jaq = true;
-				if(color){
+				if (color) {
 					if (jaqN) jaqMN = true;
 					jaqN = true;
 				}
-				else{
+				else {
 					if (jaqB) jaqMB = true;
 					jaqB = true;
 				}
 
 			}
+
 		}
 	}
 	pI = npI; pJ = npJ;
-	if (color && !jaq) jaqB = false;
-	else if (!jaq) jaqN = false;
+	if (color && !jaq) {
+		jaqB = false;
+		jaqMB = false;
+	}
+	else if (!jaq) {
+		jaqN = false;
+		jaqMN = false;
+	}
 }
 
-void Tablero::Consultar_Jaque(bool& jB, bool& jN, bool& jMB, bool& jMN) {
-	jB = jaqB;
-	jN = jaqN;
-	jMB = jaqMB;
-	jMN = jaqMN;
+
+/*
+void Tablero::Selec_Jaque() {
+	int iR = -1, jR = -1;
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+
+			if ((color && matriz[i][j] == -5) || (!color && matriz[i][j] == 5)) {
+				iR = i; jR = j;
+			}
+
+		}
+	}
+
+	bool jaq = false;
+	if (Mirar_Jaque(iR, jR)) {
+		jaq = true;
+
+		if (color) {
+			jaqN = true;
+			jaqMN = true;
+		}
+		else {
+			jaqB = true;
+			jaqMB = true;
+		}
+
+		for (int k = -1; k <= 1; k++) {
+			for (int l = -1; l <= -1; l++) {
+				if (k == 0 && l == 0)continue;
+
+				if ((iR + l >= 0 && iR + l <= 5 && jR + k >= 0 && jR <= 4) && (color && matriz[iR + l][jR + k] >= 0 || !color && matriz[iR + l][jR + k] <= 0)) {
+					if (!Mirar_Jaque(iR + l, jR + k)) {
+						if (color) jaqMN = false;
+						else jaqMB = false;
+					}
+				}
+
+			}
+		}
+
+	}
+
+	if (color && !jaq) {
+		jaqB = false;
+		jaqMB = false;
+	}
+	else if (!jaq) {
+		jaqN = false;
+		jaqMN = false;
+	}
+}
+
+bool Tablero::Mirar_Jaque(int iR, int jR) {
+	int npI = pI; int npJ = pJ;
+
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+
+			if ((color && matriz[i][j] <= 0) || (!color && matriz[i][j] >= 0)) continue;
+			pI = i; pJ = j;
+
+			if (Selec_Mover(iR, jR)) {
+				pI = npI; pJ = npJ;
+				return true;
+			}
+
+		}
+	}
+	pI = npI; pJ = npJ;
+	return false;
+}
+*/
+
+void Tablero::Consultar_Jaque() {
+	if (jaqB)
+		if (jaqMB)
+			cout << "Las blancas estan en jaque mate" << endl;
+		else
+			cout << "Las blancas estan en jaque" << endl;
+
+	if (jaqN)
+		if (jaqMN)
+			cout << "Las negras estan en jaque mate" << endl;
+		else
+			cout << "Las negras estan en jaque" << endl;
 }
 
 bool Tablero::Consultar_Turno(){
 	return color;
 }
-

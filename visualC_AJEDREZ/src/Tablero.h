@@ -3,8 +3,8 @@
 #include <iostream>
 #include <vector>
 #include "ETSIDI.h"
-#include "vector2xy.h"
 #include "Ficha.h"
+#include <vector2xy.h>
 
 
 
@@ -24,6 +24,11 @@ private:
 
 	CASILLA Mcasillas[6][5];	// Para parte GRÁFICA -> Indica posición de esquina inferior izquierda de las casillas
 	Vector2xy PosEnCasillas[6][5];	// Para parte GRÁFICA -> Indica posición del centro de las casilas
+
+	// i = FILAS , j = COLUMNAS		[filas][columnas]
+
+	// std::vector<std::vector<int>> mat(3, std::vector<int>(4));
+
         
 	std::vector<std::vector<int>> matriz;    //int matriz[6][5];
 	std::vector<Ficha*> fichas;
@@ -51,8 +56,8 @@ public:
 	bool Selec_Mover(int, int); //Llama a la comprobación correspondiente según la pieza que seleccionemos
 	void Selec_Jaque(); //Detección de jaque y jaque mate
 
-	void Consultar_Jaque(bool&, bool&, bool&, bool&); //Se encarga de indicar al programa si se produce jaque o jaque mate
+	void Consultar_Jaque(); //Se encarga de indicar al programa si se produce jaque o jaque mate
 	bool Consultar_Turno(); //Indica al programa de quién es el turno
+	bool Mirar_Jaque(int iR, int jR);
 
-	
 };
