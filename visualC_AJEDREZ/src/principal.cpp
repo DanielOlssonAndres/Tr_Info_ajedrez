@@ -5,8 +5,7 @@
 #include "mundo.h"
 #include "coordinador.h"
 
-Mundo mundo;
-Tablero tablero;
+//Tablero tablero;
 coordinador juego;
 //NO HACE FALTA LLAMARLAS EXPLICITAMENTE
 void OnDraw(void); //esta funcion sera llamada para dibujar
@@ -93,7 +92,7 @@ void OnMouseClick(int b, int state, int x, int y)
 	bool ctrlKey = (specialKey & GLUT_ACTIVE_CTRL) ? true : false;
 	bool sKey = specialKey & GLUT_ACTIVE_SHIFT;
 
-	mundo.MouseButton(x, y, b, down, sKey, ctrlKey);
+	juego.MouseButton(x, y, b, down, sKey, ctrlKey);
 
 	glutPostRedisplay();
 }
