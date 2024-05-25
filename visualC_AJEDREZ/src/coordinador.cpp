@@ -1,7 +1,7 @@
 #include "coordinador.h"
 
 void coordinador::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) {
-	if(estado=0)mundo.MouseButton(x, y, boton, abajo, TeclaSp, TeclaCtr);
+	if(estado==0)mundo.MouseButton(x, y, boton, abajo, TeclaSp, TeclaCtr);
 }
 
 void coordinador::dibuja() {
