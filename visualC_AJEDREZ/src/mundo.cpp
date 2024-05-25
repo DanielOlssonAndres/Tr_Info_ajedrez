@@ -21,23 +21,12 @@ void Mundo::inicializa()
 	// Música de fondo 
 	ETSIDI::play("sonidos/MusicaFondo.wav");
 
-	std::cout << "Seleccione Juego:" << std::endl;
-	std::cout << "0. 5x6EO" << std::endl;
-	std::cout << "1. PETTY" << std::endl;
-	std::cin >> Tjuego;
-
-	ETSIDI::play("bin/sonidos/InicioJuego.wav");
-
 	tablero.inicializa(Tjuego);
 
 }
 
 void Mundo::dibuja()
 {
-	// vista
-	gluLookAt(x_ojo, y_ojo, z_ojo,  // posicion del ojo
-		x_look, y_look, z_look,      // hacia que punto mira  (0,0,0) 
-		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
 
 	// dibujo de elementos
 	tablero.dibuja();

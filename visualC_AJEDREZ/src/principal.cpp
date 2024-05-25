@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
 	glutMouseFunc(OnMouseClick); //Callback del raton
 
 	//INICIALIZACION
-	//mundo.inicializa();
+	
 
 	//Llamada de las funciones
 	/*tablero.Tomar_Pieza(mundo.casillaSelec.x, mundo.casillaSelec.y);
