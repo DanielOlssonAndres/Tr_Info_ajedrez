@@ -10,14 +10,6 @@ using namespace std;
 
 void Mundo::inicializa()
 {
-	// Punto de vista
-	x_ojo = 15;
-	y_ojo = 18;
-	z_ojo = 60;
-	x_look = 15;
-	y_look = 18;
-	z_look = 0;
-
 	// Música de fondo 
 	ETSIDI::play("sonidos/MusicaFondo.wav");
 

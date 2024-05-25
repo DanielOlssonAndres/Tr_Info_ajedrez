@@ -12,11 +12,7 @@ class Mundo
 public:
 
 	Tablero tablero;
-
-	double x_ojo, y_ojo, z_ojo;
-	double x_look, y_look, z_look;
-
-	int Tjuego;
+	int Tjuego = 0;
 	Vector2xy PosEnCasillas[6][5];
 	
 	// VARIABLES PARA SELECCIÓN POR RATÓN----------------------------
