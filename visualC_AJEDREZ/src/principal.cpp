@@ -3,15 +3,16 @@
 #include "iostream"
 
 #include "mundo.h"
+#include "coordinador.h"
 
 Mundo mundo;
 Tablero tablero;
-
+coordinador juego;
 //NO HACE FALTA LLAMARLAS EXPLICITAMENTE
 void OnDraw(void); //esta funcion sera llamada para dibujar
 void OnTimer(int value); //esta funcion sera llamada cuando transcurra una temporizacion
 void OnKeyboardDown(unsigned char key, int x, int y); //cuando se pulse una tecla	
-void OnMouseClick(int button, int state, int x, int y); //Control del ratón
+void OnMouseClick(int button, int state, int x, int y); //Control del ratÃ³n
 
 int main(int argc, char* argv[])
 {
@@ -37,7 +38,7 @@ int main(int argc, char* argv[])
 	glutMouseFunc(OnMouseClick); //Callback del raton
 
 	//INICIALIZACION
-	mundo.inicializa();
+	//mundo.inicializa();
 
 	//Llamada de las funciones
 	/*tablero.Tomar_Pieza(mundo.casillaSelec.x, mundo.casillaSelec.y);
@@ -60,22 +61,22 @@ void OnDraw(void)
 	glLoadIdentity();
 
 	//funciones de dibujo
-	mundo.dibuja();
+	juego.dibuja();
 
 	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();
 }
 void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 {
-	//poner aqui el código de teclado
-
+	//poner aqui el cÃ³digo de teclado
+	juego.tecla(key);
 
 	glutPostRedisplay();
 }
 
 void OnTimer(int value)
 {
-	//poner aqui el código de animacion
+	//poner aqui el cÃ³digo de animacion
 
 
 		//no borrar estas lineas
