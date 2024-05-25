@@ -4,6 +4,21 @@
 #include "Tablero.h"
 #include "mundo.h"
 
+bool Tablero::Consulta_color(int R, int G, int B) {
+	R = colorR;
+	G = colorG;
+	B = colorB;
+
+	if ((R==139)&&(G==69)&&(B==19))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void Tablero::dibuja()
 {
 
@@ -29,12 +44,12 @@ void Tablero::dibuja()
 		colorR = 0;
 		colorG = 105;
 		colorB = 148;
-
 	}
 	else {
 		colorR = 139;
 		colorG = 69;
 		colorB = 19;
+		
 	}
 	glTranslatef(-7, 18, 1);
 	glColor3ub(colorR, colorG, colorB);
@@ -45,7 +60,7 @@ void Tablero::dibuja()
 	//FONDO
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D,
-		ETSIDI::getTexture("imagenes/FONDO_V1.png").id);
+		ETSIDI::getTexture("bin/imagenes/FONDO_V1.png").id);
 	glDisable(GL_LIGHTING);
 	glBegin(GL_POLYGON);
 	glColor3f(1, 1, 1);
@@ -61,7 +76,7 @@ void Tablero::dibuja()
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 			if (matriz[i][j] == -1) {
-				ETSIDI::Sprite sprite = { "imagenes/A_REY_TIBURON.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/A_REY_TIBURON.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -69,7 +84,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -2) {
-				ETSIDI::Sprite sprite = { "imagenes/A_DAMA_BALLENA.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/A_DAMA_BALLENA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -77,7 +92,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -3) {
-				ETSIDI::Sprite sprite = { "imagenes/A_ALFIL_PULPO.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/A_ALFIL_PULPO.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -85,7 +100,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -4) {
-				ETSIDI::Sprite sprite = { "imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -93,7 +108,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -5) {
-				ETSIDI::Sprite sprite = { "imagenes/A_TORRES_CANGREJO.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/A_TORRES_CANGREJO.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -101,7 +116,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -6) {
-				ETSIDI::Sprite sprite = { "imagenes/A_PEON_GAMBA.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/A_PEON_GAMBA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -109,7 +124,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 1) {
-				ETSIDI::Sprite sprite = { "imagenes/T_REY_LEON.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/T_REY_LEON.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -117,7 +132,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 2) {
-				ETSIDI::Sprite sprite = { "imagenes/T_DAMA_LEONA.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/T_DAMA_LEONA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -125,7 +140,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 3) {
-				ETSIDI::Sprite sprite = { "imagenes/T_ALFIL_PATO.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/T_ALFIL_PATO.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -133,7 +148,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 4) {
-				ETSIDI::Sprite sprite = { "imagenes/T_CABALLO_CEBRA.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/T_CABALLO_CEBRA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -141,7 +156,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 5) {
-				ETSIDI::Sprite sprite = { "imagenes/T_TORRE_GIRAFA.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/T_TORRE_GIRAFA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -149,7 +164,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 6) {
-				ETSIDI::Sprite sprite = { "imagenes/T_PEON_CONEJO_2.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/T_PEON_CONEJO_2.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -230,7 +245,7 @@ void Tablero::Tomar_Pieza(Vector2xy origen) //posicion del raton -> origen
 	pI = -1;
 	pJ = -1;
 	if (origen.x != -1 && origen.y != -1 && matriz[origen.x][origen.y] != 0) { //Si hemos seleccionado una casilla dentro del tablero
-		for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su Ìndice del vector en pInd
+		for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su √≠ndice del vector en pInd
 			if (fichas[z]->Get_PosicionX() == origen.x && fichas[z]->Get_PosicionY() == origen.y) {
 				pInd = z;
 				break;
@@ -252,25 +267,26 @@ void Tablero::Tomar_Pieza(Vector2xy origen) //posicion del raton -> origen
 	}
 }
 
-void Tablero::Soltar_Pieza(Vector2xy destino) //posiciÛn del ratÛn -> destino
+void Tablero::Soltar_Pieza(Vector2xy destino) //posici√≥n del rat√≥n -> destino
 {
 	bool flag = 1;
 	
 	if (pInd != -1 && pI != -1 && pJ != -1) { // Si es una casilla permitida
 		
-		//Si el movimiento que quieres hacer est· permitido 
+		//Si el movimiento que quieres hacer est√° permitido 
 		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && Selec_Mover(destino.x, destino.y)) { //CAMBIAR  Selec_Mover por TRUE PARA DESHABILITAR LAS LIMITACIONES DE MOVIMIENTO
 		
-			ETSIDI::play("sonidos/MoverFicha.wav");
+			ETSIDI::play("bin/sonidos/MoverFicha.wav");
 
-			//CÛdigo que haga que si hay una ficha del otro color en el destino, que se elimine (comer)
+			//C√≥digo que haga que si hay una ficha del otro color en el destino, que se elimine (comer)
 			if ((color && matriz[destino.x][destino.y] < 0) || (!color && matriz[destino.x][destino.y] > 0)) {
 				
 				for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
 					if (fichas[z]->Get_PosicionX() == destino.x && fichas[z]->Get_PosicionY() == destino.y) {
 						std::cout << "se elimina la ficha " << matriz[destino.x][destino.y] << std::endl;
-						ETSIDI::play("sonidos/ComerFicha.wav");
+						ETSIDI::play("bin/sonidos/ComerFicha.wav");
 						delete fichas[z];
+						if (z < pInd)pInd = pInd - 1;
 						fichas.erase(fichas.begin() + z);
 					}
 				}
@@ -278,12 +294,12 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posiciÛn del ratÛn -> destino
 			}
 
 			fichas[pInd]->Set_Posicion(destino.x, destino.y);
-			//ActualizaciÛn de los valores
+			//Actualizaci√≥n de los valores
 			matriz[destino.x][destino.y] = matriz[pI][pJ];
 			matriz[pI][pJ] = 0;
 			flag = 0;
 
-			Selec_Jaque(); // LA COMPROBACI”N DE LOS JAQUES A⁄N NO FUNCIONA BIEN
+			Selec_Jaque(); // LA COMPROBACI√ìN DE LOS JAQUES A√öN NO FUNCIONA BIEN
 			Consultar_Jaque();
 
 			//Cambio de turno
@@ -333,7 +349,7 @@ bool Tablero::Selec_Peon(int i, int j) {
 
 bool Tablero::Selec_Rey(int i, int j) {
 	bool sol = false;
-	//NO SE TIENE EN CUENTA EL POSIBLE JAQUE EN EL MOVIMIENTO, HABRÕA QUE A—ADIRLO
+	//NO SE TIENE EN CUENTA EL POSIBLE JAQUE EN EL MOVIMIENTO, HABR√çA QUE A√ëADIRLO
 	if (matriz[i][j] == 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2) ) { sol = true; }                       
 	if (color && matriz[i][j] < 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2)) { sol = true; } //Blanco
 	if (!color && matriz[i][j] > 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2)) { sol = true; } //Negro
