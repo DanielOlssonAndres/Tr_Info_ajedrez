@@ -1,15 +1,17 @@
 #include "coordinador.h"
 
+void coordinador::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) {
+	if(estado=juego)mundo.MouseButton(x, y, boton, abajo, TeclaSp, TeclaCtr);
+}
 
 void coordinador::dibuja() {
+	gluLookAt(15, 18, 60,  // posicion del ojo
+		15, 18, 0,      // hacia que punto mira  (0,0,0) 
+		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
 	switch (estado)
 	{
 	case coordinador::inicio: //imagen inicio completa
-		int x_ojo = 15, y_ojo = 18, z_ojo = 60, x_look = 15, y_look = 18, z_look = 0;
-		gluLookAt(x_ojo, y_ojo, z_ojo,  // posicion del ojo
-			x_look, y_look, z_look,      // hacia que punto mira  (0,0,0) 
-			0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
-
+	
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
 			ETSIDI::getTexture("bin/imagenes/1_INICIO.png").id);
@@ -25,10 +27,6 @@ void coordinador::dibuja() {
 		glDisable(GL_TEXTURE_2D);
 		break;
 	case coordinador::start:
-		int x_ojo = 15, y_ojo = 18, z_ojo = 60, x_look = 15, y_look = 18, z_look = 0;
-		gluLookAt(x_ojo, y_ojo, z_ojo,  // posicion del ojo
-			x_look, y_look, z_look,      // hacia que punto mira  (0,0,0) 
-			0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -45,10 +43,6 @@ void coordinador::dibuja() {
 		glDisable(GL_TEXTURE_2D);
 		break;
 	case coordinador::vs1_menu:
-		int x_ojo = 15, y_ojo = 18, z_ojo = 60, x_look = 15, y_look = 18, z_look = 0;
-		gluLookAt(x_ojo, y_ojo, z_ojo,  // posicion del ojo
-			x_look, y_look, z_look,      // hacia que punto mira  (0,0,0) 
-			0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -65,10 +59,6 @@ void coordinador::dibuja() {
 		glDisable(GL_TEXTURE_2D);
 		break;
 	case coordinador::vs1_5x6_menu:
-		int x_ojo = 15, y_ojo = 18, z_ojo = 60, x_look = 15, y_look = 18, z_look = 0;
-		gluLookAt(x_ojo, y_ojo, z_ojo,  // posicion del ojo
-			x_look, y_look, z_look,      // hacia que punto mira  (0,0,0) 
-			0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -85,11 +75,7 @@ void coordinador::dibuja() {
 		glDisable(GL_TEXTURE_2D);
 		break;
 	case coordinador::vs1_5x6_instr:
-		int x_ojo = 15, y_ojo = 18, z_ojo = 60, x_look = 15, y_look = 18, z_look = 0;
-		gluLookAt(x_ojo, y_ojo, z_ojo,  // posicion del ojo
-			x_look, y_look, z_look,      // hacia que punto mira  (0,0,0) 
-			0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
-
+		
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
 			ETSIDI::getTexture("bin/imagenes/5_1VS1_5X6_INSTRUCTIONS.png").id);
@@ -105,10 +91,10 @@ void coordinador::dibuja() {
 		glDisable(GL_TEXTURE_2D);
 		break;
 	case coordinador::vs1_petty_menu:
-		int x_ojo = 15, y_ojo = 18, z_ojo = 60, x_look = 15, y_look = 18, z_look = 0;
-		gluLookAt(x_ojo, y_ojo, z_ojo,  // posicion del ojo
-			x_look, y_look, z_look,      // hacia que punto mira  (0,0,0) 
+		gluLookAt(15, 18, 60,  // posicion del ojo
+			15, 18, 0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
+
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -125,10 +111,10 @@ void coordinador::dibuja() {
 		glDisable(GL_TEXTURE_2D);
 		break;
 	case coordinador::vs1_petty_instr:
-		int x_ojo = 15, y_ojo = 18, z_ojo = 60, x_look = 15, y_look = 18, z_look = 0;
-		gluLookAt(x_ojo, y_ojo, z_ojo,  // posicion del ojo
-			x_look, y_look, z_look,      // hacia que punto mira  (0,0,0) 
+		gluLookAt(15, 18, 60,  // posicion del ojo
+			15, 18, 0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
+
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -155,12 +141,12 @@ void coordinador::dibuja() {
 void coordinador::tecla(unsigned char key) {
 	switch (estado)
 	{
-	case coordinador::inicio: 
+	case coordinador::inicio:
 		if (key == 's')exit(0);
 		estado = start;
 		break;
 	case coordinador::start:
-		if (key == '1') {exit(0); estado = vs1_menu;}
+		if (key == '1') { exit(0); estado = vs1_menu; }
 		break;
 		/*if (key == '2') { exit(0); estado = vsm_menu; }
 		break;*/
@@ -189,7 +175,7 @@ void coordinador::tecla(unsigned char key) {
 		estado = juego;
 		break;
 	case coordinador::juego://de momento no hay teclas durante el juego.
-		
+
 		break;
 	default:
 		break;
