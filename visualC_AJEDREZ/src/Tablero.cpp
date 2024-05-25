@@ -288,7 +288,7 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 						ETSIDI::play("sonidos/ComerFicha.wav");
 
 						delete fichas[z];
-						if (z < pInd)pInd = pInd - 1;
+						if (z < pInd) pInd--;
 						fichas.erase(fichas.begin() + z);
 					}
 				}
@@ -300,8 +300,8 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 			matriz[destino.x][destino.y] = matriz[pI][pJ];
 			matriz[pI][pJ] = 0;
 
-			//Selec_Jaque(); // LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
-			//Consultar_Jaque();
+			Selec_Jaque(); // LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
+			Consultar_Jaque();
 
 			//Cambio de turno
 			if (color) color = false;		// Ahora es turno de las NEGRAS
@@ -436,63 +436,19 @@ bool Tablero::Selec_Dama(int i, int j) {
 	return false;
 }
 
-
 /*
-bool Tablero::Selec_Dama(int i, int j) {
-
-	// MOVIMIENTO TORRE
-	if (pJ == j) {
-
-		for (int I = std::min(pI, i) + 1; I < std::max(pI, i); I++) {
-			if (matriz[I][pJ] != 0) return false;
-		}
-
-		if (matriz[i][j] == 0) return true;
-		if (color && matriz[i][j] < 0) return true;
-		if (!color && matriz[i][j] > 0)return true;
-	}
-	if (pI == i) {
-
-		for (int J = std::min(pJ, j) + 1; J < std::max(pJ, j); J++) {
-			if (matriz[pI][J] != 0) return false;
-		}
-
-		if (matriz[i][j] == 0) return true;
-		if (color && matriz[i][j] < 0) return true;
-		if (!color && matriz[i][j] > 0) return true;
-	}
-
-	// MOVIMIENTO ALFIL
-	if (abs(pJ - j) == abs(pI - i)) {
-		int difI = (pI - i < 0 ? 1 : -1);
-		int difJ = (pJ - j < 0 ? 1 : -1);
-		int I = pI;
-		int J = pJ;
-
-		while (I != i - difI && J != j - difJ) {
-			I += difI;
-			J += difJ;
-			if (matriz[I][J] != 0)return false;
-		}
-		if (color && matriz[i][j] <= 0) return true;
-		else if (!color && matriz[i][j] >= 0)return true;
-	}
-	return false;
-
-}
-*/
-
 void Tablero::Selec_Jaque() {
 	int iR = -1, jR = -1;
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 
-			if ((color && matriz[i][j] == -5) || (!color && matriz[i][j] == 5)) {
+			if ((color && matriz[i][j] == -1) || (!color && matriz[i][j] == 1)) {
 				iR = i; jR = j;
 			}
 
 		}
 	}
+	cout << "todo ok" << endl;
 
 	int npI = pI; int npJ = pJ;
 	bool jaq = false;
@@ -528,15 +484,15 @@ void Tablero::Selec_Jaque() {
 		jaqMN = false;
 	}
 }
+*/
 
 
-/*
 void Tablero::Selec_Jaque() {
 	int iR = -1, jR = -1;
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 
-			if ((color && matriz[i][j] == -5) || (!color && matriz[i][j] == 5)) {
+			if ((color && matriz[i][j] == -1) || (!color && matriz[i][j] == 1)) {
 				iR = i; jR = j;
 			}
 
@@ -601,7 +557,7 @@ bool Tablero::Mirar_Jaque(int iR, int jR) {
 	pI = npI; pJ = npJ;
 	return false;
 }
-*/
+
 
 void Tablero::Consultar_Jaque() {
 	if (jaqB)
