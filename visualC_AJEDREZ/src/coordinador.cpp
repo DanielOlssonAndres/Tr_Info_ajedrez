@@ -10,7 +10,7 @@ void coordinador::dibuja() {
 		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
 	switch (estado)
 	{
-	case 1: //imagen inicio completa
+	case INICIO: //imagen inicio completa
 	
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -26,7 +26,7 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case 4:
+	case ELECCION_ADVERSARIO:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -43,7 +43,7 @@ void coordinador::dibuja() {
 		glDisable(GL_TEXTURE_2D);
 		break;
 	
-	case 2:
+	case MENU_1VS1:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -59,7 +59,7 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case 5:
+	case MENU_5X6:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -75,7 +75,7 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case 6:
+	case INSTRUCCIONES_5X6:
 		
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -91,7 +91,7 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case 7:
+	case MENU_PETTY:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -107,7 +107,7 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case 8:
+	case INSTRUCCIONES_PETTY:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -123,8 +123,8 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case 0:
-		mundo.inicializa();
+	case JUEGO:
+		// mundo.inicializa();
 		mundo.dibuja();
 		break;
 		
@@ -136,56 +136,56 @@ void coordinador::dibuja() {
 void coordinador::tecla(unsigned char key) {
 	switch (estado)
 	{
-	case 1:
-		if (key == 's') {
-			estado = 4;
+	case INICIO:
+		if (key == 's' || key == 'S') {
+			estado = ELECCION_ADVERSARIO;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		break;
-	case 4:
+	case ELECCION_ADVERSARIO:
 		if (key == '1') {
-			estado = 0;
+			estado = JUEGO;
+			mundo.inicializa();
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
+		// if (key == '2') { exit(0); estado = MENU_MAQUINA; }
 		break;
-		/*if (key == '2') { exit(0); estado = vsm_menu; }
-		break;*/
 		
-	case 2:
+	case MENU_1VS1:
 		if (key == 'a') {
-			estado = 5;
+			estado = MENU_5X6;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		if (key == 'b') {
-			estado = 7;
+			estado = MENU_PETTY;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		break;
 
-	case 5:
-		if (key == 'i') estado = 6; 
+	case MENU_5X6:
+		if (key == 'i') estado = INSTRUCCIONES_5X6; 
 		if (key == 'p') { 
-			//mundo.inicializa(); 
-			estado = 0; 
+			mundo.inicializa(); 
+			estado = JUEGO; 
 		}
 		break;
-	case 6:
+	case INSTRUCCIONES_5X6:
 		if (key == 'y') { 
-			//mundo.inicializa();
-			estado = 0; 
+			mundo.inicializa();
+			estado = JUEGO; 
 		}
 		break;
-	case 7:
-		if (key == 'i') { estado = 8; }
-		if (key == 'p') { estado = 0; }
+	case MENU_PETTY:
+		if (key == 'i') { estado = INSTRUCCIONES_PETTY; }
+		if (key == 'p') { estado = JUEGO; }
 		break;
-	case 8:
+	case INSTRUCCIONES_PETTY:
 		if (key == 'y') {//exit(0);
 			//mundo.inicializa();
-			estado = 0;
+			estado = JUEGO;
 		}
 		break;
-	case 0://de momento no hay teclas durante el juego.
+	case JUEGO://de momento no hay teclas durante el juego.
 
 		break;
 		

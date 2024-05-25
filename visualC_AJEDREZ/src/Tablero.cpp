@@ -270,55 +270,49 @@ void Tablero::Tomar_Pieza(Vector2xy origen) //posicion del raton -> origen
 
 void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 {
-	bool flag = 1;
-	
-	if (pInd != -1 && pI != -1 && pJ != -1) { // Si es una casilla permitida
-		
+	int a;
+
+	if (pInd != -1) { // Si es una casilla permitida
+
 		//Si el movimiento que quieres hacer está permitido 
 		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && Selec_Mover(destino.x, destino.y)) { //CAMBIAR  Selec_Mover por TRUE PARA DESHABILITAR LAS LIMITACIONES DE MOVIMIENTO
-		
-			ETSIDI::play("bin/sonidos/MoverFicha.wav");
+
+			ETSIDI::play("sonidos/MoverFicha.wav");
 
 			//Código que haga que si hay una ficha del otro color en el destino, que se elimine (comer)
 			if ((color && matriz[destino.x][destino.y] < 0) || (!color && matriz[destino.x][destino.y] > 0)) {
-				
+
 				for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
 					if (fichas[z]->Get_PosicionX() == destino.x && fichas[z]->Get_PosicionY() == destino.y) {
 						std::cout << "se elimina la ficha " << matriz[destino.x][destino.y] << std::endl;
-						ETSIDI::play("bin/sonidos/ComerFicha.wav");
+						ETSIDI::play("sonidos/ComerFicha.wav");
+
 						delete fichas[z];
 						if (z < pInd)pInd = pInd - 1;
 						fichas.erase(fichas.begin() + z);
 					}
 				}
-				
+
 			}
 
 			fichas[pInd]->Set_Posicion(destino.x, destino.y);
 			//Actualización de los valores
 			matriz[destino.x][destino.y] = matriz[pI][pJ];
 			matriz[pI][pJ] = 0;
-			flag = 0;
 
-			Selec_Jaque(); // LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
-			Consultar_Jaque();
+			//Selec_Jaque(); // LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
+			//Consultar_Jaque();
 
 			//Cambio de turno
 			if (color) color = false;		// Ahora es turno de las NEGRAS
 			else color = true;				// Ahora es turno de las BLANCAS 
 		}
-		
-		/*
-		if (jaqB == true || jaqMB == true || jaqN == true || jaqMN == true) {
-			std::cout << "JAQUE O JAQUE-MATE" << std::endl;
-		}
-		*/
 
 	}
 
 	pInd = -1;
-	pI = -1;
-	pJ = -1;
+	// pI = -1;
+	// pJ = -1;
 }
 
 bool Tablero::Selec_Mover(int i, int j) {			// i = FILAS, j = COLUMNAS

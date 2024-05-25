@@ -3,10 +3,9 @@
 #include "Tablero.h"
 #include "ETSIDI.h"
 
-//enum Estado { juego = 0, inicio, vs1_menu, vsm_menu, start, vs1_5x6_menu, vs1_5x6_instr, vs1_petty_menu, vs1_petty_instr };
+enum {JUEGO = 0, INICIO, MENU_1VS1, MENU_MAQUINA, ELECCION_ADVERSARIO, MENU_5X6, INSTRUCCIONES_5X6, MENU_PETTY, INSTRUCCIONES_PETTY};
 
-class coordinador
-{
+class coordinador {
 	
 	int estado = 1;
 	Mundo mundo;

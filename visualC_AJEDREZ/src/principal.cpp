@@ -1,12 +1,11 @@
 #include "freeglut.h"
 #include "ETSIDI.h"
 #include "iostream"
-
-#include "mundo.h"
 #include "coordinador.h"
 
 //Tablero tablero;
 coordinador juego;
+
 //NO HACE FALTA LLAMARLAS EXPLICITAMENTE
 void OnDraw(void); //esta funcion sera llamada para dibujar
 void OnTimer(int value); //esta funcion sera llamada cuando transcurra una temporizacion
@@ -37,7 +36,6 @@ int main(int argc, char* argv[])
 	glutMouseFunc(OnMouseClick); //Callback del raton
 
 	//INICIALIZACION
-	
 
 	//Llamada de las funciones
 	/*tablero.Tomar_Pieza(mundo.casillaSelec.x, mundo.casillaSelec.y);
