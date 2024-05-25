@@ -230,8 +230,7 @@ void Tablero::inicializa(const int& TJ)
 		for (int j = 0; j < 5; j++)
 		{
 			if (matriz[i][j] != 0) {
-				Ficha* p = new Ficha(i
-					, j, matriz[i][j]); 
+				Ficha* p = new Ficha(i, j, matriz[i][j]); 
 				fichas.push_back(p);
 			}
 		}
@@ -345,6 +344,11 @@ bool Tablero::Selec_Peon(int i, int j) {
 		if (matriz[i][j] == 0 && j == pJ && i == (pI - 1)) { sol = true; } //movimiento sin comer
 		if (matriz[i][j] > 0 && (j == (pJ + 1) || j == (pJ - 1)) && i == (pI - 1)) { sol = true; }; //movimiento comiendo
 	}
+	if (!sol) {
+		std::cout << "No se puede realizar este movimiento" << std::endl;
+		ETSIDI::play("bin/sonidos/ErrorMovimiento.wav");
+
+	}
 	return sol;
 }
 
@@ -354,6 +358,11 @@ bool Tablero::Selec_Rey(int i, int j) {
 	if (matriz[i][j] == 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2) ) { sol = true; }                       
 	if (color && matriz[i][j] < 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2)) { sol = true; } //Blanco
 	if (!color && matriz[i][j] > 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2)) { sol = true; } //Negro
+	if (!sol) {
+		std::cout << "No se puede realizar este movimiento" << std::endl;
+		ETSIDI::play("bin/sonidos/ErrorMovimiento.wav");
+
+	}
 	return sol;
 }
 
@@ -364,6 +373,11 @@ bool Tablero::Selec_Caballo(int i, int j) {
 	}
 	else {
 		if (matriz[i][j] >= 0 && ((abs(pI - i) == 2 && abs(pJ - j) == 1) || (abs(pI - i) == 1) && abs(pJ - j) == 2)) sol = true;
+	}
+	if (!sol) {
+		std::cout << "No se puede realizar este movimiento" << std::endl;
+		ETSIDI::play("bin/sonidos/ErrorMovimiento.wav");
+
 	}
 	return sol;
 }
@@ -388,6 +402,11 @@ bool Tablero::Selec_Torre(int i, int j) {
 		if (matriz[i][j] == 0) return true;
 		if (color && matriz[i][j] < 0) return true;
 		if (!color && matriz[i][j] > 0) return true;
+	}
+	else {
+		std::cout << "No se puede realizar este movimiento" << std::endl;
+		ETSIDI::play("bin/sonidos/ErrorMovimiento.wav");
+
 	}
 	return false;
 }
@@ -433,12 +452,22 @@ bool Tablero::Selec_Alfil(int i, int j) {
 		if (color && matriz[i][j] <= 0) return true;
 		else if (!color && matriz[i][j] >= 0)return true;
 	}
+	else {
+		std::cout << "No se puede realizar este movimiento" << std::endl;
+		ETSIDI::play("bin/sonidos/ErrorMovimiento.wav");
+
+	}
 	return false;
 }
 
 
 bool Tablero::Selec_Dama(int i, int j) {
 	if (Selec_Torre(i, j) || Selec_Alfil(i, j))return true;
+	else {
+		std::cout << "No se puede realizar este movimiento" << std::endl;
+		ETSIDI::play("bin/sonidos/ErrorMovimiento.wav");
+
+	}
 	return false;
 }
 
