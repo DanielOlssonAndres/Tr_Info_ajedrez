@@ -10,7 +10,7 @@ void coordinador::dibuja() {
 		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
 	switch (estado)
 	{
-	case 1: //imagen inicio completa
+	case INICIO: //imagen inicio completa
 	
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -26,7 +26,7 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case 4:
+	case ELECCION_ADVERSARIO:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -43,7 +43,7 @@ void coordinador::dibuja() {
 		glDisable(GL_TEXTURE_2D);
 		break;
 	
-	case 2:
+	case MENU_1VS1:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -59,7 +59,7 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case 5:
+	case MENU_1VS1_5X6:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -75,7 +75,7 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case 6:
+	case INSTRUCCIONES_1VS1_5X6:
 		
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -91,11 +91,13 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case 7:
 
+	case MENU_1VS1_PETTY:
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
-			ETSIDI::getTexture("imagenes / 6_1VS1__PETTY_MENU.png").id);
+			ETSIDI::getTexture("imagenes/6_1VS1_PETTY_MENU.png").id);
+
+
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 1);
@@ -107,11 +109,12 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case 8:
+
+	case INSTRUCCIONES_1VS1_PETTY:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
-			ETSIDI::getTexture("imagenes/14_VS1_PETTY_INSTRUCTIONS.png").id);
+			ETSIDI::getTexture("imagenes/7_VS1_PETTY_INSTRUCTIONS.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 1);
@@ -123,10 +126,90 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
+	
+	case MENU_MAQUINA:
+
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,
+			ETSIDI::getTexture("imagenes/8_MACHINE_MENU.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex2d(-15, -4); //inferior izquierda
+		glTexCoord2d(1, 1); glVertex2d(45, -4); //Inferior derecha
+		glTexCoord2d(1, 0); glVertex2d(45, 40); //Superior derecha
+		glTexCoord2d(0, 0); glVertex2d(-15, 40); //Superior izquierda
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		break;
+	case MENU_VSMAQ_5X6:
+
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,
+			ETSIDI::getTexture("imagenes/9_MACHINE_5X6_MENU.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex2d(-15, -4); //inferior izquierda
+		glTexCoord2d(1, 1); glVertex2d(45, -4); //Inferior derecha
+		glTexCoord2d(1, 0); glVertex2d(45, 40); //Superior derecha
+		glTexCoord2d(0, 0); glVertex2d(-15, 40); //Superior izquierda
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		break;
+	case INSTRUCCIONES_VSMAQ_5X6:
+
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,
+			ETSIDI::getTexture("imagenes/10_MACHINE_5X6_INSTRUCTIONS.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex2d(-15, -4); //inferior izquierda
+		glTexCoord2d(1, 1); glVertex2d(45, -4); //Inferior derecha
+		glTexCoord2d(1, 0); glVertex2d(45, 40); //Superior derecha
+		glTexCoord2d(0, 0); glVertex2d(-15, 40); //Superior izquierda
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		break;
+	case MENU_VSMAQ_PETTY:
+
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,
+			ETSIDI::getTexture("imagenes/11_MACHINE_PETTY_MENU.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex2d(-15, -4); //inferior izquierda
+		glTexCoord2d(1, 1); glVertex2d(45, -4); //Inferior derecha
+		glTexCoord2d(1, 0); glVertex2d(45, 40); //Superior derecha
+		glTexCoord2d(0, 0); glVertex2d(-15, 40); //Superior izquierda
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		break;
+	case INSTRUCCIONES_VSMAQ_PETTY:
+
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,
+			ETSIDI::getTexture("imagenes/12_MACHINE_PETTY_INSTRUCTIONS.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex2d(-15, -4); //inferior izquierda
+		glTexCoord2d(1, 1); glVertex2d(45, -4); //Inferior derecha
+		glTexCoord2d(1, 0); glVertex2d(45, 40); //Superior derecha
+		glTexCoord2d(0, 0); glVertex2d(-15, 40); //Superior izquierda
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		break;
+
 	case 0:
 		mundo.inicializa();
-		mundo.dibuja();
-		break;
 		
 	default:
 		break;
@@ -148,38 +231,79 @@ void coordinador::tecla(unsigned char key) {
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		break;
+
 		/*if (key == '2') { exit(0); estado = vsm_menu; }
 		break;*/
 		
-	case 2:
+	
+//MODALIDADES DOS JUGADORES
+	case MENU_1VS1:
 		if (key == 'a') {
-			estado = 5;
+			estado = MENU_1VS1_5X6;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		if (key == 'b') {
-			estado = 7;
+			estado = MENU_1VS1_PETTY;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		break;
 
-	case 5:
-		if (key == 'i') estado = 6; 
+	case MENU_1VS1_5X6:
+		if (key == 'i') estado = INSTRUCCIONES_1VS1_5X6; 
 		if (key == 'p') { 
 			//mundo.inicializa(); 
 			estado = 0; 
 		}
 		break;
-	case 6:
+	case INSTRUCCIONES_1VS1_5X6:
 		if (key == 'y') { 
 			//mundo.inicializa();
 			estado = 0; 
 		}
 		break;
-	case 7:
-		if (key == 'i') { estado = 8; }
-		if (key == 'p') { estado = 0; }
+	
+	case MENU_1VS1_PETTY:
+		if (key == 'i') { estado = INSTRUCCIONES_1VS1_PETTY; }
+		if (key == 'p') { estado = JUEGO; }
 		break;
-	case 8:
+	case INSTRUCCIONES_1VS1_PETTY:
+		if (key == 'y') {//exit(0);
+			//mundo.inicializa();
+			estado = JUEGO;
+		}
+		break;
+
+//MODALIDADES JUGADOR VS MAQUINA
+
+	case MENU_MAQUINA:
+		if (key == 'a') {
+			estado = MENU_VSMAQ_5X6;
+			ETSIDI::play("sonidos/InicioJuego.wav");
+		}
+		if (key == 'b') {
+			estado = MENU_VSMAQ_PETTY;
+			ETSIDI::play("sonidos/InicioJuego.wav");
+		}
+		break;
+
+	case MENU_VSMAQ_5X6:
+		if (key == 'i') estado = INSTRUCCIONES_VSMAQ_5X6;
+		if (key == 'p') {
+			mundo.inicializa();
+			estado = JUEGO;
+		}
+		break;
+	case INSTRUCCIONES_VSMAQ_5X6:
+		if (key == 'y') {
+			mundo.inicializa();
+			estado = JUEGO;
+		}
+		break;
+	case MENU_VSMAQ_PETTY:
+		if (key == 'i') { estado = INSTRUCCIONES_VSMAQ_PETTY; }
+		if (key == 'p') { estado = JUEGO; }
+		break;
+	case INSTRUCCIONES_VSMAQ_PETTY:
 		if (key == 'y') {//exit(0);
 			//mundo.inicializa();
 			estado = 0;
