@@ -60,5 +60,6 @@ public:
 	void Consultar_Jaque(); //Se encarga de indicar al programa si se produce jaque o jaque mate
 	bool Consultar_Turno(); //Indica al programa de quién es el turno
 	bool Mirar_Jaque(int iR, int jR);
+	void Promocion(int, int, int, Vector2xy);
 
 };

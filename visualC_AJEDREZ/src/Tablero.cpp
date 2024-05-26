@@ -116,7 +116,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -6) {
-				ETSIDI::Sprite sprite = { "imagenes/A_PEON_GAMBA.png" };
+				ETSIDI::Sprite sprite = { "imagenes / A_PEON_GAMBA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -204,10 +204,10 @@ void Tablero::inicializa(const int& TJ)
 	if (Tjuego == 0) { //Modalidad 5x6EO
 		matriz =
 		{
-			{5,4,3,2,1},				// BLANCAS
-			{6,6,6,6,6},				// BLANCAS
-			{0, 0, 0, 0, 0},
-			{0, 0, 0, 0, 0},
+			{ 5,  4,  3,  2 , 1},				// BLANCAS
+			{ 6,  6,  6,  6,  6},				// BLANCAS
+			{ 0,  0,  0,  0,  0},
+			{ 0,  0,  0,  0,  0},
 			{-6, -6, -6, -6, -6},		// NEGRAS
 			{-1, -2, -3, -4, -5}		// NEGRAS
 		};
@@ -216,10 +216,10 @@ void Tablero::inicializa(const int& TJ)
 		
 		matriz =
 		{
-			{2,1,3,4,5},				// BLANCAS
-			{6,6,6,6,6},				// BLANCAS
-			{0, 0, 0, 0, 0},
-			{0, 0, 0, 0, 0},
+			{ 2,  1,  3,  4,  5},				// BLANCAS
+			{ 6,  6,  6,  6,  6},				// BLANCAS
+			{ 0,  0,  0,  0,  0},
+			{ 0,  0,  0,  0,  0},
 			{-6, -6, -6, -6, -6},		// NEGRAS
 			{-2, -1, -3, -4, -5}		// NEGRAS
 		};
@@ -230,8 +230,7 @@ void Tablero::inicializa(const int& TJ)
 		for (int j = 0; j < 5; j++)
 		{
 			if (matriz[i][j] != 0) {
-				Ficha* p = new Ficha(i
-					, j, matriz[i][j]); 
+				Ficha* p = new Ficha(i, j, matriz[i][j]); 
 				fichas.push_back(p);
 			}
 		}
@@ -264,7 +263,6 @@ void Tablero::Tomar_Pieza(Vector2xy origen) //posicion del raton -> origen
 				std::cout << "Se ha seleccionado la ficha " << matriz[pI][pJ] << std::endl;
 			}
 		}
-		
 	}
 }
 
@@ -296,6 +294,9 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 			}
 
 			fichas[pInd]->Set_Posicion(destino.x, destino.y);
+
+			Promocion (pInd,pI,pJ, destino);//Verificar si un peón ha llegado a la última casilla
+
 			//Actualización de los valores
 			matriz[destino.x][destino.y] = matriz[pI][pJ];
 			matriz[pI][pJ] = 0;
@@ -306,6 +307,7 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 			//Cambio de turno
 			if (color) color = false;		// Ahora es turno de las NEGRAS
 			else color = true;				// Ahora es turno de las BLANCAS 
+
 		}
 
 	}
@@ -620,3 +622,46 @@ void Tablero::Consultar_Jaque() {
 bool Tablero::Consultar_Turno(){
 	return color;
 }
+
+
+void Tablero::Promocion(int pInd, int pI, int pJ, Vector2xy destino) {
+
+	if (destino.x == 5 && fichas[pInd]->Get_Valor() == 6) {
+		std::cout << "Se llama a promocion correctamente " << std::endl;
+
+		fichas[pInd]->Cambiar_Valor(2);
+		matriz[pI][pJ] == 2;
+
+		//for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
+		//	if (fichas[z]->Get_PosicionX() == destino.x && fichas[z]->Get_PosicionY() == destino.y) {
+
+		//		std::cout << "Se promociona el Peon a Dama " << matriz[destino.x][destino.y] << std::endl;
+
+		//		if (fichas[z]->Get_Valor() == 6) 
+		//		{
+		//			std::cout << "Se promociona el Peon a Dama " << matriz[destino.x][destino.y] << std::endl;
+		//			ETSIDI::play("sonidos/ComerFicha.wav"); //Cambiar sonido
+
+		//			matriz[destino.x][destino.y] == 2;
+		//			fichas[z]->Cambiar_Valor(2);
+		//		}
+		//	}
+		//}
+	}
+	//if (destino.x == 5) {
+	//	for (int z = 0; z < static_cast<int>(fichas.size()); z++)
+	//	{
+	//		if (fichas[z]->Get_PosicionX() == destino.x && fichas[z]->Get_PosicionY() == destino.y) {
+	//			if (fichas[z]->Get_Valor() == -6)
+	//			{
+	//				std::cout << "Se promociona el Peon a Dama " << matriz[destino.x][destino.y] << std::endl;
+	//				ETSIDI::play("sonidos/ComerFicha.wav"); //Cambiar sonido
+
+	//				matriz[destino.x][destino.y] == -2;
+	//				fichas[z]->Get_Valor() == -2;
+	//			}
+	//		}
+	//	}
+	//}
+}
+
