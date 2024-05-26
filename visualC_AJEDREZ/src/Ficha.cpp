@@ -17,3 +17,8 @@ void Ficha::Set_Posicion(int x, int y) {
 int Ficha::Get_Valor() {
 	return valor;
 }
+
+void Ficha::Cambiar_Valor(int nuevo_valor) {
+
+	valor = nuevo_valor;
+}

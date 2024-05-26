@@ -60,7 +60,7 @@ void Tablero::dibuja()
 	//FONDO
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D,
-		ETSIDI::getTexture("imagenes/FONDO_V1.png").id);
+		ETSIDI::getTexture("bin/imagenes/FONDO_V1.png").id);
 	glDisable(GL_LIGHTING);
 	glBegin(GL_POLYGON);
 	glColor3f(1, 1, 1);
@@ -76,7 +76,7 @@ void Tablero::dibuja()
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 			if (matriz[i][j] == -1) {
-				ETSIDI::Sprite sprite = { "imagenes/A_REY_TIBURON.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/A_REY_TIBURON.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -84,7 +84,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -2) {
-				ETSIDI::Sprite sprite = { "imagenes/A_DAMA_BALLENA.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/A_DAMA_BALLENA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -92,7 +92,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -3) {
-				ETSIDI::Sprite sprite = { "imagenes/A_ALFIL_PULPO.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/A_ALFIL_PULPO.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -100,7 +100,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -4) {
-				ETSIDI::Sprite sprite = { "imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -108,7 +108,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -5) {
-				ETSIDI::Sprite sprite = { "imagenes/A_TORRES_CANGREJO.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/A_TORRES_CANGREJO.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -116,7 +116,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == -6) {
-				ETSIDI::Sprite sprite = { "imagenes/A_PEON_GAMBA.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/A_PEON_GAMBA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -124,7 +124,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 1) {
-				ETSIDI::Sprite sprite = { "imagenes/T_REY_LEON.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/T_REY_LEON.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -132,7 +132,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 2) {
-				ETSIDI::Sprite sprite = { "imagenes/T_DAMA_LEONA.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/T_DAMA_LEONA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -140,7 +140,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 3) {
-				ETSIDI::Sprite sprite = { "imagenes/T_ALFIL_PATO.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/T_ALFIL_PATO.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -148,7 +148,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 4) {
-				ETSIDI::Sprite sprite = { "imagenes/T_CABALLO_CEBRA.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/T_CABALLO_CEBRA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -156,7 +156,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 5) {
-				ETSIDI::Sprite sprite = { "imagenes/T_TORRE_GIRAFA.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/T_TORRE_GIRAFA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -164,7 +164,7 @@ void Tablero::dibuja()
 				glPopMatrix();
 			}
 			if (matriz[i][j] == 6) {
-				ETSIDI::Sprite sprite = { "imagenes/T_PEON_CONEJO_2.png" };
+				ETSIDI::Sprite sprite = { "bin/imagenes/T_PEON_CONEJO_2.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
 				sprite.setSize(5, 5);
@@ -204,10 +204,10 @@ void Tablero::inicializa(const int& TJ)
 	if (Tjuego == 0) { //Modalidad 5x6EO
 		matriz =
 		{
-			{5,4,3,2,1},				// BLANCAS
-			{6,6,6,6,6},				// BLANCAS
-			{0, 0, 0, 0, 0},
-			{0, 0, 0, 0, 0},
+			{ 5,  4,  3,  2 , 1},				// BLANCAS
+			{ 6,  6,  6,  6,  6},				// BLANCAS
+			{ 0,  0,  0,  0,  0},
+			{ 0,  0,  0,  0,  0},
 			{-6, -6, -6, -6, -6},		// NEGRAS
 			{-1, -2, -3, -4, -5}		// NEGRAS
 		};
@@ -216,10 +216,10 @@ void Tablero::inicializa(const int& TJ)
 		
 		matriz =
 		{
-			{2,1,3,4,5},				// BLANCAS
-			{6,6,6,6,6},				// BLANCAS
-			{0, 0, 0, 0, 0},
-			{0, 0, 0, 0, 0},
+			{ 2,  1,  3,  4,  5},				// BLANCAS
+			{ 6,  6,  6,  6,  6},				// BLANCAS
+			{ 0,  0,  0,  0,  0},
+			{ 0,  0,  0,  0,  0},
 			{-6, -6, -6, -6, -6},		// NEGRAS
 			{-2, -1, -3, -4, -5}		// NEGRAS
 		};
@@ -230,8 +230,7 @@ void Tablero::inicializa(const int& TJ)
 		for (int j = 0; j < 5; j++)
 		{
 			if (matriz[i][j] != 0) {
-				Ficha* p = new Ficha(i
-					, j, matriz[i][j]); 
+				Ficha* p = new Ficha(i, j, matriz[i][j]); 
 				fichas.push_back(p);
 			}
 		}
@@ -264,7 +263,6 @@ void Tablero::Tomar_Pieza(Vector2xy origen) //posicion del raton -> origen
 				std::cout << "Se ha seleccionado la ficha " << matriz[pI][pJ] << std::endl;
 			}
 		}
-		
 	}
 }
 
@@ -277,7 +275,7 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 		//Si el movimiento que quieres hacer está permitido 
 		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && Selec_Mover(destino.x, destino.y)) { //CAMBIAR  Selec_Mover por TRUE PARA DESHABILITAR LAS LIMITACIONES DE MOVIMIENTO
 
-			ETSIDI::play("sonidos/MoverFicha.wav");
+			ETSIDI::play("bin/sonidos/MoverFicha.wav");
 
 			//Código que haga que si hay una ficha del otro color en el destino, que se elimine (comer)
 			if ((color && matriz[destino.x][destino.y] < 0) || (!color && matriz[destino.x][destino.y] > 0)) {
@@ -296,6 +294,9 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 			}
 
 			fichas[pInd]->Set_Posicion(destino.x, destino.y);
+
+			Promocion (pInd,pI,pJ, destino);//Verificar si un peón ha llegado a la última casilla
+
 			//Actualización de los valores
 			matriz[destino.x][destino.y] = matriz[pI][pJ];
 			matriz[pI][pJ] = 0;
@@ -306,6 +307,7 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 			//Cambio de turno
 			if (color) color = false;		// Ahora es turno de las NEGRAS
 			else color = true;				// Ahora es turno de las BLANCAS 
+
 		}
 
 	}
@@ -576,3 +578,22 @@ void Tablero::Consultar_Jaque() {
 bool Tablero::Consultar_Turno(){
 	return color;
 }
+
+
+void Tablero::Promocion(int pInd, int pI, int pJ, Vector2xy destino) {
+
+	if (destino.x == 5 && fichas[pInd]->Get_Valor() == 6) {
+		std::cout << "Se llama a promocion correctamente " << std::endl;
+
+		fichas[pInd]->Cambiar_Valor(2);
+		matriz[pI][pJ] = 2;
+	}
+
+	if (destino.x == 0 && fichas[pInd]->Get_Valor() == -6) {
+		std::cout << "Se llama a promocion correctamente " << std::endl;
+
+		fichas[pInd]->Cambiar_Valor(-2);
+		matriz[pI][pJ] = -2;
+	}
+}
+

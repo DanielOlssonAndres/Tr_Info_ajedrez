@@ -29,5 +29,7 @@ public:
 	int Get_PosicionX() { return posicion.x; }
 	int Get_PosicionY() { return posicion.y; }
 
+	void Cambiar_Valor(int);
+
 };
 
