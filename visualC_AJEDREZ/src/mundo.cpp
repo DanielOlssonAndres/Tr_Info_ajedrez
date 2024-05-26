@@ -28,19 +28,19 @@ void Mundo::dibuja()
 	{
 	
 		ETSIDI::setTextColor(0, 0, 0);//negro
-		ETSIDI::setFont("bin/fuentes/Arial.ttf", 10);
+		ETSIDI::setFont("fuentes/Arial.ttf", 10);
 		ETSIDI::printxy("Turno: Tierra", -10, 22);
 	}
 	else {
 		ETSIDI::setTextColor(1, 1, 1);//blanco
-		ETSIDI::setFont("bin/fuentes/Arial.ttf", 10);
+		ETSIDI::setFont("fuentes/Arial.ttf", 10);
 		ETSIDI::printxy("Turno: Agua", -10, 22);
 	}
 
 	//Titulos dentro de la pantalla de juego
 	//fichas del mar
 	ETSIDI::setTextColor(1, 1, 1);//blanco
-	ETSIDI::setFont("bin/fuentes/Arial.ttf", 10);
+	ETSIDI::setFont("fuentes/Arial.ttf", 10);
 	ETSIDI::printxy("Reina: ballena ", 33, 34);
 	ETSIDI::printxy("Rey: tiburón ", 33, 32);
 	ETSIDI::printxy("Caballo: caballito mar", 33, 30);
@@ -49,7 +49,7 @@ void Mundo::dibuja()
 	ETSIDI::printxy("Peón: gambas", 33, 24);
 
 	ETSIDI::setTextColor(0, 0, 0);//negro
-	ETSIDI::setFont("bin/fuentes/Arial.ttf", 10);
+	ETSIDI::setFont("fuentes/Arial.ttf", 10);
 	ETSIDI::printxy("Reina: leona ", 33, 12);
 	ETSIDI::printxy("Rey: león ", 33, 10);
 	ETSIDI::printxy("Caballo: cebra", 33, 8);
