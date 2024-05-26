@@ -224,17 +224,21 @@ void coordinador::tecla(unsigned char key) {
 			estado = 4;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
-		break;
-	case 4:
-		if (key == '1') {
-			estado = 0;
-			ETSIDI::play("sonidos/InicioJuego.wav");
-		}
+
 		break;
 
-		/*if (key == '2') { exit(0); estado = vsm_menu; }
-		break;*/
-		
+	case 4:
+		if (key == '1') {
+			estado = MENU_1VS1;
+			ETSIDI::play("sonidos/InicioJuego.wav");
+		}
+		if (key == '2') {
+			estado = MENU_MAQUINA;
+			ETSIDI::play("sonidos/InicioJuego.wav");
+		}
+
+		break;
+
 	
 //MODALIDADES DOS JUGADORES
 	case MENU_1VS1:
@@ -246,6 +250,10 @@ void coordinador::tecla(unsigned char key) {
 			estado = MENU_1VS1_PETTY;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
+		if (key == 'z') {
+			estado = 4;
+			ETSIDI::play("sonidos/AtrasMenus.wav");
+		}
 		break;
 
 	case MENU_1VS1_5X6:
@@ -253,6 +261,10 @@ void coordinador::tecla(unsigned char key) {
 		if (key == 'p') { 
 			//mundo.inicializa(); 
 			estado = 0; 
+		}
+		if (key == 'z') {
+			estado = MENU_1VS1;
+			ETSIDI::play("sonidos/AtrasMenus.wav");
 		}
 		break;
 	case INSTRUCCIONES_1VS1_5X6:
@@ -266,6 +278,10 @@ void coordinador::tecla(unsigned char key) {
 		if (key == 'i') { estado = INSTRUCCIONES_1VS1_PETTY; }
 		if (key == 'p') { estado = JUEGO; }
 		break;
+		if (key == 'z') {
+			estado = MENU_1VS1;
+			ETSIDI::play("sonidos/AtrasMenus.wav");
+		}
 	case INSTRUCCIONES_1VS1_PETTY:
 		if (key == 'y') {//exit(0);
 			//mundo.inicializa();
@@ -284,18 +300,26 @@ void coordinador::tecla(unsigned char key) {
 			estado = MENU_VSMAQ_PETTY;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
+		if (key == 'z') {
+			estado = 4;
+			ETSIDI::play("sonidos/AtrasMenus.wav");
+		}
 		break;
 
 	case MENU_VSMAQ_5X6:
 		if (key == 'i') estado = INSTRUCCIONES_VSMAQ_5X6;
 		if (key == 'p') {
-			mundo.inicializa();
+			//mundo.inicializa();
 			estado = JUEGO;
+		}
+		if (key == 'z') {
+			estado = MENU_MAQUINA;
+			ETSIDI::play("sonidos/AtrasMenus.wav");
 		}
 		break;
 	case INSTRUCCIONES_VSMAQ_5X6:
 		if (key == 'y') {
-			mundo.inicializa();
+			//mundo.inicializa();
 			estado = JUEGO;
 		}
 		break;
@@ -303,6 +327,10 @@ void coordinador::tecla(unsigned char key) {
 		if (key == 'i') { estado = INSTRUCCIONES_VSMAQ_PETTY; }
 		if (key == 'p') { estado = JUEGO; }
 		break;
+		if (key == 'z') {
+			estado = MENU_VSMAQ_5X6;
+			ETSIDI::play("sonidos/AtrasMenus.wav");
+		}
 	case INSTRUCCIONES_VSMAQ_PETTY:
 		if (key == 'y') {//exit(0);
 			//mundo.inicializa();
