@@ -75,7 +75,7 @@ void Tablero::dibuja()
 	//Fichas
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
-			if (matriz[i][j] == -1) {
+			if (matriz[i][j] == -REY) {
 				ETSIDI::Sprite sprite = { "imagenes/A_REY_TIBURON.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
@@ -83,7 +83,7 @@ void Tablero::dibuja()
 				sprite.draw();
 				glPopMatrix();
 			}
-			if (matriz[i][j] == -2) {
+			if (matriz[i][j] == -DAMA) {
 				ETSIDI::Sprite sprite = { "imagenes/A_DAMA_BALLENA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
@@ -91,7 +91,7 @@ void Tablero::dibuja()
 				sprite.draw();
 				glPopMatrix();
 			}
-			if (matriz[i][j] == -3) {
+			if (matriz[i][j] == -ALFIL) {
 				ETSIDI::Sprite sprite = { "imagenes/A_ALFIL_PULPO.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
@@ -99,7 +99,7 @@ void Tablero::dibuja()
 				sprite.draw();
 				glPopMatrix();
 			}
-			if (matriz[i][j] == -4) {
+			if (matriz[i][j] == -CABALLO) {
 				ETSIDI::Sprite sprite = { "imagenes/A_CABALLO_CABALLITO_DE_MAR.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
@@ -107,7 +107,7 @@ void Tablero::dibuja()
 				sprite.draw();
 				glPopMatrix();
 			}
-			if (matriz[i][j] == -5) {
+			if (matriz[i][j] == -TORRE) {
 				ETSIDI::Sprite sprite = { "imagenes/A_TORRES_CANGREJO.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
@@ -115,7 +115,7 @@ void Tablero::dibuja()
 				sprite.draw();
 				glPopMatrix();
 			}
-			if (matriz[i][j] == -6) {
+			if (matriz[i][j] == -PEON) {
 				ETSIDI::Sprite sprite = { "imagenes/A_PEON_GAMBA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
@@ -123,7 +123,7 @@ void Tablero::dibuja()
 				sprite.draw();
 				glPopMatrix();
 			}
-			if (matriz[i][j] == 1) {
+			if (matriz[i][j] == REY) {
 				ETSIDI::Sprite sprite = { "imagenes/T_REY_LEON.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
@@ -131,7 +131,7 @@ void Tablero::dibuja()
 				sprite.draw();
 				glPopMatrix();
 			}
-			if (matriz[i][j] == 2) {
+			if (matriz[i][j] == DAMA) {
 				ETSIDI::Sprite sprite = { "imagenes/T_DAMA_LEONA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
@@ -139,7 +139,7 @@ void Tablero::dibuja()
 				sprite.draw();
 				glPopMatrix();
 			}
-			if (matriz[i][j] == 3) {
+			if (matriz[i][j] == ALFIL) {
 				ETSIDI::Sprite sprite = { "imagenes/T_ALFIL_PATO.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
@@ -147,7 +147,7 @@ void Tablero::dibuja()
 				sprite.draw();
 				glPopMatrix();
 			}
-			if (matriz[i][j] == 4) {
+			if (matriz[i][j] == CABALLO) {
 				ETSIDI::Sprite sprite = { "imagenes/T_CABALLO_CEBRA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
@@ -155,7 +155,7 @@ void Tablero::dibuja()
 				sprite.draw();
 				glPopMatrix();
 			}
-			if (matriz[i][j] == 5) {
+			if (matriz[i][j] == TORRE) {
 				ETSIDI::Sprite sprite = { "imagenes/T_TORRE_GIRAFA.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
@@ -163,7 +163,7 @@ void Tablero::dibuja()
 				sprite.draw();
 				glPopMatrix();
 			}
-			if (matriz[i][j] == 6) {
+			if (matriz[i][j] == PEON) {
 				ETSIDI::Sprite sprite = { "imagenes/T_PEON_CONEJO_2.png" };
 				glPushMatrix();
 				glTranslatef(PosEnCasillas[i][j].x - 3, PosEnCasillas[i][j].y - 3, 1);
@@ -204,24 +204,24 @@ void Tablero::inicializa(const int& TJ)
 	if (Tjuego == 0) { //Modalidad 5x6EO
 		matriz =
 		{
-			{ 5,  4,  3,  2 , 1},				// BLANCAS
-			{ 6,  6,  6,  6,  6},				// BLANCAS
-			{ 0,  0,  0,  0,  0},
-			{ 0,  0,  0,  0,  0},
-			{-6, -6, -6, -6, -6},		// NEGRAS
-			{-1, -2, -3, -4, -5}		// NEGRAS
+			{ TORRE, CABALLO, ALFIL, DAMA, REY },				// BLANCAS
+			{ PEON, PEON, PEON, PEON, PEON },				// BLANCAS
+			{ 0, 0, 0, 0, 0 },
+			{ 0, 0, 0, 0, 0 },
+			{-PEON, -PEON, -PEON, -PEON, -PEON },		// NEGRAS
+			{ -REY, -DAMA, -ALFIL, -CABALLO, -TORRE }		// NEGRAS
 		};
 	}
 	else { //Modalidad PETTY
 		
 		matriz =
 		{
-			{ 2,  1,  3,  4,  5},				// BLANCAS
-			{ 6,  6,  6,  6,  6},				// BLANCAS
-			{ 0,  0,  0,  0,  0},
-			{ 0,  0,  0,  0,  0},
-			{-6, -6, -6, -6, -6},		// NEGRAS
-			{-2, -1, -3, -4, -5}		// NEGRAS
+			{ DAMA, REY, ALFIL, CABALLO, TORRE },				// BLANCAS
+			{ PEON, PEON, PEON, PEON, PEON },				// BLANCAS
+			{ 0, 0, 0, 0, 0 },
+			{ 0, 0, 0, 0, 0 },
+			{ -PEON, -PEON, -PEON, -PEON, -PEON },		// NEGRAS
+			{ -DAMA, -REY, -ALFIL, -CABALLO, -TORRE }		// NEGRAS
 		};
 
 	}
@@ -255,6 +255,7 @@ void Tablero::Tomar_Pieza(Vector2xy origen) //posicion del raton -> origen
 			if ((color && fichas[pInd]->Get_Valor() < 0) || (!color && fichas[pInd]->Get_Valor() > 0)) { //Si la pieza no corresponde con el color del turno
 				pInd = -1;
 				std::cout << "No puedes mover esa ficha en tu turno." << std::endl;
+				ETSIDI::play("sonidos/SonidoError.wav");
 			}
 
 			if (pInd != -1) {
@@ -309,6 +310,8 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 			else color = true;				// Ahora es turno de las BLANCAS 
 
 		}
+		else
+			ETSIDI::play("sonidos/SonidoError.wav");
 
 	}
 
@@ -320,12 +323,12 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 bool Tablero::Selec_Mover(int i, int j) {			// i = FILAS, j = COLUMNAS
 
 	switch (abs(matriz[pI][pJ])) {
-	case 6: return Selec_Peon(i, j); break;
-	case 1: return Selec_Rey(i, j); break;
-	case 2: return Selec_Dama(i, j); break;
-	case 3: return Selec_Alfil(i, j); break;
-	case 4: return Selec_Caballo(i, j); break;
-	case 5: return Selec_Torre(i, j); break;
+	case PEON: return Selec_Peon(i, j); break;
+	case REY: return Selec_Rey(i, j); break;
+	case DAMA: return Selec_Dama(i, j); break;
+	case ALFIL: return Selec_Alfil(i, j); break;
+	case CABALLO: return Selec_Caballo(i, j); break;
+	case TORRE: return Selec_Torre(i, j); break;
 	default: return false; break;
 	}
 }
@@ -389,28 +392,37 @@ bool Tablero::Selec_Torre(int i, int j) {
 }
 
 /*
-		if (pI > i) {
-			for (int I = pI - 1; I > i; I--) {
 
-				if (matriz[I][pJ] != 0) return false;
-			}
-		}
-		else {
-			for (int I = pI + 1; I < i; I++) {
-				if (matriz[I][pJ] != 0) return false;
-			}
-		}
+if (pJ == j) {
 
-		if (pJ > j) {
-			for (int J = pJ - 1; J > j; J--) {
-				if (matriz[pI][J] != 0) return false;
-			}
+	if (pI > i) {
+		for (int I = pI - 1; I > i; I--) {
+
+			if (matriz[I][pJ] != 0) return false;
 		}
-		else {
-			for (int J = pJ + 1; J < j; J++) {
-				if (matriz[pI][J] != 0) return false;
-			}
+	}
+	else {
+		for (int I = pI + 1; I < i; I++) {
+			if (matriz[I][pJ] != 0) return false;
 		}
+	}
+
+}
+
+if (pI == i) {
+
+	if (pJ > j) {
+		for (int J = pJ - 1; J > j; J--) {
+			if (matriz[pI][J] != 0) return false;
+		}
+	}
+	else {
+		for (int J = pJ + 1; J < j; J++) {
+			if (matriz[pI][J] != 0) return false;
+		}
+	}
+}
+
 */
 
 
@@ -439,62 +451,26 @@ bool Tablero::Selec_Dama(int i, int j) {
 }
 
 /*
-void Tablero::Selec_Jaque() {
-	int iR = -1, jR = -1;
-	for (int i = 0; i < 6; i++) {
-		for (int j = 0; j < 5; j++) {
 
-			if ((color && matriz[i][j] == -1) || (!color && matriz[i][j] == 1)) {
-				iR = i; jR = j;
-			}
+despues de jaq = true;
 
-		}
-	}
-	cout << "todo ok" << endl;
-
-	int npI = pI; int npJ = pJ;
-	bool jaq = false;
-	for (int i = 0; i < 6; i++) {
-		for (int j = 0; j < 5; j++) {
-
-			if ((color && matriz[i][j] < 0) || (!color && matriz[i][j] > 0)) continue;
-			pI = i; pJ = j;
-
-			if (Selec_Mover(iR, jR)) {
-
-				jaq = true;
-				if (color) {
-					if (jaqN) jaqMN = true;
-					jaqN = true;
-				}
-				else {
-					if (jaqB) jaqMB = true;
-					jaqB = true;
-				}
-
-			}
-
-		}
-	}
-	pI = npI; pJ = npJ;
-	if (color && !jaq) {
-		jaqB = false;
-		jaqMB = false;
-	}
-	else if (!jaq) {
-		jaqN = false;
-		jaqMN = false;
-	}
+if (color) {
+	if (jaqN) jaqMN = true;
+	jaqN = true;
 }
+else {
+	if (jaqB) jaqMB = true;
+	jaqB = true;
+}
+
 */
 
-
 void Tablero::Selec_Jaque() {
 	int iR = -1, jR = -1;
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 
-			if ((color && matriz[i][j] == -1) || (!color && matriz[i][j] == 1)) {
+			if ((color && matriz[i][j] == -REY) || (!color && matriz[i][j] == REY)) {
 				iR = i; jR = j;
 			}
 
@@ -585,15 +561,15 @@ void Tablero::Promocion(int pInd, int pI, int pJ, Vector2xy destino) {
 	if (destino.x == 5 && fichas[pInd]->Get_Valor() == 6) {
 		std::cout << "Se llama a promocion correctamente " << std::endl;
 
-		fichas[pInd]->Cambiar_Valor(2);
-		matriz[pI][pJ] = 2;
+		fichas[pInd]->Cambiar_Valor(DAMA);
+		matriz[pI][pJ] = DAMA;
 	}
 
 	if (destino.x == 0 && fichas[pInd]->Get_Valor() == -6) {
 		std::cout << "Se llama a promocion correctamente " << std::endl;
 
-		fichas[pInd]->Cambiar_Valor(-2);
-		matriz[pI][pJ] = -2;
+		fichas[pInd]->Cambiar_Valor(-DAMA);
+		matriz[pI][pJ] = -DAMA;
 	}
 }
 

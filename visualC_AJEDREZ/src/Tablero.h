@@ -27,8 +27,7 @@ private:
 
 	// i = FILAS , j = COLUMNAS		[filas][columnas]
 
-	// std::vector<std::vector<int>> mat(3, std::vector<int>(4));
-
+	enum {REY = 1, DAMA, ALFIL, CABALLO, TORRE, PEON};
         
 	std::vector<std::vector<int>> matriz;    //int matriz[6][5];
 	std::vector<Ficha*> fichas;
