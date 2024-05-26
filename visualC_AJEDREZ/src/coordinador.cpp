@@ -14,7 +14,7 @@ void coordinador::dibuja() {
 	
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
-			ETSIDI::getTexture("imagenes/1_INICIO.png").id);
+			ETSIDI::getTexture("bin/imagenes/1_INICIO.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 1);
@@ -30,7 +30,7 @@ void coordinador::dibuja() {
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
-			ETSIDI::getTexture("imagenes/2_START.png").id);
+			ETSIDI::getTexture("bin/imagenes/2_START.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 1);
@@ -47,7 +47,7 @@ void coordinador::dibuja() {
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
-			ETSIDI::getTexture("imagenes/3_1VS1_MENU.png").id);
+			ETSIDI::getTexture("bin/imagenes/3_1VS1_MENU.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 1);
@@ -63,7 +63,7 @@ void coordinador::dibuja() {
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
-			ETSIDI::getTexture("imagenes/4_1VS1_5X6_MENU.png").id);
+			ETSIDI::getTexture("bin/imagenes/4_1VS1_5X6_MENU.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 1);
@@ -79,7 +79,7 @@ void coordinador::dibuja() {
 		
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
-			ETSIDI::getTexture("imagenes/5_1VS1_5X6_INSTRUCTIONS.png").id);
+			ETSIDI::getTexture("bin/imagenes/5_1VS1_5X6_INSTRUCTIONS.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 1);
@@ -95,7 +95,7 @@ void coordinador::dibuja() {
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
-			ETSIDI::getTexture("imagenes / 6_1VS1__PETTY_MENU.png").id);
+			ETSIDI::getTexture("bin/imagenes / 6_1VS1__PETTY_MENU.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 1);
@@ -111,7 +111,7 @@ void coordinador::dibuja() {
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
-			ETSIDI::getTexture("imagenes/14_VS1_PETTY_INSTRUCTIONS.png").id);
+			ETSIDI::getTexture("bin/imagenes/14_VS1_PETTY_INSTRUCTIONS.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 1);
@@ -139,14 +139,14 @@ void coordinador::tecla(unsigned char key) {
 	case INICIO:
 		if (key == 's' || key == 'S') {
 			estado = ELECCION_ADVERSARIO;
-			ETSIDI::play("sonidos/InicioJuego.wav");
+			ETSIDI::play("bin/sonidos/InicioJuego.wav");
 		}
 		break;
 	case ELECCION_ADVERSARIO:
 		if (key == '1') {
 			estado = JUEGO;
 			mundo.inicializa();
-			ETSIDI::play("sonidos/InicioJuego.wav");
+			ETSIDI::play("bin/sonidos/InicioJuego.wav");
 		}
 		// if (key == '2') { exit(0); estado = MENU_MAQUINA; }
 		break;
@@ -154,11 +154,11 @@ void coordinador::tecla(unsigned char key) {
 	case MENU_1VS1:
 		if (key == 'a') {
 			estado = MENU_5X6;
-			ETSIDI::play("sonidos/InicioJuego.wav");
+			ETSIDI::play("bin/sonidos/InicioJuego.wav");
 		}
 		if (key == 'b') {
 			estado = MENU_PETTY;
-			ETSIDI::play("sonidos/InicioJuego.wav");
+			ETSIDI::play("bin/sonidos/InicioJuego.wav");
 		}
 		break;
 
