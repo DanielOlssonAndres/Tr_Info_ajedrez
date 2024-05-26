@@ -648,6 +648,13 @@ void Tablero::Promocion(int pInd, int pI, int pJ, Vector2xy destino) {
 		//	}
 		//}
 	}
+
+	if (destino.x == 0 && fichas[pInd]->Get_Valor() == -6) {
+		std::cout << "Se llama a promocion correctamente " << std::endl;
+
+		fichas[pInd]->Cambiar_Valor(-2);
+		matriz[pI][pJ] == -2;
+	}
 	//if (destino.x == 5) {
 	//	for (int z = 0; z < static_cast<int>(fichas.size()); z++)
 	//	{
