@@ -15,16 +15,16 @@ public:
 	int Tjuego = 0;
 	Vector2xy PosEnCasillas[6][5];
 	
-	// VARIABLES PARA SELECCIÓN POR RATÓN----------------------------
+	// VARIABLES PARA SELECCIÃ“N POR RATÃ“N----------------------------
 	float ancho = 6; //Darle un valor al ancho de las casillas
-	Vector2xy CasillaOrigen;	//casilla seleccionada con el ratón ORIGEN
-	Vector2xy CasillaDestino; //casilla seleccionada con el ratón DESTINO
+	Vector2xy CasillaOrigen;	//casilla seleccionada con el ratÃ³n ORIGEN
+	Vector2xy CasillaDestino; //casilla seleccionada con el ratÃ³n DESTINO
 	// --------------------------------------------------------------
 
-	void inicializa();
+	void inicializa(int tipo_juego);
 	void dibuja();
 
-	// FUNCIONES RELACIONADAS CON LA SELECCIÓN POR RATÓN---------------------------------------------------
+	// FUNCIONES RELACIONADAS CON LA SELECCIÃ“N POR RATÃ“N---------------------------------------------------
 	void MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr);
 	// ----------------------------------------------------------------------------------------------------
 
