@@ -3,7 +3,7 @@
 #include "Tablero.h"
 #include "ETSIDI.h"
 
-enum {JUEGO = 0, INICIO, MENU_1VS1, MENU_MAQUINA, ELECCION_ADVERSARIO, MENU_5X6, INSTRUCCIONES_5X6, MENU_PETTY, INSTRUCCIONES_PETTY};
+enum { JUEGO = 0, INICIO, START, VS1_MENU, VS1_5x6_MENU, VS1_PETTY_MENU, VS1_5x6_INSTR, VS1_PETTY_INSTR };
 
 class coordinador {
 	
@@ -14,7 +14,6 @@ public:
 	void tecla(unsigned char key);
 	void dibuja();
 	void MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr);
-	void inicializa() { mundo.inicializa(); }
 	int Get_Estado() { return estado; }
 
 };
