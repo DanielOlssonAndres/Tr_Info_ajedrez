@@ -9,7 +9,7 @@ bool Tablero::Consulta_color(int R, int G, int B) {
 	G = colorG;
 	B = colorB;
 
-	if ((R==139)&&(G==69)&&(B==19))
+	if (((R==139)&&(G==69)&&(B==19)) || ((R == 0) && (G == 0) && (B == 0)))
 	{
 		return true;
 	}
@@ -38,22 +38,40 @@ void Tablero::dibuja()
 		}
 	}
 
-	//INDICADOR DE TURNO
+	//INDICADOR DE TURNO 
 	glPushMatrix();
 	if (!color) {
 		colorR = 0;
 		colorG = 105;
 		colorB = 148;
 	}
-	else {
+	else{
 		colorR = 139;
 		colorG = 69;
 		colorB = 19;
-		
 	}
+
 	glTranslatef(-7, 18, 1);
 	glColor3ub(colorR, colorG, colorB);
 	glutSolidSphere(3, 30, 30);
+	glPopMatrix();
+
+	//INDICADOR DE JAQUE
+	glPushMatrix();
+
+	if ( jaqN || jaqB || jaqMN || jaqMB ) {
+		colorJR = 0;
+		colorJG = 0;
+		colorJB = 0;
+	}
+	else {
+		colorJR = 255;
+		colorJG = 255;
+		colorJB = 255;
+	}
+	glTranslatef(-7, 12, 1);
+	glColor3ub(colorJR, colorJG, colorJB);
+	glutSolidSphere(2, 30, 30);
 	glPopMatrix();
 
 
@@ -517,6 +535,7 @@ void Tablero::Selec_Jaque() {
 }
 
 bool Tablero::Mirar_Jaque(int iR, int jR) {
+
 	int npI = pI; int npJ = pJ;
 
 	for (int i = 0; i < 6; i++) {

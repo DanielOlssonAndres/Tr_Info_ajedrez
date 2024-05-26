@@ -38,6 +38,7 @@ private:
 	bool jaqB = false, jaqMB = false, jaqN = false, jaqMN = false; //Identificación de Jaque y Jaque mate de NEGRAS y BLANCAS
 
 	int colorR, colorG, colorB; //Para indicador de turno
+	int colorJR, colorJG, colorJB; //Para indicar el turno
 
 public:
 	void inicializa(const int& TJ);
