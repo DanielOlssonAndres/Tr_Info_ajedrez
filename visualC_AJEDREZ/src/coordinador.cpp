@@ -3,6 +3,7 @@
 void coordinador::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) {
 	if(estado==0)mundo.MouseButton(x, y, boton, abajo, TeclaSp, TeclaCtr);
 }
+//enum {JUEGO = 0, INICIO,START, VS1_MENU, VS1_5x6_MENU, VS1_PETTY_MENU, VS1_5x6_INSTR, VS1_PETTY_INSTR};
 
 void coordinador::dibuja() {
 	gluLookAt(15, 18, 60,  // posicion del ojo
@@ -26,7 +27,7 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case ELECCION_ADVERSARIO:
+	case START:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -43,7 +44,7 @@ void coordinador::dibuja() {
 		glDisable(GL_TEXTURE_2D);
 		break;
 	
-	case MENU_1VS1:
+	case VS1_MENU:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -59,7 +60,7 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case MENU_5X6:
+	case VS1_5x6_MENU:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -75,7 +76,7 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case INSTRUCCIONES_5X6:
+	case VS1_5x6_INSTR:
 		
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -91,11 +92,11 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case MENU_PETTY:
+	case VS1_PETTY_MENU:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
-			ETSIDI::getTexture("imagenes / 6_1VS1__PETTY_MENU.png").id);
+			ETSIDI::getTexture("imagenes/6_1VS1__PETTY_MENU.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 1);
@@ -107,7 +108,7 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
-	case INSTRUCCIONES_PETTY:
+	case VS1_PETTY_INSTR:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
@@ -138,51 +139,64 @@ void coordinador::tecla(unsigned char key) {
 	{
 	case INICIO:
 		if (key == 's' || key == 'S') {
-			estado = ELECCION_ADVERSARIO;
+			estado = START;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		break;
-	case ELECCION_ADVERSARIO:
-		if (key == '1') {
-			estado = JUEGO;
-			mundo.inicializa();
+	case START:
+		if (key == 'v'||key=='V') {//1VS 1
+			estado = VS1_MENU;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
-		// if (key == '2') { exit(0); estado = MENU_MAQUINA; }
+		
+		//if (key == 'm') { estado = ; }
 		break;
 		
-	case MENU_1VS1:
-		if (key == 'a') {
-			estado = MENU_5X6;
+	case VS1_MENU:
+		if (key == 'a' || key == 'A') {
+			estado = VS1_5x6_MENU;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
-		if (key == 'b') {
-			estado = MENU_PETTY;
+		else if (key == 'b' || key == 'B') {
+			estado = VS1_PETTY_MENU;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
+		
 		break;
 
-	case MENU_5X6:
-		if (key == 'i') estado = INSTRUCCIONES_5X6; 
-		if (key == 'p') { 
-			mundo.inicializa(); 
+	case VS1_5x6_MENU:
+		if (key == 'i' || key == 'I') { 
+			estado = VS1_5x6_INSTR; 
+			ETSIDI::play("sonidos/InicioJuego.wav");
+		}
+		else if (key == 'p' || key == 'P') {
+			//tablero.inicializa(0);//Tablero 5x6
+			mundo.inicializa(0); 
 			estado = JUEGO; 
 		}
+		
 		break;
-	case INSTRUCCIONES_5X6:
-		if (key == 'y') { 
-			mundo.inicializa();
-			estado = JUEGO; 
+	case VS1_5x6_INSTR:
+		if (key == 'y' || key == 'Y') {
+			ETSIDI::play("sonidos/InicioJuego.wav");
+			estado = VS1_5x6_MENU;
 		}
 		break;
-	case MENU_PETTY:
-		if (key == 'i') { estado = INSTRUCCIONES_PETTY; }
-		if (key == 'p') { estado = JUEGO; }
+	case VS1_PETTY_MENU:
+		if (key == 'i' || key == 'I') {
+			estado = VS1_PETTY_INSTR; 
+			ETSIDI::play("sonidos/InicioJuego.wav");
+		}
+		else if (key == 'p' || key == 'P') {
+			//tablero.inicializa(1);//Tablero petty
+			mundo.inicializa(1);
+			estado = JUEGO; }
 		break;
-	case INSTRUCCIONES_PETTY:
-		if (key == 'y') {//exit(0);
-			//mundo.inicializa();
-			estado = JUEGO;
+		
+	case VS1_PETTY_INSTR:
+		if (key == 'y' || key == 'Y') {
+			ETSIDI::play("sonidos/InicioJuego.wav");
+			estado = VS1_PETTY_MENU;
 		}
 		break;
 	case JUEGO://de momento no hay teclas durante el juego.
