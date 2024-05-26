@@ -491,7 +491,7 @@ void Tablero::Selec_Jaque() {
 		}
 
 		for (int k = -1; k <= 1; k++) {
-			for (int l = -1; l <= -1; l++) {
+			for (int l = -1; l <= 1; l++) {
 				if (k == 0 && l == 0)continue;
 
 				if ((iR + l >= 0 && iR + l <= 5 && jR + k >= 0 && jR <= 4) && (color && matriz[iR + l][jR + k] >= 0 || !color && matriz[iR + l][jR + k] <= 0)) {
