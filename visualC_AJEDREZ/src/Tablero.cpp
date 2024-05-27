@@ -292,7 +292,7 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 	if (pInd != -1) { // Si es una casilla permitida
 
 		//Si el movimiento que quieres hacer está permitido 
-		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && Selec_Mover(destino.x, destino.y)) { //CAMBIAR  Selec_Mover por TRUE PARA DESHABILITAR LAS LIMITACIONES DE MOVIMIENTO
+		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && Selec_Mover(destino.x, destino.y, true)) { //CAMBIAR  Selec_Mover por TRUE PARA DESHABILITAR LAS LIMITACIONES DE MOVIMIENTO
 
 			ETSIDI::play("sonidos/MoverFicha.wav");
 
@@ -320,8 +320,15 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 			matriz[destino.x][destino.y] = matriz[pI][pJ];
 			matriz[pI][pJ] = 0;
 
-			Selec_Jaque(); // LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
-			Consultar_Jaque();
+			if (color && Jaque(!color)) {
+				cout << "El rey negro esta en jaque" << endl;
+			}
+			if (!color && Jaque(!color)) {
+				cout << "El rey blanco esta en jaque" << endl;
+			}
+
+			// Selec_Jaque(); // LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
+			// Consultar_Jaque();
 
 			//Cambio de turno
 			if (color) color = false;		// Ahora es turno de las NEGRAS
@@ -338,17 +345,41 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 	// pJ = -1;
 }
 
-bool Tablero::Selec_Mover(int i, int j) {			// i = FILAS, j = COLUMNAS
+bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
+
+	bool flag = false;
 
 	switch (abs(matriz[pI][pJ])) {
-	case PEON: return Selec_Peon(i, j); break;
-	case REY: return Selec_Rey(i, j); break;
-	case DAMA: return Selec_Dama(i, j); break;
-	case ALFIL: return Selec_Alfil(i, j); break;
-	case CABALLO: return Selec_Caballo(i, j); break;
-	case TORRE: return Selec_Torre(i, j); break;
-	default: return false; break;
+	case PEON: flag = Selec_Peon(i, j);
+		cout << "Puedo mover el peon" << endl;
+		break;
+	case REY: flag = Selec_Rey(i, j); break;
+	case DAMA: flag = Selec_Dama(i, j);
+		cout << "Puedo mover la dama" << endl;
+		break;
+	case ALFIL: flag = Selec_Alfil(i, j); break;
+	case CABALLO: flag = Selec_Caballo(i, j); break;
+	case TORRE: flag = Selec_Torre(i, j); break;
+	default: flag = false; break;
 	}
+
+	if (flag && f) {
+
+
+		matriz[i][j] = matriz[pI][pJ];
+		matriz[pI][pJ] = 0;
+
+		if (Jaque(color)) {
+			flag = false;
+			cout << "No puedo moverlo, estaria en jaque" << endl;
+		}
+
+		matriz[pI][pJ] = matriz[i][j];
+		matriz[i][j] = 0;
+	}
+
+	return flag;
+
 }
 
 bool Tablero::Selec_Peon(int i, int j) {
@@ -534,6 +565,39 @@ void Tablero::Selec_Jaque() {
 	}
 }
 
+bool Tablero::Jaque(bool col) {
+
+	int iR = -1, jR = -1;
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+
+			if ((col && matriz[i][j] == REY) || (!col && matriz[i][j] == -REY)) {
+				iR = i; jR = j;
+			}
+
+		}
+	}
+
+	int npI = pI; int npJ = pJ;
+
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+
+			if ((col && matriz[i][j] >= 0) || (!col && matriz[i][j] <= 0)) continue;
+			pI = i; pJ = j;
+
+			if (Selec_Mover(iR, jR, false)) {
+				pI = npI; pJ = npJ;
+				return true;
+			}
+
+		}
+	}
+	pI = npI; pJ = npJ;
+	return false;
+
+}
+
 bool Tablero::Mirar_Jaque(int iR, int jR) {
 
 	int npI = pI; int npJ = pJ;
@@ -544,7 +608,7 @@ bool Tablero::Mirar_Jaque(int iR, int jR) {
 			if ((color && matriz[i][j] <= 0) || (!color && matriz[i][j] >= 0)) continue;
 			pI = i; pJ = j;
 
-			if (Selec_Mover(iR, jR)) {
+			if (Selec_Mover(iR, jR, false)) {
 				pI = npI; pJ = npJ;
 				return true;
 			}

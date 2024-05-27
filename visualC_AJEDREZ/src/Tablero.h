@@ -53,7 +53,7 @@ public:
 	bool Selec_Torre(int, int);
 	bool Selec_Caballo(int, int);
 	bool Selec_Alfil(int, int);
-	bool Selec_Mover(int, int); //Llama a la comprobación correspondiente según la pieza que seleccionemos
+	bool Selec_Mover(int, int, bool); //Llama a la comprobación correspondiente según la pieza que seleccionemos
 	void Selec_Jaque(); //Detección de jaque y jaque mate
 
 	bool Consulta_color(int R, int G, int B);
@@ -62,4 +62,5 @@ public:
 	bool Mirar_Jaque(int iR, int jR);
 	void Promocion(int, int, int, Vector2xy);
 
+	bool Jaque(bool col);
 };
