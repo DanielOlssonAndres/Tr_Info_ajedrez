@@ -9,8 +9,6 @@
 using namespace std;
 void Mundo::inicializa(int tipo_juego)
 {
-	// Música de fondo 
-	ETSIDI::play("sonidos/MusicaFondo.wav");
 
 	tablero.inicializa(tipo_juego);
 
@@ -22,18 +20,34 @@ void Mundo::dibuja()
 	tablero.dibuja();
 
 	//INDICADOR DE TURNO
-	if (tablero.Consulta_color(139,69,19)==TRUE)
+	if (tablero.Consulta_color(139, 69, 19) == TRUE)
 	{
-	
+
 		ETSIDI::setTextColor(0, 0, 0);//negro
-		ETSIDI::setFont("fuentes/Arial.ttf", 10);
-		ETSIDI::printxy("Turno: Tierra", -10, 22);
+		ETSIDI::setFont("fuentes/Arial.ttf", 15);
+		ETSIDI::printxy("Turno: Tierra", -12, 22);
 	}
 	else {
 		ETSIDI::setTextColor(1, 1, 1);//blanco
-		ETSIDI::setFont("fuentes/Arial.ttf", 10);
-		ETSIDI::printxy("Turno: Agua", -10, 22);
+		ETSIDI::setFont("fuentes/Arial.ttf", 15);
+		ETSIDI::printxy("Turno: Agua", -12, 22);
 	}
+	
+	//INDICADOR DE JAQUE
+	if (tablero.Consulta_color(0, 0, 0) == TRUE)
+	{
+
+		ETSIDI::setTextColor(1, 1, 1);//blanco
+		ETSIDI::setFont("fuentes/Arial.ttf", 15);
+		ETSIDI::printxy("No hay Jaque", -12, 8);
+	}
+	else {
+		ETSIDI::setTextColor(0, 0, 0);//negro
+		ETSIDI::setFont("fuentes/Arial.ttf", 15);
+		ETSIDI::printxy("Si hay Jaque", -12, 8);
+	}
+
+
 
 	//Titulos dentro de la pantalla de juego
 	//fichas del mar
