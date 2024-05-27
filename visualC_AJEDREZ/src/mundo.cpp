@@ -9,8 +9,6 @@
 using namespace std;
 void Mundo::inicializa(int tipo_juego)
 {
-	// Música de fondo 
-	ETSIDI::play("sonidos/MusicaFondo.wav");
 
 	tablero.inicializa(tipo_juego);
 

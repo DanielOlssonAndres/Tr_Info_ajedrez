@@ -74,11 +74,10 @@ void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 
 void OnTimer(int value)
 {
-	//poner aqui el código de animacion
+	// Música de fondo 
+	ETSIDI::play("sonidos/MusicaFondo.wav");
 
-
-		//no borrar estas lineas
-	glutTimerFunc(25, OnTimer, 0);
+	glutTimerFunc(210000, OnTimer, 0); //25
 	glutPostRedisplay();
 }
 

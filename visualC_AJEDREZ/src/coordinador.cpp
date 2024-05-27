@@ -173,6 +173,7 @@ void coordinador::tecla(unsigned char key) {
 			//tablero.inicializa(0);//Tablero 5x6
 			mundo.inicializa(0); 
 			estado = JUEGO; 
+			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		
 		break;
@@ -190,7 +191,9 @@ void coordinador::tecla(unsigned char key) {
 		else if (key == 'p' || key == 'P') {
 			//tablero.inicializa(1);//Tablero petty
 			mundo.inicializa(1);
-			estado = JUEGO; }
+			estado = JUEGO; 
+			ETSIDI::play("sonidos/InicioJuego.wav");
+		}
 		break;
 		
 	case VS1_PETTY_INSTR:
@@ -200,6 +203,7 @@ void coordinador::tecla(unsigned char key) {
 		}
 		break;
 	case JUEGO://de momento no hay teclas durante el juego.
+		
 
 		break;
 		
