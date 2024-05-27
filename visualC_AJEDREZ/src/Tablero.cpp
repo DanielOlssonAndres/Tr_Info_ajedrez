@@ -57,6 +57,7 @@ void Tablero::dibuja()
 	glPopMatrix();
 
 	//INDICADOR DE JAQUE
+	/*
 	glPushMatrix();
 
 	if ( jaqN || jaqB || jaqMN || jaqMB ) {
@@ -73,7 +74,7 @@ void Tablero::dibuja()
 	glColor3ub(colorJR, colorJG, colorJB);
 	glutSolidSphere(2, 30, 30);
 	glPopMatrix();
-
+	*/
 
 	//FONDO
 	glEnable(GL_TEXTURE_2D);
@@ -223,10 +224,10 @@ void Tablero::inicializa(const int& TJ)
 		matriz =
 		{
 			{ TORRE, CABALLO, ALFIL, DAMA, REY },				// BLANCAS
-			{ PEON, PEON, PEON, PEON, PEON },				// BLANCAS
+			{ 0, PEON, PEON, PEON, PEON },				// BLANCAS
 			{ 0, 0, 0, 0, 0 },
 			{ 0, 0, 0, 0, 0 },
-			{-PEON, -PEON, -PEON, -PEON, -PEON },		// NEGRAS
+			{-ALFIL, -PEON, -PEON, -PEON, -PEON },		// NEGRAS
 			{ -REY, -DAMA, -ALFIL, -CABALLO, -TORRE }		// NEGRAS
 		};
 	}
@@ -292,7 +293,7 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 	if (pInd != -1) { // Si es una casilla permitida
 
 		//Si el movimiento que quieres hacer está permitido 
-		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && Selec_Mover(destino.x, destino.y, true)) { //CAMBIAR  Selec_Mover por TRUE PARA DESHABILITAR LAS LIMITACIONES DE MOVIMIENTO
+		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && Selec_Mover(destino.x, destino.y, color)) { //CAMBIAR  Selec_Mover por TRUE PARA DESHABILITAR LAS LIMITACIONES DE MOVIMIENTO
 
 			ETSIDI::play("sonidos/MoverFicha.wav");
 
@@ -320,12 +321,11 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 			matriz[destino.x][destino.y] = matriz[pI][pJ];
 			matriz[pI][pJ] = 0;
 
-			if (color && Jaque(!color)) {
-				cout << "El rey negro esta en jaque" << endl;
-			}
-			if (!color && Jaque(!color)) {
-				cout << "El rey blanco esta en jaque" << endl;
-			}
+			if (jaqN)cout << "El rey negro esta en jaque" << endl;
+			if (jaqB)cout << "El rey blanco esta en jaque" << endl;
+			if (jaqMN)cout << "El rey negro esta en jaque MATE" << endl;
+			if (jaqMB)cout << "El rey blanco esta en jaque MATE" << endl;
+		
 
 			// Selec_Jaque(); // LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
 			// Consultar_Jaque();
@@ -341,8 +341,7 @@ void Tablero::Soltar_Pieza(Vector2xy destino) //posición del ratón -> destino
 	}
 
 	pInd = -1;
-	// pI = -1;
-	// pJ = -1;
+
 }
 
 bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
@@ -351,11 +350,9 @@ bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
 
 	switch (abs(matriz[pI][pJ])) {
 	case PEON: flag = Selec_Peon(i, j);
-		cout << "Puedo mover el peon" << endl;
 		break;
 	case REY: flag = Selec_Rey(i, j); break;
 	case DAMA: flag = Selec_Dama(i, j);
-		cout << "Puedo mover la dama" << endl;
 		break;
 	case ALFIL: flag = Selec_Alfil(i, j); break;
 	case CABALLO: flag = Selec_Caballo(i, j); break;
@@ -363,19 +360,17 @@ bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
 	default: flag = false; break;
 	}
 
-	if (flag && f) {
-
-
-		matriz[i][j] = matriz[pI][pJ];
-		matriz[pI][pJ] = 0;
+	if (flag) {
+		//matriz[i][j] = matriz[pI][pJ];
+		//matriz[pI][pJ] = 0;
 
 		if (Jaque(color)) {
 			flag = false;
 			cout << "No puedo moverlo, estaria en jaque" << endl;
 		}
 
-		matriz[pI][pJ] = matriz[i][j];
-		matriz[i][j] = 0;
+		//matriz[pI][pJ] = matriz[i][j];
+		//matriz[i][j] = 0;
 	}
 
 	return flag;
@@ -583,8 +578,10 @@ bool Tablero::Jaque(bool col) {
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 
-			if ((col && matriz[i][j] >= 0) || (!col && matriz[i][j] <= 0)) continue;
-			pI = i; pJ = j;
+			if ((col && matriz[i][j] >= 0) || (!col && matriz[i][j] <= 0)) {
+				pI = i; 
+				pJ = j;
+			}
 
 			if (Selec_Mover(iR, jR, false)) {
 				pI = npI; pJ = npJ;
