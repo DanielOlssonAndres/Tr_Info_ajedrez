@@ -206,7 +206,22 @@ void coordinador::dibuja() {
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
 		break;
+	case RATON:
 
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,
+			ETSIDI::getTexture("imagenes/RATON.png").id); //CAMBIA ESTO
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex2d(-15, -4); //inferior izquierda
+		glTexCoord2d(1, 1); glVertex2d(45, -4); //Inferior derecha
+		glTexCoord2d(1, 0); glVertex2d(45, 40); //Superior derecha
+		glTexCoord2d(0, 0); glVertex2d(-15, 40); //Superior izquierda
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		break;
 	case JUEGO:
 		// mundo.inicializa();
 		mundo.dibuja();
@@ -257,7 +272,7 @@ void coordinador::tecla(unsigned char key) {
 		else if (key == 'p' || key == 'P') {
 			//tablero.inicializa(0);//Tablero 5x6
 			mundo.inicializa(0,0); 
-			estado = JUEGO; 
+			estado = RATON; 
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		
@@ -276,7 +291,7 @@ void coordinador::tecla(unsigned char key) {
 		else if (key == 'p' || key == 'P') {
 			//tablero.inicializa(1);//Tablero petty
 			mundo.inicializa(1,0);
-			estado = JUEGO; 
+			estado = RATON; 
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		break;
@@ -308,7 +323,7 @@ void coordinador::tecla(unsigned char key) {
 		else if (key == 'p' || key == 'P') {
 			//tablero.inicializa(0);//Tablero 5x6
 			mundo.inicializa(0,1);
-			estado = JUEGO;
+			estado = RATON;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 
@@ -327,7 +342,7 @@ void coordinador::tecla(unsigned char key) {
 		else if (key == 'p' || key == 'P') {
 			//tablero.inicializa(1);//Tablero petty
 			mundo.inicializa(1,1);
-			estado = JUEGO;
+			estado = RATON;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		break;
@@ -338,7 +353,12 @@ void coordinador::tecla(unsigned char key) {
 			estado = VSM_PETTY_MENU;
 		}
 		break;
-
+	case RATON:
+		if (key == 'o' || key == 'O') {
+			//tablero.inicializa(1);//Tablero petty
+			estado = JUEGO;
+		}
+		break;
 
 	case JUEGO://de momento no hay teclas durante el juego.
 		break;
