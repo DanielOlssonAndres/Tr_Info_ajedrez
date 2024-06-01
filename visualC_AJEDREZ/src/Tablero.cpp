@@ -53,7 +53,7 @@ void Tablero::dibuja()
 		colorB = 19;
 	}
 
-	glTranslatef(-7, 18, 1);
+	glTranslatef(-7, 21.5, 1);
 	glColor3ub(colorR, colorG, colorB);
 	glutSolidSphere(3, 30, 30);
 	glPopMatrix();
@@ -226,7 +226,7 @@ void Tablero::inicializa(const int& TJ)
 		matriz =
 		{
 			{ TORRE, CABALLO, ALFIL, DAMA, REY },				// BLANCAS
-			{ 0, PEON, PEON, PEON, PEON },				// BLANCAS
+			{ PEON, PEON, PEON, PEON, PEON },				// BLANCAS
 			{ 0, 0, 0, 0, 0 },
 			{ 0, 0, 0, 0, 0 },
 			{-ALFIL, -PEON, -PEON, -PEON, -PEON },		// NEGRAS
