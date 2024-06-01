@@ -24,14 +24,14 @@ void Mundo::dibuja()
 	if (tablero.Consulta_color(139, 69, 19) == TRUE)
 	{
 
-		ETSIDI::setTextColor(0, 0, 0);//negro
-		ETSIDI::setFont("fuentes/Arial.ttf", 15);
-		ETSIDI::printxy("Turno: Tierra", -12, 22);
+		ETSIDI::setTextColor(1, 1, 1);//negro
+		ETSIDI::setFont("fuentes/Arial.ttf", 10);
+		ETSIDI::printxy("Tierra", -9, 17);
 	}
 	else {
 		ETSIDI::setTextColor(1, 1, 1);//blanco
-		ETSIDI::setFont("fuentes/Arial.ttf", 15);
-		ETSIDI::printxy("Turno: Agua", -12, 22);
+		ETSIDI::setFont("fuentes/Arial.ttf", 10);
+		ETSIDI::printxy("Agua", -9, 17);
 	}
 	
 	//INDICADOR DE JAQUE
@@ -39,20 +39,20 @@ void Mundo::dibuja()
 	{
 
 		ETSIDI::setTextColor(1, 1, 1);//blanco
-		ETSIDI::setFont("fuentes/Arial.ttf", 15);
-		ETSIDI::printxy("No hay Jaque", -12, 8);
+		ETSIDI::setFont("fuentes/Arial.ttf", 10);
+		ETSIDI::printxy("No hay Jaque", -10.5, 8);
 	}
 	else {
 		ETSIDI::setTextColor(0, 0, 0);//negro
-		ETSIDI::setFont("fuentes/Arial.ttf", 15);
-		ETSIDI::printxy("Si hay Jaque", -12, 8);
+		ETSIDI::setFont("fuentes/Arial.ttf", 10);
+		ETSIDI::printxy("Si hay Jaque", -10.5, 8);
 	}
 
 
 
 	//Titulos dentro de la pantalla de juego
 	//fichas del mar
-	ETSIDI::setTextColor(1, 1, 1);//blanco
+	/*ETSIDI::setTextColor(1, 1, 1);//blanco
 	ETSIDI::setFont("fuentes/Arial.ttf", 10);
 	ETSIDI::printxy("Reina: ballena ", 33, 34);
 	ETSIDI::printxy("Rey: tiburón ", 33, 32);
@@ -68,7 +68,7 @@ void Mundo::dibuja()
 	ETSIDI::printxy("Caballo: cebra", 33, 8);
 	ETSIDI::printxy("Alfil: pato ", 33, 6);
 	ETSIDI::printxy("Torre: girafa", 33, 4);
-	ETSIDI::printxy("Peón: conejos", 33, 2);
+	ETSIDI::printxy("Peón: conejos", 33, 2);*/
 }
 
 void Mundo::MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) {
