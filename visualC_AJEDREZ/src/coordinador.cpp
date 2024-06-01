@@ -356,6 +356,7 @@ void coordinador::tecla(unsigned char key) {
 	case RATON:
 		if (key == 'o' || key == 'O') {
 			//tablero.inicializa(1);//Tablero petty
+			ETSIDI::play("sonidos/InicioJuego.wav");
 			estado = JUEGO;
 		}
 		break;
