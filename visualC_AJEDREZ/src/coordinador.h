@@ -16,8 +16,8 @@ class coordinador {
 public:
 	void tecla(unsigned char key);
 	void dibuja();
-	void MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr);
+	void MouseButton(int tipo_oponente,int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr);
 	int Get_Estado() { return estado; }
-
+	Mundo Get_mundo() { return mundo; }
 };
 

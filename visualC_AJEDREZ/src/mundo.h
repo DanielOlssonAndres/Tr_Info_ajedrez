@@ -13,6 +13,7 @@ public:
 
 	Tablero tablero;
 	int Tjuego = 0;
+	int Toponente = 0;
 	Vector2xy PosEnCasillas[6][5];
 	
 	// VARIABLES PARA SELECCIÓN POR RATÓN----------------------------
@@ -21,11 +22,11 @@ public:
 	Vector2xy CasillaDestino; //casilla seleccionada con el ratón DESTINO
 	// --------------------------------------------------------------
 
-	void inicializa(int tipo_juego);
+	void inicializa(int tipo_juego, const int& tipo_oponente);
 	void dibuja();
 
 	// FUNCIONES RELACIONADAS CON LA SELECCIÓN POR RATÓN---------------------------------------------------
-	void MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr);
+	void MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr);
 	// ----------------------------------------------------------------------------------------------------
 
 };

@@ -1,7 +1,8 @@
 #include "coordinador.h"
 
-void coordinador::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) {
-	if(estado==0)mundo.MouseButton(x, y, boton, abajo, TeclaSp, TeclaCtr);
+void coordinador::MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) {
+	tipo_oponente = mundo.tablero.Get_Oponente();
+	if(estado==0)mundo.MouseButton(tipo_oponente, x, y, boton, abajo, TeclaSp, TeclaCtr);
 }
 //enum {JUEGO = 0, INICIO,START, VS1_MENU, VS1_5x6_MENU, VS1_PETTY_MENU, VS1_5x6_INSTR, VS1_PETTY_INSTR};
 
@@ -255,7 +256,7 @@ void coordinador::tecla(unsigned char key) {
 		}
 		else if (key == 'p' || key == 'P') {
 			//tablero.inicializa(0);//Tablero 5x6
-			mundo.inicializa(0); 
+			mundo.inicializa(0,0); 
 			estado = JUEGO; 
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
@@ -274,7 +275,7 @@ void coordinador::tecla(unsigned char key) {
 		}
 		else if (key == 'p' || key == 'P') {
 			//tablero.inicializa(1);//Tablero petty
-			mundo.inicializa(1);
+			mundo.inicializa(1,0);
 			estado = JUEGO; 
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
@@ -306,7 +307,7 @@ void coordinador::tecla(unsigned char key) {
 		}
 		else if (key == 'p' || key == 'P') {
 			//tablero.inicializa(0);//Tablero 5x6
-			mundo.inicializa(0);
+			mundo.inicializa(0,1);
 			estado = JUEGO;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
@@ -325,7 +326,7 @@ void coordinador::tecla(unsigned char key) {
 		}
 		else if (key == 'p' || key == 'P') {
 			//tablero.inicializa(1);//Tablero petty
-			mundo.inicializa(1);
+			mundo.inicializa(1,1);
 			estado = JUEGO;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}

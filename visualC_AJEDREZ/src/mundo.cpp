@@ -7,10 +7,11 @@
 #include "Ficha.h"
 
 using namespace std;
-void Mundo::inicializa(int tipo_juego)
+void Mundo::inicializa(int tipo_juego, const int& tipo_oponente)
 {
 
 	tablero.inicializa(tipo_juego);
+	tablero.Set_Oponente(tipo_oponente);
 
 }
 void Mundo::dibuja()
@@ -70,7 +71,10 @@ void Mundo::dibuja()
 	ETSIDI::printxy("Peón: conejos", 33, 2);
 }
 
-void Mundo::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) {
+void Mundo::MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) {
+
+	tipo_oponente = tablero.Get_Oponente();
+
 	if (abajo) {
 
 		GLint viewport[4];
@@ -88,21 +92,43 @@ void Mundo::MouseButton(int x, int y, int boton, bool abajo, bool TeclaSp, bool 
 		glReadPixels(x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
 		gluUnProject(winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
 
+
 		if (posY >= 0 && posY <= 36 && posX >= 0 && posX <= 30) {
-			if (boton == GLUT_LEFT_BUTTON) {
+			if (tipo_oponente == 0) {
+				if (boton == GLUT_LEFT_BUTTON) {
 
-				CasillaOrigen.x = (int)(posY / ancho);
-				CasillaOrigen.y = (int)(posX / ancho);
-				tablero.Tomar_Pieza(CasillaOrigen);
+					CasillaOrigen.x = (int)(posY / ancho);
+					CasillaOrigen.y = (int)(posX / ancho);
+					tablero.Tomar_Pieza_1VS1(CasillaOrigen);
+				}
+
+				if (boton == GLUT_RIGHT_BUTTON) {
+					CasillaDestino.x = (int)(posY / ancho);
+					CasillaDestino.y = (int)(posX / ancho);
+					tablero.Soltar_Pieza_1VS1(CasillaDestino);
+				}
+
 			}
 
-			if (boton == GLUT_RIGHT_BUTTON) {
-				CasillaDestino.x = (int)(posY / ancho);
-				CasillaDestino.y = (int)(posX / ancho);
-				tablero.Soltar_Pieza(CasillaDestino);
+			if (tipo_oponente == 1) {
+				if (boton == GLUT_LEFT_BUTTON) {
+
+					CasillaOrigen.x = (int)(posY / ancho);
+					CasillaOrigen.y = (int)(posX / ancho);
+					tablero.Tomar_Pieza_VSMAQ(CasillaOrigen);
+				}
+
+				if (boton == GLUT_RIGHT_BUTTON) {
+					CasillaDestino.x = (int)(posY / ancho);
+					CasillaDestino.y = (int)(posX / ancho);
+					tablero.Soltar_Pieza_VSMAQ(CasillaDestino);
+				}
+
 			}
+
+
 		}
-	}
 
+	}
 }
 

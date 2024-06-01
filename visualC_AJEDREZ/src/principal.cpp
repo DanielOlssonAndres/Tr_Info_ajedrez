@@ -81,7 +81,7 @@ void OnTimer(int value)
 	glutPostRedisplay();
 }
 
-void OnMouseClick(int b, int state, int x, int y) 
+void OnMouseClick(int b, int state, int x, int y)
 {
 
 	bool down = (state == GLUT_DOWN);
@@ -90,7 +90,7 @@ void OnMouseClick(int b, int state, int x, int y)
 	bool ctrlKey = (specialKey & GLUT_ACTIVE_CTRL) ? true : false;
 	bool sKey = specialKey & GLUT_ACTIVE_SHIFT;
 
-	juego.MouseButton(x, y, b, down, sKey, ctrlKey);
+	juego.MouseButton(juego.Get_mundo().tablero.Get_Oponente(), x, y, b, down, sKey, ctrlKey);
 
 	glutPostRedisplay();
 }
