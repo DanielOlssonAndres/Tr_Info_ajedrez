@@ -361,7 +361,7 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 }
 
 void Tablero::Tomar_Pieza_VSMAQ() {
-	cout << "Tomar_Pieza_1VS1" << endl;
+	cout << "Tomar_Pieza_VSMAQ" << endl;
 	pInd = -1;
 	pI = -1;
 	pJ = -1;
@@ -380,9 +380,9 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 						if (fichas[z]->Get_PosicionX() == i && fichas[z]->Get_PosicionY() == j) {
 							l = i;
 							k = j;
-
-							for (i - 5; i < i + 5; i++) {
-								for (j - 5; j < j + 5; j++){
+							cout << "Se sigue pensando la jugada" << endl;
+							for (i ; i < 6; i++) {
+								for (j; j < 5; j++){
 									if ((matriz[i][j] >= 0) && Selec_Mover(i, j, color) == false) {
 										pInd = -1;
 										Fichas_IA[l][k] = -1;
@@ -401,13 +401,13 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 									
 							}
 
-							break;
+							
 						}
 					}
 				}
 			}
 		}
-		Tomar_Pieza_VSMAQ();
+		
 	}
 				
 	
