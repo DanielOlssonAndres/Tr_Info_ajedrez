@@ -257,6 +257,14 @@ void Tablero::inicializa(const int& TJ)
 		}
 	}
 
+	for (int i = 0; i < 6; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			Fichas_IA[i][j] = 1;
+		}
+	}
+
 }
 
 
@@ -265,6 +273,7 @@ void Tablero::Tomar_Pieza_1VS1(Vector2xy origen) //posicion del raton -> origen
 	pInd = -1;
 	pI = -1;
 	pJ = -1;
+
 	if (origen.x != -1 && origen.y != -1 && matriz[origen.x][origen.y] != 0) { //Si hemos seleccionado una casilla con ficha
 		for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su índice del vector en pInd
 			if (fichas[z]->Get_PosicionX() == origen.x && fichas[z]->Get_PosicionY() == origen.y) {
@@ -336,6 +345,9 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 			if (color) color = false;		// Ahora es turno de las NEGRAS
 			else color = true;				// Ahora es turno de las BLANCAS 
 
+			if (Toponente == 1)
+				pIA = 1;
+
 		}
 		else
 			ETSIDI::play("sonidos/SonidoError.wav");
@@ -346,95 +358,82 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 
 }
 
-void Tablero::Tomar_Pieza_VSMAQ(Vector2xy origen) {
+void Tablero::Tomar_Pieza_VSMAQ() {
 	pInd = -1;
 	pI = -1;
 	pJ = -1;
+	int l, k;
 
-	/*if (!color) {
-		srand(time(NULL));
-		bool elige_ficha = false;
 
-		//LIMITAMOS TIMEPO ELEGIR PARTIDA
-		int i, j;
-		do {
-			i = rand() % 5;
-			j = rand() % 6;
+	if (color == false && pIA == 1) { //Bucle que recorra todas las casillas
+		cout << "Se está pensando la jugada" << endl;
+		for (int i = 0; i < 6; i++)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				if (matriz[i][j] < 0 && Fichas_IA[i][j] == 1)
+				{
+					for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su índice del vector en pInd
+						if (fichas[z]->Get_PosicionX() == i && fichas[z]->Get_PosicionY() == j) {
+							l = i;
+							k = j;
 
-		} while (matriz[i][j] >= 0);
-		
+							for (i - 5; i < i + 5; i++) {
+								for (j - 5; j < j + 5; j++){
+									if ((matriz[i][j] >= 0) && Selec_Mover(i, j, color) == false) {
+										pInd = -1;
+										Fichas_IA[l][k] = -1;
+										cout << "-------" << endl;
+									}
+									if ((matriz[i][j] >= 0) && Selec_Mover(i, j, color) == true) {
+										pInd = z;
+										pIA_x = i;
+										pIA_y = j;
+										pI = l;
+										pJ = k;
+										std::cout << "Se ha seleccionado la ficha " << matriz[pI][pJ] << std::endl;
+									}
+								
+								}
+									
+							}
 
-		if (matriz[i][j] < 0) {
-			origen.x = i; origen.y = j;
-			pI = origen.x;
-			pJ = origen.y;
-			elige_ficha = true;
-						
-		} 
-	}*/
-
-					
-	if (origen.x != -1 && origen.y != -1 && matriz[origen.x][origen.y] != 0 && color) { //Si hemos seleccionado una casilla dentro del tablero y es turno de las blancas
-		for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su índice del vector en pInd
-			if (fichas[z]->Get_PosicionX() == origen.x && fichas[z]->Get_PosicionY() == origen.y) {
-				pInd = z;
-				break;
+							break;
+						}
+					}
+				}
 			}
 		}
-
-		if (pInd != -1) {
-			if ((color && fichas[pInd]->Get_Valor() < 0) || (!color && fichas[pInd]->Get_Valor() > 0)) { //Si la pieza no corresponde con el color del turno
-				pInd = -1;
-				ETSIDI::play("sonidos/SonidoError.wav");
-			}
-
-			if (pInd != -1) {
-				pI = origen.x;
-				pJ = origen.y;
-				std::cout << "Se ha seleccionado la ficha " << matriz[pI][pJ] << std::endl;
-			}
-		}
-
 	}
+				
 	
 }
-void Tablero::Soltar_Pieza_VSMAQ(Vector2xy destino) {
-	int a;
-
-	if (pInd != -1) { // Si es una casilla permitida
-
-		/*if ((!color) && Selec_Mover(destino.x, destino.y, color)) { //ALTERNATIVA TURNO MAQUINA (NEGRAS)
-						//SELECCIONAMOS CASILLAS DE DESTINO
-				if (!color) {
-					srand(time(NULL));
-					bool elige_movimiento = false;
-
-					//LIMITAMOS TIMEPO ELEGIR PARTIDA
-					int k, l;
-					do {
-						k = rand() % 5;
-						l = rand() % 6;
-
-					} while (matriz[k][l] < 0);
 
 
-					if (matriz[k][l] >= 0) {
-						destino.x = k; destino.y = l;
-						pI = destino.x;
-						pJ = destino.y;
-						elige_movimiento = true;
 
+void Tablero::Soltar_Pieza_VSMAQ() {
+	
 
-					}
+	if (pInd != -1 && pIA == 1) { // Si es una casilla permitida
+
+		if (color == false) {
+
+			// Relleno el vector de Fichas_IA
+			for (int i = 0; i < 6; i++)
+			{
+				for (int j = 0; j < 5; j++)
+				{
+					Fichas_IA[i][j] = 1;
 				}
+			}
+
 			ETSIDI::play("sonidos/MoverFicha.wav");
 
-			//Código que haga que si hay una ficha del otro color en el destino, que se elimine (comer)
-			if (!color && matriz[destino.x][destino.y] > 0) {
+			if (matriz[pIA_x][pIA_y] > 0){
 
 				for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
-					if (fichas[z]->Get_PosicionX() == destino.x && fichas[z]->Get_PosicionY() == destino.y) {
-						std::cout << "se elimina la ficha " << matriz[destino.x][destino.y] << std::endl;
+					if (fichas[z]->Get_PosicionX() == pI && fichas[z]->Get_PosicionY() == pJ) {
+						std::cout << "se elimina la ficha " << matriz[pIA_x][pIA_y] << std::endl;
 						ETSIDI::play("sonidos/ComerFicha.wav");
 
 						delete fichas[z];
@@ -442,37 +441,18 @@ void Tablero::Soltar_Pieza_VSMAQ(Vector2xy destino) {
 						fichas.erase(fichas.begin() + z);
 					}
 				}
-
-			}
-		}*/
-
-		//Si el movimiento que quieres hacer está permitido 
-		if ((color && matriz[destino.x][destino.y] <= 0)  && Selec_Mover(destino.x, destino.y, color)) { //CAMBIAR  Selec_Mover por TRUE PARA DESHABILITAR LAS LIMITACIONES DE MOVIMIENTO
-
-			ETSIDI::play("sonidos/MoverFicha.wav");
-
-			//Código que haga que si hay una ficha del otro color en el destino, que se elimine (comer)
-			if (color && matriz[destino.x][destino.y] < 0) {
-
-				for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
-					if (fichas[z]->Get_PosicionX() == destino.x && fichas[z]->Get_PosicionY() == destino.y) {
-						std::cout << "se elimina la ficha " << matriz[destino.x][destino.y] << std::endl;
-						ETSIDI::play("sonidos/ComerFicha.wav");
-
-						delete fichas[z];
-						if (z < pInd) pInd--;
-						fichas.erase(fichas.begin() + z);
-					}
-				}
-
 			}
 
-			fichas[pInd]->Set_Posicion(destino.x, destino.y);
+			Vector2xy destino{
+				pIA_x,pIA_y
+			};
+
+			fichas[pInd]->Set_Posicion(pIA_x, pIA_y);
 
 			Promocion(pInd, pI, pJ, destino);//Verificar si un peón ha llegado a la última casilla
 
 			//Actualización de los valores
-			matriz[destino.x][destino.y] = matriz[pI][pJ];
+			matriz[pIA_x][pIA_y] = matriz[pI][pJ];
 			matriz[pI][pJ] = 0;
 
 			if (jaqN)cout << "El rey negro esta en jaque" << endl;
@@ -480,18 +460,16 @@ void Tablero::Soltar_Pieza_VSMAQ(Vector2xy destino) {
 			if (jaqMN)cout << "El rey negro esta en jaque MATE" << endl;
 			if (jaqMB)cout << "El rey blanco esta en jaque MATE" << endl;
 
-
-			// Selec_Jaque(); // LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
-			// Consultar_Jaque();
-
 			//Cambio de turno
 			if (color) color = false;		// Ahora es turno de las NEGRAS
 			else color = true;				// Ahora es turno de las BLANCAS 
 
 		}
-		else
+		else {
 			ETSIDI::play("sonidos/SonidoError.wav");
-
+			cout << "El rey blanco esta en jaque MATE" << endl;
+		}
+		pIA = -1;
 	}
 
 	pInd = -1;
@@ -589,39 +567,6 @@ bool Tablero::Selec_Torre(int i, int j) {
 	return false;
 }
 
-/*
-
-if (pJ == j) {
-
-	if (pI > i) {
-		for (int I = pI - 1; I > i; I--) {
-
-			if (matriz[I][pJ] != 0) return false;
-		}
-	}
-	else {
-		for (int I = pI + 1; I < i; I++) {
-			if (matriz[I][pJ] != 0) return false;
-		}
-	}
-
-}
-
-if (pI == i) {
-
-	if (pJ > j) {
-		for (int J = pJ - 1; J > j; J--) {
-			if (matriz[pI][J] != 0) return false;
-		}
-	}
-	else {
-		for (int J = pJ + 1; J < j; J++) {
-			if (matriz[pI][J] != 0) return false;
-		}
-	}
-}
-
-*/
 
 
 bool Tablero::Selec_Alfil(int i, int j) { 
@@ -806,4 +751,6 @@ void Tablero::Promocion(int pInd, int pI, int pJ, Vector2xy destino) {
 		matriz[pI][pJ] = -DAMA;
 	}
 }
+
+
 
