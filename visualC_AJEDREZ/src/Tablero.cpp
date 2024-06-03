@@ -271,6 +271,7 @@ void Tablero::inicializa(const int& TJ)
 void Tablero::Tomar_Pieza_1VS1(Vector2xy origen) //posicion del raton -> origen
 {
 	pInd = -1;
+	pIA = -1;
 	pI = -1;
 	pJ = -1;
 
@@ -300,6 +301,7 @@ void Tablero::Tomar_Pieza_1VS1(Vector2xy origen) //posicion del raton -> origen
 void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> destino
 {
 	int a;
+	cout << "Soltar_Pieza_1VS1" << endl;
 
 	if (pInd != -1) { // Si es una casilla permitida
 
@@ -359,6 +361,7 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 }
 
 void Tablero::Tomar_Pieza_VSMAQ() {
+	cout << "Tomar_Pieza_1VS1" << endl;
 	pInd = -1;
 	pI = -1;
 	pJ = -1;
@@ -366,7 +369,7 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 
 
 	if (color == false && pIA == 1) { //Bucle que recorra todas las casillas
-		cout << "Se está pensando la jugada" << endl;
+		cout << "Se esta pensando la jugada" << endl;
 		for (int i = 0; i < 6; i++)
 		{
 			for (int j = 0; j < 5; j++)
@@ -413,6 +416,7 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 
 void Tablero::Soltar_Pieza_VSMAQ() {
 	
+	cout << "Soltar_Pieza_VSMAQ" << endl;
 
 	if (pInd != -1 && pIA == 1) { // Si es una casilla permitida
 

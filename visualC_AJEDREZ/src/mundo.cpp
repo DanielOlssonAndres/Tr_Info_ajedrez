@@ -128,10 +128,11 @@ void Mundo::MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, 
 					}
 				}
 
-				if (tablero.Consultar_Turno() == false)
-				
+				if (tablero.Consultar_Turno() == false) {
 					tablero.Tomar_Pieza_VSMAQ();
 					tablero.Soltar_Pieza_VSMAQ();
+				}
+				
 			}
 		}
 	}
