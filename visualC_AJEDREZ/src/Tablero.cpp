@@ -407,6 +407,7 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 				}
 			}
 		}
+		Tomar_Pieza_VSMAQ();
 	}
 				
 	
