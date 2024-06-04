@@ -1,6 +1,6 @@
 
-#include "freeglut.h"
 #include <cstdlib>
+#include "freeglut.h"
 #include "Tablero.h"
 #include "mundo.h"
 using std::cout;
@@ -357,10 +357,13 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 }
 
 void Tablero::Tomar_Pieza_VSMAQ() {
-	cout << "Tomar_Pieza_VSMAQ" << endl;
+	
 	pI = -1;
 	pJ = -1;
 	bool flag = false;
+
+	
+
 
 	////INTENTO IA CON RANDOMS
 	//int a, b, i, j;
@@ -396,7 +399,7 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 	////------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	if (color == false ) { //Bucle que recorra todas las casillas
-		cout << "Se esta pensando la jugada" << endl;
+
 		do {
 			for (int i = 0; i < 6; i++) {
 				for (int j = 0; j < 5; j++) {
@@ -404,15 +407,14 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 					if (matriz[i][j] < 0) {
 						pI = i;
 						pJ = j;
-						cout << "Se sigue pensando la jugada" << endl;
 						for (int l = 1; l < 6; l++) {
 							for (int k = 1; k < 5; k++) {
 
 								if (Selec_Mover(l, k, !color) == true) {
 									pIA_x = l;
 									pIA_y = k;
-									std::cout << "Se ha movido la ficha " << matriz[i][j] << "A la posicion" << pIA_x << pIA_y << std::endl;
-										
+									
+									
 									flag = true;
 									break;
 									
@@ -459,11 +461,10 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 		for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su índice del vector en pInd
 			if (fichas[z]->Get_PosicionX() == pI && fichas[z]->Get_PosicionY() == pJ) {
 				pInd = z;
-				std::cout << "Se guarda el valor de pInd  " << pInd << std::endl;
 				break;
 			}
 		}
-		std::cout << "Se ha mterminado de pensar "<< std::endl;
+	
 	}		
 }
 
@@ -471,10 +472,6 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 
 void Tablero::Soltar_Pieza_VSMAQ() {
 	
-	cout << "Soltar_Pieza_VSMAQ" << endl;
-
-
-
 		if (color == false) {
 
 			//// Relleno el vector de Fichas_IA
@@ -488,7 +485,6 @@ void Tablero::Soltar_Pieza_VSMAQ() {
 
 			ETSIDI::play("sonidos/MoverFicha.wav");
 
-			std::cout << "Antes de la matriz" << std::endl;
 			if (matriz[pIA_x][pIA_y] > 0){
 				for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
 					if (fichas[z]->Get_PosicionX() == pI && fichas[z]->Get_PosicionY() == pJ) {
@@ -501,16 +497,15 @@ void Tablero::Soltar_Pieza_VSMAQ() {
 					}
 				}
 			}
-			std::cout << "Antes del vector" << std::endl;
 			Vector2xy destino{
 				pIA_x,pIA_y
 			};
 
 			fichas[pInd]->Set_Posicion(pIA_x, pIA_y);
 
-			std::cout << "Antes de la Promocion" << std::endl;
+			
 			Promocion(pInd, pI, pJ, destino);//Verificar si un peón ha llegado a la última casilla
-			std::cout << "Despues de la Promocion" << std::endl;
+		
 			//Actualización de los valores
 			matriz[pIA_x][pIA_y] = matriz[pI][pJ];
 			matriz[pI][pJ] = 0;
@@ -529,7 +524,7 @@ void Tablero::Soltar_Pieza_VSMAQ() {
 			ETSIDI::play("sonidos/SonidoError.wav");
 		}
 	
-
+	std::cout << "Se ha movido la ficha " << matriz[pI][pJ] << "A la posicion" << pIA_x << pIA_y << std::endl;
 	pInd = -1;
 }
 
