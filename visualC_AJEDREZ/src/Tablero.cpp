@@ -381,7 +381,6 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 									std::cout << "Se ha elegido la ficha " << matriz[pI][pJ] << "Y la posicion" << pIA_x  << pIA_y << std::endl;
 									std::cout << "Se ha elegido la posicion   " << pI  << pJ << std::endl;
 									flag = true;
-									break;
 									
 								}
 							}
@@ -391,7 +390,7 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 					}
 				}
 			}
-		} while (flag = false);
+		} while (!flag);
 		
 		for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su índice del vector en pInd
 			if (fichas[z]->Get_PosicionX() == pI && fichas[z]->Get_PosicionY() == pJ) {
