@@ -32,7 +32,6 @@ private:
         
 	std::vector<std::vector<int>> matriz;    //int matriz[6][5];
 	std::vector<Ficha*> fichas;
-	int pIA =-1; //Se indica si es turno o no de la IA.
 	int pIA_x = -1, pIA_y = -1;//Guardar la posición a la que se moverá la IA
 	int pInd = -1; //Índice de la pieza que estamos seleccionando (-1 en caso de no seleccionar ninguna)
 	int pI = -1, pJ = -1; //Guardar la posición de la pieza seleccionada
