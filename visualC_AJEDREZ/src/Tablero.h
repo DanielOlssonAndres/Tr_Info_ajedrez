@@ -32,9 +32,11 @@ private:
         
 	std::vector<std::vector<int>> matriz;    //int matriz[6][5];
 	std::vector<Ficha*> fichas;
+	int pInd_IA;
 	int pIA_x = -1, pIA_y = -1;//Guardar la posición a la que se moverá la IA
 	int pInd = -1; //Índice de la pieza que estamos seleccionando (-1 en caso de no seleccionar ninguna)
 	int pI = -1, pJ = -1; //Guardar la posición de la pieza seleccionada
+	int pI_IA = 0, pJ_IA = 0; //Guardar la posición de la pieza seleccionada (IA)
 	bool color = true; //Indica de quién es el turno TRUE = BLANCAS (MARRÓN) / FALSE = NEGRAS (AZUL)
 	bool jaqB = false, jaqMB = false, jaqN = false, jaqMN = false; //Identificación de Jaque y Jaque mate de NEGRAS y BLANCAS
 

@@ -362,42 +362,6 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 	pJ = -1;
 	bool flag = false;
 
-	
-
-
-	////INTENTO IA CON RANDOMS
-	//int a, b, i, j;
-
-
-	//do
-	//{
-	//	
-	//	a = abs(1+rand() % 4);
-	//	b = abs(1+rand() % 5);
-
-	//	i = abs(1+rand() % 4);
-	//	j = abs(1+rand() % 5);
-	//	
-	//	
-	//	if (a>0 && b>0 && matriz[a][b] < 0 && Selec_Mover(i, j, color) == true) {
-	//		flag = true;
-	//		pIA_x = i;
-	//		pIA_y = j;
-	//		pI = a;
-	//		pJ = b;
-	//	}
-
-	//} while (flag = false && matriz[a][b]!=0);
-
-	//for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su índice del vector en pInd
-	//	if (fichas[z]->Get_PosicionX() == pI && fichas[z]->Get_PosicionY() == pJ) {
-	//		pInd = z;
-	//		break;
-	//	}
-	//}
-	//flag == false;
-	////------------------------------------------------------------------------------------------------------------------------------------------------------
-
 	if (color == false ) { //Bucle que recorra todas las casillas
 
 		do {
@@ -407,14 +371,15 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 					if (matriz[i][j] < 0) {
 						pI = i;
 						pJ = j;
+
 						for (int l = 1; l < 6; l++) {
 							for (int k = 1; k < 5; k++) {
 
-								if (Selec_Mover(l, k, !color) == true) {
+								if (Selec_Mover(l, k, !color)) {
 									pIA_x = l;
 									pIA_y = k;
-									
-									
+									std::cout << "Se ha elegido la ficha " << matriz[pI][pJ] << "Y la posicion" << pIA_x  << pIA_y << std::endl;
+									std::cout << "Se ha elegido la posicion   " << pI  << pJ << std::endl;
 									flag = true;
 									break;
 									
@@ -428,43 +393,15 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 			}
 		} while (flag = false);
 		
-					//for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su índice del vector en pInd
-					//	if (fichas[z]->Get_PosicionX() == i && fichas[z]->Get_PosicionY() == j) {
-					//		l = i;
-					//		k = j;
-					//		cout << "Se sigue pensando la jugada" << endl;
-
-
-					//		for (i+1 ; i < 6; i++) {
-					//			for (j+1; j < 5; j++){
-					//				cout << "Se sigue pensando la jugada" << endl;
-					//				if ((matriz[i][j] >= 0) && Selec_Mover(i, j, !color) == false) {
-					//					pInd = -1;
-					//					Fichas_IA[l][k] = -1;
-					//					cout << "-------" << endl;
-					//				}
-					//				if ((matriz[i][j] >= 0) && Selec_Mover(i, j, !color) == true) {
-					//					pInd = z;
-					//					pIA_x = i;
-					//					pIA_y = j;
-					//					pI = l;
-					//					pJ = k;
-					//					std::cout << "Se ha seleccionado la ficha " << matriz[pI][pJ] << std::endl;
-					//					break;
-					//				}
-					//				else Tomar_Pieza_VSMAQ();
-					//			}
-					//				
-					//		}
-					//	}
-					//}
 		for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su índice del vector en pInd
 			if (fichas[z]->Get_PosicionX() == pI && fichas[z]->Get_PosicionY() == pJ) {
+				std::cout << "Se ha elegido la posicion   " << pI  << pJ << std::endl;
 				pInd = z;
+				pInd_IA = z;
 				break;
 			}
 		}
-	
+		std::cout << "El valor de la ficha que se elige es " << pInd  << std::endl;
 	}		
 }
 
@@ -474,14 +411,6 @@ void Tablero::Soltar_Pieza_VSMAQ() {
 	
 		if (color == false) {
 
-			//// Relleno el vector de Fichas_IA
-			//for (int i = 0; i < 6; i++)
-			//{
-			//	for (int j = 0; j < 5; j++)
-			//	{
-			//		Fichas_IA[i][j] = 1;
-			//	}
-			//}
 
 			ETSIDI::play("sonidos/MoverFicha.wav");
 
@@ -501,7 +430,8 @@ void Tablero::Soltar_Pieza_VSMAQ() {
 				pIA_x,pIA_y
 			};
 
-			fichas[pInd]->Set_Posicion(pIA_x, pIA_y);
+			std::cout << "El valor de la ficha que se Mueve es  " << pInd << std::endl;
+			fichas[pInd_IA]->Set_Posicion(pIA_x, pIA_y);
 
 			
 			Promocion(pInd, pI, pJ, destino);//Verificar si un peón ha llegado a la última casilla
