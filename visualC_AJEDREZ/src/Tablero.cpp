@@ -386,8 +386,9 @@ void Tablero::Auto_Mov() {
 			}
 		}
 
-		fichas[pInd]->Set_Posicion(pIA_x, pIA_y);
+		
 		Promocion(pInd, pI, pJ, { pIA_x, pIA_y });
+		fichas[pInd]->Set_Posicion(pIA_x, pIA_y);
 
 		//Actualización de los valores
 		matriz[pIA_x][pIA_y] = matriz[pI][pJ];
