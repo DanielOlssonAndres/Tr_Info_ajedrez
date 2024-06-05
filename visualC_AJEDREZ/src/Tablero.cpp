@@ -305,7 +305,7 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 	if (pInd != -1) { // Si es una casilla permitida
 
 		//Si el movimiento que quieres hacer está permitido 
-		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && Selec_Mover(destino.x, destino.y, color)) { //CAMBIAR  Selec_Mover por TRUE PARA DESHABILITAR LAS LIMITACIONES DE MOVIMIENTO
+		if (((color && matriz[destino.x][destino.y] <= 0) || (!color && matriz[destino.x][destino.y] >= 0)) && Selec_Mover(destino.x, destino.y, true)) { //CAMBIAR  Selec_Mover por TRUE PARA DESHABILITAR LAS LIMITACIONES DE MOVIMIENTO
 
 			ETSIDI::play("sonidos/MoverFicha.wav");
 
@@ -375,7 +375,7 @@ void Tablero::Tomar_Pieza_VSMAQ() {
 						for (int l = 1; l < 6; l++) {
 							for (int k = 1; k < 5; k++) {
 
-								if (Selec_Mover(l, k, !color)) {
+								if (Selec_Mover(l, k, true)) {
 									pIA_x = l;
 									pIA_y = k;
 									std::cout << "Se ha elegido la ficha " << matriz[pI][pJ] << "Y la posicion" << pIA_x  << pIA_y << std::endl;
@@ -474,17 +474,17 @@ bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
 	default: flag = false; break;
 	}
 
-	if (flag) {
-		//matriz[i][j] = matriz[pI][pJ];
-		//matriz[pI][pJ] = 0;
+	if (f) {
+		matriz[i][j] = matriz[pI][pJ];
+		matriz[pI][pJ] = 0;
 
 		if (Jaque(color)) {
 			flag = false;
 			cout << "No puedo moverlo, estaria en jaque" << endl;
 		}
 
-		//matriz[pI][pJ] = matriz[i][j];
-		//matriz[i][j] = 0;
+		matriz[pI][pJ] = matriz[i][j];
+		matriz[i][j] = 0;
 	}
 
 	return flag;
@@ -575,6 +575,54 @@ bool Tablero::Selec_Dama(int i, int j) {
 	return false;
 }
 
+bool Tablero::Jaque(bool col) {
+
+	cout << "Se llama a jaque" << endl;
+
+	int iR = -1, jR = -1;
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+
+			if ((col && matriz[i][j] == REY) || (!col && matriz[i][j] == -REY)) {
+				iR = i; jR = j;
+				cout << "Se guarda la posicion del rey" << endl;
+			}
+
+		}
+	}
+
+	bool flag = color;
+	color = !col;
+
+	int npI = pI; int npJ = pJ;
+
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+
+
+			if ((col && matriz[i][j] < 0) || (!col && matriz[i][j] > 0)) {
+				cout << "Pieza del otro color " << matriz[i][j] << endl;
+
+				pI = i;
+				pJ = j;
+
+				if (Selec_Mover(iR, jR, false)) {
+					pI = npI; pJ = npJ;
+					cout << "No se puede mover" << endl;
+					return true;
+				}
+			}
+
+
+		}
+	}
+	pI = npI; pJ = npJ;
+	color = flag;
+
+	return false;
+
+}
+
 /*
 
 despues de jaq = true;
@@ -639,41 +687,6 @@ void Tablero::Selec_Jaque() {
 		jaqN = false;
 		jaqMN = false;
 	}
-}
-
-bool Tablero::Jaque(bool col) {
-
-	int iR = -1, jR = -1;
-	for (int i = 0; i < 6; i++) {
-		for (int j = 0; j < 5; j++) {
-
-			if ((col && matriz[i][j] == REY) || (!col && matriz[i][j] == -REY)) {
-				iR = i; jR = j;
-			}
-
-		}
-	}
-
-	int npI = pI; int npJ = pJ;
-
-	for (int i = 0; i < 6; i++) {
-		for (int j = 0; j < 5; j++) {
-
-			if ((col && matriz[i][j] >= 0) || (!col && matriz[i][j] <= 0)) {
-				pI = i; 
-				pJ = j;
-			}
-
-			if (Selec_Mover(iR, jR, false)) {
-				pI = npI; pJ = npJ;
-				return true;
-			}
-
-		}
-	}
-	pI = npI; pJ = npJ;
-	return false;
-
 }
 
 bool Tablero::Mirar_Jaque(int iR, int jR) {
