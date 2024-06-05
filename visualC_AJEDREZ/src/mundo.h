@@ -30,4 +30,8 @@ public:
 	// ----------------------------------------------------------------------------------------------------
 
 	int get_oponente() { return tablero.Get_Oponente(); }
+
+	bool hay_jaque_mate_blancas() { return tablero.Get_JaqueMateBlancas(); }
+	bool hay_jaque_mate_negras() {return tablero.Get_JaqueMateNegras();}
+
 };
