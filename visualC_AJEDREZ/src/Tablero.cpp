@@ -313,6 +313,8 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 
 			}
 
+			cout << "movimiento permitido" << endl;
+
 			fichas[pInd]->Set_Posicion(destino.x, destino.y);
 
 			Promocion (pInd,pI,pJ, destino);//Verificar si un peón ha llegado a la última casilla
@@ -397,17 +399,15 @@ bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
 	bool flag = false;
 
 	switch (abs(matriz[pI][pJ])) {
-	case PEON: flag = Selec_Peon(i, j);
-		break;
+	case PEON: flag = Selec_Peon(i, j); break;
 	case REY: flag = Selec_Rey(i, j); break;
-	case DAMA: flag = Selec_Dama(i, j);
-		break;
+	case DAMA: flag = Selec_Dama(i, j); break;
 	case ALFIL: flag = Selec_Alfil(i, j); break;
 	case CABALLO: flag = Selec_Caballo(i, j); break;
 	case TORRE: flag = Selec_Torre(i, j); break;
 	default: flag = false; break;
 	}
-	/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	if (f) {
 		matriz[i][j] = matriz[pI][pJ];
 		matriz[pI][pJ] = 0;
@@ -420,8 +420,51 @@ bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
 		matriz[pI][pJ] = matriz[i][j];
 		matriz[i][j] = 0;
 	}
-	*/
+	
 	return flag;
+
+}
+
+bool Tablero::Jaque(bool col) {
+
+	int iR = -1, jR = -1;
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+
+			if ((col && matriz[i][j] == REY) || (!col && matriz[i][j] == -REY)) {
+				iR = i; jR = j;
+			}
+
+		}
+	}
+
+	bool flag = color;
+	color = !col;
+	int npI = pI; int npJ = pJ;
+
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 5; j++) {
+
+
+			if ((col && matriz[i][j] < 0) || (!col && matriz[i][j] > 0)) {
+
+				pI = i;
+				pJ = j;
+
+				if (Selec_Mover(iR, jR, false)) {
+					pI = npI; pJ = npJ;
+					color = flag;
+					return true;
+				}
+			}
+
+
+		}
+	}
+	pI = npI; pJ = npJ;
+	color = flag;
+
+	return false;
 
 }
 
@@ -505,49 +548,6 @@ bool Tablero::Selec_Alfil(int i, int j) {
 bool Tablero::Selec_Dama(int i, int j) {
 	if (Selec_Torre(i, j) || Selec_Alfil(i, j))return true;
 	return false;
-}
-
-bool Tablero::Jaque(bool col) {
-
-	int iR = -1, jR = -1;
-	for (int i = 0; i < 6; i++) {
-		for (int j = 0; j < 5; j++) {
-
-			if ((col && matriz[i][j] == REY) || (!col && matriz[i][j] == -REY)) {
-				iR = i; jR = j;
-			}
-
-		}
-	}
-
-	bool flag = color;
-	color = !col;
-
-	int npI = pI; int npJ = pJ;
-
-	for (int i = 0; i < 6; i++) {
-		for (int j = 0; j < 5; j++) {
-
-
-			if ((col && matriz[i][j] < 0) || (!col && matriz[i][j] > 0)) {
-
-				pI = i;
-				pJ = j;
-
-				if (Selec_Mover(iR, jR, false)) {
-					pI = npI; pJ = npJ;
-					return true;
-				}
-			}
-
-
-		}
-	}
-	pI = npI; pJ = npJ;
-	color = flag;
-
-	return false;
-
 }
 
 /*//////////////////////////////////////////////////////////////////
