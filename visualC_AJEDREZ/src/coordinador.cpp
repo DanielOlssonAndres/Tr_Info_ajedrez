@@ -209,7 +209,7 @@ void coordinador::dibuja() {
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
-			ETSIDI::getTexture("imagenes/RATON.png").id); 
+			ETSIDI::getTexture("imagenes/RATON_.png").id); 
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 1);
@@ -228,6 +228,36 @@ void coordinador::dibuja() {
 		
 	default:
 		break;
+	case GANA_TIERRA:
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,
+			ETSIDI::getTexture("imagenes/GANA_TIERRA.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex2d(-15, -4); //inferior izquierda
+		glTexCoord2d(1, 1); glVertex2d(45, -4); //Inferior derecha
+		glTexCoord2d(1, 0); glVertex2d(45, 40); //Superior derecha
+		glTexCoord2d(0, 0); glVertex2d(-15, 40); //Superior izquierda
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		break;
+	case GANA_AGUA:
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,
+			ETSIDI::getTexture("imagenes/GANA_AGUA.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex2d(-15, -4); //inferior izquierda
+		glTexCoord2d(1, 1); glVertex2d(45, -4); //Inferior derecha
+		glTexCoord2d(1, 0); glVertex2d(45, 40); //Superior derecha
+		glTexCoord2d(0, 0); glVertex2d(-15, 40); //Superior izquierda
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		break;
 	}
 }
 
@@ -241,11 +271,11 @@ void coordinador::tecla(unsigned char key) {
 		}
 		break;
 	case START:
-		if (key == 'v'||key=='V') {//1VS 1
+		if (key == 'v'||key=='V') {
 			estado = VS1_MENU;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
-		if (key == 'm' || key == 'M') {//VSMAQ
+		if (key == 'm' || key == 'M') {
 			estado = VSM_MENU;
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
@@ -288,7 +318,6 @@ void coordinador::tecla(unsigned char key) {
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		else if (key == 'p' || key == 'P') {
-			//tablero.inicializa(1);//Tablero petty
 			mundo.inicializa(1,0);
 			estado = RATON; 
 			ETSIDI::play("sonidos/InicioJuego.wav");
@@ -320,7 +349,6 @@ void coordinador::tecla(unsigned char key) {
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		else if (key == 'p' || key == 'P') {
-			//tablero.inicializa(0);//Tablero 5x6
 			mundo.inicializa(0,1);
 			estado = RATON;
 			ETSIDI::play("sonidos/InicioJuego.wav");
@@ -339,7 +367,6 @@ void coordinador::tecla(unsigned char key) {
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		else if (key == 'p' || key == 'P') {
-			//tablero.inicializa(1);//Tablero petty
 			mundo.inicializa(1,1);
 			estado = RATON;
 			ETSIDI::play("sonidos/InicioJuego.wav");
@@ -354,13 +381,44 @@ void coordinador::tecla(unsigned char key) {
 		break;
 	case RATON:
 		if (key == 'o' || key == 'O') {
-			//tablero.inicializa(1);//Tablero petty
+		
 			ETSIDI::play("sonidos/InicioJuego.wav");
 			estado = JUEGO;
 		}
 		break;
 
-	case JUEGO://de momento no hay teclas durante el juego.
+	case JUEGO:
+		if (mundo.hay_jaque_mate_blancas()==TRUE)
+		{
+			estado = GANA_AGUA;
+		}
+		break;
+		if (mundo.hay_jaque_mate_negras()==TRUE)
+		{
+			estado = GANA_TIERRA;
+		}
+		break;
+	case GANA_AGUA:
+		ETSIDI::play("sonidos/Perder.wav");
+		if (key == 'r'||key=='R')
+		{
+			estado = START;
+		}
+		if (key == 'e' || key == 'E')
+		{
+			exit;
+		}
+		break;
+	case GANA_TIERRA:
+		ETSIDI::play("sonidos/Ganar.wav");
+		if (key == 'r' || key == 'R')
+		{
+			estado = START;
+		}
+		if (key == 'e'|| key == 'E')
+		{
+			exit;
+		}
 		break;
 		
 	default:
