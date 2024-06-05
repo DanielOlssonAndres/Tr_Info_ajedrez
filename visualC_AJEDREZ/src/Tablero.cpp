@@ -614,6 +614,10 @@ bool Tablero::Selec_Alfil(int i, int j) {
 		while (I != i - difI && J != j - difJ) {
 			I += difI;
 			J += difJ;
+			if (I < 0 || J < 0) {
+				I = 0;
+				J = 0;
+			}
 			if (matriz[I][J] != 0)return false;
 		}
 		if (color && matriz[i][j] <= 0) return true;
