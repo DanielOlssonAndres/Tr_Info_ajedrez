@@ -35,25 +35,27 @@ void Mundo::dibuja()
 	}
 	
 	//INDICADOR DE JAQUE
-	if (tablero.Consulta_color(0, 0, 0) == TRUE)
+	if (tablero.Consulta_color(0, 0, 0) == TRUE)	// BLANCAS
 	{
-		ETSIDI::setTextColor(1, 1, 1);//blanco
-		ETSIDI::setFont("fuentes/Arial.ttf", 10);
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/Arial.ttf", 12);
+		ETSIDI::printxy("El Rey León", -11, 9);
 
 		if (tablero.Get_JaqueBlancas() || tablero.Get_JaqueMateBlancas())
-			ETSIDI::printxy("Si hay Jaque", -10.5, 8);
+			ETSIDI::printxy("está en jaque", -11, 7);
 		else
-			ETSIDI::printxy("No hay Jaque", -10.5, 8);
+			ETSIDI::printxy("está a salvo", -11, 7);
 	}
 
-	else {
-		ETSIDI::setTextColor(0, 0, 0);//negro
-		ETSIDI::setFont("fuentes/Arial.ttf", 10);
+	else {	// NEGRAS
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/Arial.ttf", 12);
+		ETSIDI::printxy("El Rey Tiburón", -11.5, 9);
 		
 		if (tablero.Get_JaqueNegras() || tablero.Get_JaqueMateNegras())
-			ETSIDI::printxy("Si hay Jaque", -10.5, 8);
+			ETSIDI::printxy("está en jaque", -11, 7);
 		else
-			ETSIDI::printxy("No hay Jaque", -10.5, 8);
+			ETSIDI::printxy("está a salvo", -11, 7);
 	}
 }
 
