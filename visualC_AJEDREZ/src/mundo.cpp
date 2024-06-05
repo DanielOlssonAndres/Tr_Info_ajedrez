@@ -94,7 +94,7 @@ void Mundo::MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, 
 		gluUnProject(winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
 
 
-		if ((posY >= 0 && posY <= 36 && posX >= 0 && posX <= 30) || (tablero.Consultar_Turno() == false) && tipo_oponente == 1) {
+		if ((posY >= 0 && posY <= 36 && posX >= 0 && posX <= 30) || ((!tablero.Consultar_Turno()) && tipo_oponente == 1)) {
 			if (tipo_oponente == 0) {
 				if (boton == GLUT_LEFT_BUTTON) {
 
@@ -129,8 +129,7 @@ void Mundo::MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, 
 				}
 
 				if (tablero.Consultar_Turno() == false) {
-					tablero.Tomar_Pieza_VSMAQ();
-					tablero.Soltar_Pieza_VSMAQ();
+					tablero.Auto_Mov();
 					
 				}
 				

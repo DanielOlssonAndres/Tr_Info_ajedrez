@@ -24,7 +24,7 @@ private:
 
 	CASILLA Mcasillas[6][5];	// Para parte GRÁFICA -> Indica posición de esquina inferior izquierda de las casillas
 	Vector2xy PosEnCasillas[6][5];	// Para parte GRÁFICA -> Indica posición del centro de las casilas
-	int Fichas_IA[6][5];
+	
 
 	// i = FILAS , j = COLUMNAS		[filas][columnas]
 
@@ -32,7 +32,7 @@ private:
         
 	std::vector<std::vector<int>> matriz;    //int matriz[6][5];
 	std::vector<Ficha*> fichas;
-	int pInd_IA;
+
 	int pIA_x = -1, pIA_y = -1;//Guardar la posición a la que se moverá la IA
 	int pInd = -1; //Índice de la pieza que estamos seleccionando (-1 en caso de no seleccionar ninguna)
 	int pI = -1, pJ = -1; //Guardar la posición de la pieza seleccionada
@@ -50,8 +50,7 @@ public:
 	void Tomar_Pieza_1VS1(Vector2xy origen); //Obtener los índices de la pieza seleccionada según la posición del ratón
 	void Soltar_Pieza_1VS1(Vector2xy destino);  //Dejar la pieza en una posición según la posición del ratón
 	
-	void Tomar_Pieza_VSMAQ(); //Obtener los índices por raton o IA
-	void Soltar_Pieza_VSMAQ();  //Dejar la pieza por raton o IA
+	void Auto_Mov();
 
 												
 												// Comprobar si los movimientos son posibles según la pieza que estemos moviendo

@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClCompile Include="src\coordinador.cpp" />
     <ClCompile Include="src\Ficha.cpp" />
-    <ClCompile Include="src\IA.cpp" />
     <ClCompile Include="src\mundo.cpp" />
     <ClCompile Include="src\principal.cpp" />
     <ClCompile Include="src\Tablero.cpp" />
@@ -30,7 +29,6 @@
   <ItemGroup>
     <ClInclude Include="src\coordinador.h" />
     <ClInclude Include="src\Ficha.h" />
-    <ClInclude Include="src\IA.h" />
     <ClInclude Include="src\mundo.h" />
     <ClInclude Include="src\Tablero.h" />
     <ClInclude Include="src\vector2xy.h" />
