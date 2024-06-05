@@ -37,15 +37,23 @@ void Mundo::dibuja()
 	//INDICADOR DE JAQUE
 	if (tablero.Consulta_color(0, 0, 0) == TRUE)
 	{
-
 		ETSIDI::setTextColor(1, 1, 1);//blanco
 		ETSIDI::setFont("fuentes/Arial.ttf", 10);
-		ETSIDI::printxy("No hay Jaque", -10.5, 8);
+
+		if (tablero.Get_JaqueBlancas() || tablero.Get_JaqueMateBlancas())
+			ETSIDI::printxy("Si hay Jaque", -10.5, 8);
+		else
+			ETSIDI::printxy("No hay Jaque", -10.5, 8);
 	}
+
 	else {
 		ETSIDI::setTextColor(0, 0, 0);//negro
 		ETSIDI::setFont("fuentes/Arial.ttf", 10);
-		ETSIDI::printxy("Si hay Jaque", -10.5, 8);
+		
+		if (tablero.Get_JaqueNegras() || tablero.Get_JaqueMateNegras())
+			ETSIDI::printxy("Si hay Jaque", -10.5, 8);
+		else
+			ETSIDI::printxy("No hay Jaque", -10.5, 8);
 	}
 }
 

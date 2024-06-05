@@ -323,9 +323,13 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 			matriz[destino.x][destino.y] = matriz[pI][pJ];
 			matriz[pI][pJ] = 0;
 
+			Comprobar_Jaque();
+
 			//Cambio de turno
 			if (color) color = false;		// Ahora es turno de las NEGRAS
 			else color = true;				// Ahora es turno de las BLANCAS 
+
+			// Comprobar_JaqueMate();
 
 		}
 		else
@@ -409,23 +413,24 @@ bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
 	}
 	
 	if (f) {
+		int aux = matriz[i][j];
 		matriz[i][j] = matriz[pI][pJ];
 		matriz[pI][pJ] = 0;
 
-		if (Jaque(color)) {
+		if (Jaque(color)) {			// Comprueba si el rey de su mismo color esta en jaque
 			flag = false;
 			cout << "No puedo moverlo, estaria en jaque" << endl;
 		}
 
 		matriz[pI][pJ] = matriz[i][j];
-		matriz[i][j] = 0;
+		matriz[i][j] = aux;
 	}
 	
 	return flag;
 
 }
 
-bool Tablero::Jaque(bool col) {
+bool Tablero::Jaque(bool col) {		// Comprueba si el rey del color que le mandes está en jaque
 
 	int iR = -1, jR = -1;
 	for (int i = 0; i < 6; i++) {
@@ -468,6 +473,81 @@ bool Tablero::Jaque(bool col) {
 
 }
 
+void Tablero::Comprobar_Jaque() {
+
+	if (Jaque(!color)) {
+		if (color)
+			jaqN = true;
+		else
+			jaqB = true;
+	}
+	else {
+		if (color)
+			jaqN = false;
+		else
+			jaqB = false;
+	}
+
+}
+
+void Tablero::Comprobar_JaqueMate() {
+
+	bool jaque_mate = true;
+	bool flag = false;
+
+	cout << "posicion 1" << endl;
+
+	for (int i = 0; i < 6 && !flag; i++) {
+		for (int j = 0; j < 5 && !flag; j++) {
+
+			cout << "posicion 2" << endl;
+
+			// Recorro todas las casillas del tablero para mirar las fichas
+
+			if ((color && matriz[i][j] > 0) || (!color && matriz[i][j] < 0)) {
+
+				cout << "posicion 3" << endl;
+
+				// Guardo las piezas que sean del color del turno (hemos cambiado el turno antes de llamar a la función)
+
+				pI = i, pJ = j;
+
+				for (int l = 0; l < 6 && !flag; l++) {
+					for (int k = 0; k < 5 && !flag; k++) {
+
+						cout << "posicion 4" << endl;
+
+						// Recorro todas las casillas del tablero
+
+						if (Selec_Mover(l, k, true)) {		// Comprueba si puedo mover la pieza a esa posicion sin dejar en jaque a su propio rey
+							cout << "posicion 5" << endl;
+							jaque_mate = false;					// Hay algún jaque mate
+							flag = true;
+						}
+					}
+
+				}
+
+			}
+		}
+	}
+
+	pI = -1, pJ = -1;
+
+	if (jaque_mate) {
+		if (color)
+			jaqMB = true;
+		else
+			jaqMN = true;
+	}
+	else {
+		if (color)
+			jaqMB = false;
+		else
+			jaqMN = false;
+	}
+}
+
 bool Tablero::Selec_Peon(int i, int j) {
 	bool sol = false;
 
@@ -484,7 +564,6 @@ bool Tablero::Selec_Peon(int i, int j) {
 
 bool Tablero::Selec_Rey(int i, int j) {
 	bool sol = false;
-	//NO SE TIENE EN CUENTA EL POSIBLE JAQUE EN EL MOVIMIENTO, HABRÍA QUE AÑADIRLO
 	if (matriz[i][j] == 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2) ) { sol = true; }                       
 	if (color && matriz[i][j] < 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2)) { sol = true; } //Blanco
 	if (!color && matriz[i][j] > 0 && (abs(pI - i) < 2) && (abs(pJ - j) < 2)) { sol = true; } //Negro
@@ -564,93 +643,6 @@ else {
 }
 
 */
-
-void Tablero::Selec_Jaque() {
-	int iR = -1, jR = -1;
-	for (int i = 0; i < 6; i++) {
-		for (int j = 0; j < 5; j++) {
-
-			if ((color && matriz[i][j] == -REY) || (!color && matriz[i][j] == REY)) {
-				iR = i; jR = j;
-			}
-
-		}
-	}
-
-	bool jaq = false;
-	if (Mirar_Jaque(iR, jR)) {
-		jaq = true;
-
-		if (color) {
-			jaqN = true;
-			jaqMN = true;
-		}
-		else {
-			jaqB = true;
-			jaqMB = true;
-		}
-
-		for (int k = -1; k <= 1; k++) {
-			for (int l = -1; l <= 1; l++) {
-				if (k == 0 && l == 0)continue;
-
-				if ((iR + l >= 0 && iR + l <= 5 && jR + k >= 0 && jR <= 4) && (color && matriz[iR + l][jR + k] >= 0 || !color && matriz[iR + l][jR + k] <= 0)) {
-					if (!Mirar_Jaque(iR + l, jR + k)) {
-						if (color) jaqMN = false;
-						else jaqMB = false;
-					}
-				}
-
-			}
-		}
-
-	}
-
-	if (color && !jaq) {
-		jaqB = false;
-		jaqMB = false;
-	}
-	else if (!jaq) {
-		jaqN = false;
-		jaqMN = false;
-	}
-}
-
-bool Tablero::Mirar_Jaque(int iR, int jR) {
-
-	int npI = pI; int npJ = pJ;
-
-	for (int i = 0; i < 6; i++) {
-		for (int j = 0; j < 5; j++) {
-
-			if ((color && matriz[i][j] <= 0) || (!color && matriz[i][j] >= 0)) continue;
-			pI = i; pJ = j;
-
-			if (Selec_Mover(iR, jR, false)) {
-				pI = npI; pJ = npJ;
-				return true;
-			}
-
-		}
-	}
-	pI = npI; pJ = npJ;
-	return false;
-}
-
-
-void Tablero::Consultar_Jaque() {
-	if (jaqB)
-		if (jaqMB)
-			cout << "Las blancas estan en jaque mate" << endl;
-		else
-			cout << "Las blancas estan en jaque" << endl;
-
-	if (jaqN)
-		if (jaqMN)
-			cout << "Las negras estan en jaque mate" << endl;
-		else
-			cout << "Las negras estan en jaque" << endl;
-}
 
 bool Tablero::Consultar_Turno(){
 	return color;

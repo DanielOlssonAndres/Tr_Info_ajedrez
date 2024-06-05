@@ -20,7 +20,7 @@ class Tablero
 {
 private:
 
-	int Tjuego, Toponente; //Tipo de juego al que vamos a jugar
+	int Tjuego, Toponente; // Tipo de juego al que vamos a jugar y tipo de oponente (jugador o maquina) que vamos a enfrentar
 
 	CASILLA Mcasillas[6][5];	// Para parte GRÁFICA -> Indica posición de esquina inferior izquierda de las casillas
 	Vector2xy PosEnCasillas[6][5];	// Para parte GRÁFICA -> Indica posición del centro de las casilas
@@ -60,16 +60,20 @@ public:
 	bool Selec_Caballo(int, int);
 	bool Selec_Alfil(int, int);
 	bool Selec_Mover(int, int, bool); //Llama a la comprobación correspondiente según la pieza que seleccionemos
-	void Selec_Jaque(); //Detección de jaque y jaque mate
 
 	bool Consulta_color(int R, int G, int B);
-	void Consultar_Jaque(); //Se encarga de indicar al programa si se produce jaque o jaque mate
+	void Comprobar_Jaque(); //Se encarga de indicar al programa si se produce jaque
+	void Comprobar_JaqueMate(); // Se encarga de indicar al programa si hay un jaque mate
 	bool Consultar_Turno(); //Indica al programa de quién es el turno
-	bool Mirar_Jaque(int iR, int jR);
 	void Promocion(int, int, int, Vector2xy);
 
 	void Set_Oponente(const int& TIPO_OPO) { Toponente = TIPO_OPO; }
 	int Get_Oponente() { return Toponente; }
+
+	bool Get_JaqueBlancas() { return jaqB; }
+	bool Get_JaqueMateBlancas() { return jaqMB; }
+	bool Get_JaqueNegras() { return jaqN; }
+	bool Get_JaqueMateNegras() { return jaqMN; }
 
 	bool Jaque(bool col);
 
