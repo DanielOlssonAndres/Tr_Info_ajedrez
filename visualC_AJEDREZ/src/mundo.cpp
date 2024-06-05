@@ -47,28 +47,6 @@ void Mundo::dibuja()
 		ETSIDI::setFont("fuentes/Arial.ttf", 10);
 		ETSIDI::printxy("Si hay Jaque", -10.5, 8);
 	}
-
-
-
-	//Titulos dentro de la pantalla de juego
-	//fichas del mar
-	/*ETSIDI::setTextColor(1, 1, 1);//blanco
-	ETSIDI::setFont("fuentes/Arial.ttf", 10);
-	ETSIDI::printxy("Reina: ballena ", 33, 34);
-	ETSIDI::printxy("Rey: tiburón ", 33, 32);
-	ETSIDI::printxy("Caballo: caballito mar", 33, 30);
-	ETSIDI::printxy("Alfil: pulpo", 33, 28);
-	ETSIDI::printxy("Torre: cangrejo", 33, 26);
-	ETSIDI::printxy("Peón: gambas", 33, 24);
-
-	ETSIDI::setTextColor(0, 0, 0);//negro
-	ETSIDI::setFont("fuentes/Arial.ttf", 10);
-	ETSIDI::printxy("Reina: leona ", 33, 12);
-	ETSIDI::printxy("Rey: león ", 33, 10);
-	ETSIDI::printxy("Caballo: cebra", 33, 8);
-	ETSIDI::printxy("Alfil: pato ", 33, 6);
-	ETSIDI::printxy("Torre: girafa", 33, 4);
-	ETSIDI::printxy("Peón: conejos", 33, 2);*/
 }
 
 void Mundo::MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) 

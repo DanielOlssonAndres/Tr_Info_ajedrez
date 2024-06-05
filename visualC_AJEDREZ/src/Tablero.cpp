@@ -1,10 +1,8 @@
 
-#include <cstdlib>
+//#include <cstdlib>
 #include "freeglut.h"
 #include "Tablero.h"
 #include "mundo.h"
-using std::cout;
-using std::endl;
 
 bool Tablero::Consulta_color(int R, int G, int B) {
 	R = colorR;
@@ -58,7 +56,7 @@ void Tablero::dibuja()
 	glutSolidSphere(3, 30, 30);
 	glPopMatrix();
 
-	//INDICADOR DE JAQUE
+	//INDICADOR DE JAQUE//////////////////////////////////////////////////////////////////////////////////
 	/*
 	glPushMatrix();
 
@@ -323,15 +321,6 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 			matriz[destino.x][destino.y] = matriz[pI][pJ];
 			matriz[pI][pJ] = 0;
 
-			if (jaqN)cout << "El rey negro esta en jaque" << endl;
-			if (jaqB)cout << "El rey blanco esta en jaque" << endl;
-			if (jaqMN)cout << "El rey negro esta en jaque MATE" << endl;
-			if (jaqMB)cout << "El rey blanco esta en jaque MATE" << endl;
-		
-
-			// Selec_Jaque(); // LA COMPROBACIÓN DE LOS JAQUES AÚN NO FUNCIONA BIEN
-			// Consultar_Jaque();
-
 			//Cambio de turno
 			if (color) color = false;		// Ahora es turno de las NEGRAS
 			else color = true;				// Ahora es turno de las BLANCAS 
@@ -351,7 +340,7 @@ void Tablero::Auto_Mov() {
 	pJ = -1;
 	bool flag = false;
 		for (int i = 0; i < 6 && !flag; i++) {
-			for (int j = 0; j < 5 && !flag; j++) {
+			for (int j = 4; j >= 0 && !flag; j--) {
 
 				if (matriz[i][j] < 0) {
 					pI = i;
@@ -403,8 +392,6 @@ void Tablero::Auto_Mov() {
 
 }
 
-
-
 bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
 
 	bool flag = false;
@@ -420,7 +407,7 @@ bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
 	case TORRE: flag = Selec_Torre(i, j); break;
 	default: flag = false; break;
 	}
-	/*
+	/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	if (f) {
 		matriz[i][j] = matriz[pI][pJ];
 		matriz[pI][pJ] = 0;
@@ -496,8 +483,6 @@ bool Tablero::Selec_Torre(int i, int j) {
 	return false;
 }
 
-
-
 bool Tablero::Selec_Alfil(int i, int j) { 
 	if (abs(pJ - j) == abs(pI - i)) {
 		int difI = (pI - i < 0 ? 1 : -1);
@@ -524,15 +509,12 @@ bool Tablero::Selec_Dama(int i, int j) {
 
 bool Tablero::Jaque(bool col) {
 
-	cout << "Se llama a jaque" << endl;
-
 	int iR = -1, jR = -1;
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 
 			if ((col && matriz[i][j] == REY) || (!col && matriz[i][j] == -REY)) {
 				iR = i; jR = j;
-				cout << "Se guarda la posicion del rey" << endl;
 			}
 
 		}
@@ -548,14 +530,12 @@ bool Tablero::Jaque(bool col) {
 
 
 			if ((col && matriz[i][j] < 0) || (!col && matriz[i][j] > 0)) {
-				cout << "Pieza del otro color " << matriz[i][j] << endl;
 
 				pI = i;
 				pJ = j;
 
 				if (Selec_Mover(iR, jR, false)) {
 					pI = npI; pJ = npJ;
-					cout << "No se puede mover" << endl;
 					return true;
 				}
 			}
@@ -570,7 +550,7 @@ bool Tablero::Jaque(bool col) {
 
 }
 
-/*
+/*//////////////////////////////////////////////////////////////////
 
 despues de jaq = true;
 

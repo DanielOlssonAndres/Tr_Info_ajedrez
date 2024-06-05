@@ -2,16 +2,6 @@
 #include "vector2xy.h"
 #include <ETSIDI.h>
 
-/*
-struct Posicion {
-	int x;
-	int y;
-};
-
-enum Tipo {NEGRAS = 0, BLANCAS};
-enum Forma {Peon = 1, Caballo, Alfil, Torre, Dama, Rey};
-*/
-
 class Ficha
 {
 private:

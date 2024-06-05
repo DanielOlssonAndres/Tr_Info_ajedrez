@@ -1,10 +1,9 @@
 #include "coordinador.h"
 
 void coordinador::MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) {
-	tipo_oponente = mundo.tablero.Get_Oponente();
+	tipo_oponente = mundo.get_oponente();
 	if(estado==0)mundo.MouseButton(tipo_oponente, x, y, boton, abajo, TeclaSp, TeclaCtr);
 }
-//enum {JUEGO = 0, INICIO,START, VS1_MENU, VS1_5x6_MENU, VS1_PETTY_MENU, VS1_5x6_INSTR, VS1_PETTY_INSTR};
 
 void coordinador::dibuja() {
 	gluLookAt(15, 18, 60,  // posicion del ojo

@@ -35,13 +35,6 @@ int main(int argc, char* argv[])
 	glutKeyboardFunc(OnKeyboardDown);
 	glutMouseFunc(OnMouseClick); //Callback del raton
 
-	//INICIALIZACION
-
-	//Llamada de las funciones
-	/*tablero.Tomar_Pieza(mundo.casillaSelec.x, mundo.casillaSelec.y);
-	tablero.Soltar_Pieza(mundo.casillaSelec.x, mundo.casillaSelec.y);*/
-
-
 	//pasarle el control a GLUT,que llamara a los callbacks
 	glutMainLoop();
 
@@ -90,7 +83,7 @@ void OnMouseClick(int b, int state, int x, int y)
 	bool ctrlKey = (specialKey & GLUT_ACTIVE_CTRL) ? true : false;
 	bool sKey = specialKey & GLUT_ACTIVE_SHIFT;
 
-	juego.MouseButton(juego.Get_mundo().tablero.Get_Oponente(), x, y, b, down, sKey, ctrlKey);
+	juego.MouseButton(juego.Get_mundo().get_oponente(), x, y, b, down, sKey, ctrlKey);
 
 	glutPostRedisplay();
 }

@@ -51,9 +51,8 @@ public:
 	void Soltar_Pieza_1VS1(Vector2xy destino);  //Dejar la pieza en una posición según la posición del ratón
 	
 	void Auto_Mov();
-
 												
-												// Comprobar si los movimientos son posibles según la pieza que estemos moviendo
+	// Comprobar si los movimientos son posibles según la pieza que estemos moviendo
 	bool Selec_Peon(int, int); 
 	bool Selec_Rey(int, int);
 	bool Selec_Dama(int, int);
@@ -73,4 +72,6 @@ public:
 	int Get_Oponente() { return Toponente; }
 
 	bool Jaque(bool col);
+
+	friend class Mundo;
 };
