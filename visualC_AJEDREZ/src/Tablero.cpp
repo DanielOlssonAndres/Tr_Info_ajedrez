@@ -342,8 +342,7 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 }
 
 void Tablero::Auto_Mov() {
-	pI = -1;
-	pJ = -1;
+
 	bool flag = false;
 		for (int i = 0; i < 6 && !flag; i++) {
 			for (int j = 4; j >= 0 && !flag; j--) {
@@ -432,7 +431,7 @@ bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
 
 bool Tablero::Jaque(bool col) {		// Comprueba si el rey del color que le mandes está en jaque
 
-	int iR = -1, jR = -1;
+	int iR = 0, jR = 0;
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 
@@ -532,7 +531,6 @@ void Tablero::Comprobar_JaqueMate() {
 		}
 	}
 
-	pI = -1, pJ = -1;
 
 	if (jaque_mate) {
 		if (color)
