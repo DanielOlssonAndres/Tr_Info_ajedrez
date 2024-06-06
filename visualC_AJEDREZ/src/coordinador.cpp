@@ -226,20 +226,24 @@ void coordinador::dibuja() {
 
 		mundo.dibuja();
 
-		switch (mundo.get_Jaques()) {
-		case 0:break;
-		case 1:
-			Sleep(2000);
-			estado = GANA_AGUA;
-			break;
-		case 2:
-			Sleep(2000);
-			estado = GANA_TIERRA;
-			break;
-		case 3:
-			Sleep(2000);
-			estado = TABLAS;
-			break;
+		if (mundo.get_Jaques() != 0) {
+
+			mundo.borrar();
+
+			switch (mundo.get_Jaques()) {
+			case 1:
+				// Sleep(2000);
+				estado = GANA_AGUA;
+				break;
+			case 2:
+				// Sleep(2000);
+				estado = GANA_TIERRA;
+				break;
+			case 3:
+				// Sleep(2000);
+				estado = TABLAS;
+				break;
+			}
 		}
 
 		break;

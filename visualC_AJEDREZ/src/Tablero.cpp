@@ -255,12 +255,22 @@ void Tablero::inicializa(const int& TJ)
 	if (Tjuego == 0) { //Modalidad 5x6EO
 		matriz =
 		{
+			/*
 			{ TORRE, CABALLO, ALFIL, DAMA, REY },				// BLANCAS
 			{ PEON, PEON, PEON, PEON, PEON },				// BLANCAS
 			{ 0, 0, 0, 0, 0 },
 			{ 0, 0, 0, 0, 0 },
 			{ -PEON, -PEON, -PEON, -PEON, -PEON },		// NEGRAS
 			{ -REY, -DAMA, -ALFIL, -CABALLO, -TORRE }		// NEGRAS
+			*/
+
+			{ 0, TORRE, 0, 0, REY },				// BLANCAS
+			{ 0, 0, TORRE, 0, 0 },				// BLANCAS
+			{ 0, 0, 0, 0, 0 },
+			{ 0, 0, 0, 0, 0 },
+			{ 0, 0, 0, 0, 0 },		// NEGRAS
+			{ -REY, 0, 0, 0, 0 }		// NEGRAS
+
 		};
 	}
 	else { //Modalidad PETTY
@@ -455,7 +465,6 @@ bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
 
 		if (Jaque(color)) {			// Comprueba si el rey de su mismo color esta en jaque
 			flag = false;
-			cout << "No puedo moverlo, estaria en jaque" << endl;
 		}
 
 		matriz[pI][pJ] = matriz[i][j];
@@ -530,15 +539,11 @@ void Tablero::Comprobar_JaqueMate() {
     bool jaque_mate = true;
     bool flag = false;
 
-    cout << "posicion 1" << endl;
-
     for (int i = 0; i < 6 && !flag; i++) {
         for (int j = 0; j < 5 && !flag; j++) {
-            cout << "posicion 2" << endl;
 
             // Verifica todas las piezas del jugador en turno
             if ((color && matriz[i][j] > 0) || (!color && matriz[i][j] < 0)) {
-                cout << "posicion 3" << endl;
 
                 pI = i;
                 pJ = j;
@@ -548,11 +553,8 @@ void Tablero::Comprobar_JaqueMate() {
                         // Guarda las posiciones de destino posibles
                         int destI = l, destJ = k;
 
-						cout << "posicion 4" << endl;
-
                         // Intenta mover la pieza a la posición (l, k)
                         if (Selec_Mover(l, k, true)) {  // Asume que Selec_Mover verifica el movimiento legal
-                            cout << "posicion 5" << endl;
                             jaque_mate = false;  // Si puede mover sin quedar en jaque, no es jaque mate
                             flag = true;
                         }

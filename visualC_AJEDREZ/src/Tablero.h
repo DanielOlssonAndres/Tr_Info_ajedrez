@@ -66,19 +66,28 @@ public:
 	void Comprobar_JaqueMate(); // Se encarga de indicar al programa si hay un jaque mate
 	bool Consultar_Turno(); //Indica al programa de quién es el turno
 	void Promocion(int, int, int, Vector2xy);
+	bool Jaque(bool col); // Te devuelve TRUE si el rey del color que le mandes está en jaque
 
 	void Set_Oponente(const int& TIPO_OPO) { Toponente = TIPO_OPO; }
 	int Get_Oponente() { return Toponente; }
 
 	bool Get_JaqueBlancas() { return jaqB; }
-	bool Get_JaqueMateBlancas() { return (jaqMB && jaqB); }
+	bool Get_JaqueMateBlancas() {
+		if (jaqMB && jaqB)
+			return true;
+		return false;
+	}
 	bool Get_JaqueNegras() { return jaqN; }
-	bool Get_JaqueMateNegras() { return (jaqMN && jaqB); }
+	bool Get_JaqueMateNegras() {
+		if (jaqMN && jaqN)
+			return true;
+		return false;
+	}
 	bool Get_Tablas() { return tablas; }
 
 	void Borrar();
 
-	bool Jaque(bool col);
+	
 
 	friend class Mundo;
 };

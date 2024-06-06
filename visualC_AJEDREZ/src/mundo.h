@@ -31,14 +31,17 @@ public:
 	int get_oponente() { return tablero.Get_Oponente(); }
 
 	int get_Jaques() {
-		if (tablero.Get_JaqueMateBlancas())
+		if (tablero.Get_JaqueMateBlancas()) {
 			return 1;
-		else if (tablero.Get_JaqueMateNegras())
+		}
+		else if (tablero.Get_JaqueMateNegras()) {
 			return 2;
-		else if (tablero.Get_Tablas())
+		}
+		else if (tablero.Get_Tablas()) {
 			return 3;
+		}
 		return 0;
 	}
 
-
+	void borrar() { tablero.Borrar(); }
 };
