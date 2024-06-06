@@ -337,7 +337,6 @@ void Tablero::Tomar_Pieza_1VS1(Vector2xy origen) //posicion del raton -> origen
 
 void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> destino
 {
-	cout << "Soltar_Pieza_1VS1" << endl;
 
 	if (pInd != -1) { // Si es una casilla permitida
 
@@ -362,7 +361,6 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 
 			}
 
-			cout << "movimiento permitido" << endl;
 
 			fichas[pInd]->Set_Posicion(destino.x, destino.y);
 
