@@ -26,9 +26,10 @@ void Tablero::dibuja()
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
 			glBegin(GL_POLYGON);
-			int C_R;
-			if (pI == i && pJ == j)C_R = 100;
-			else C_R = Mcasillas[i][j].colR;
+			int C_R = Mcasillas[i][j].colR;
+			if (pInd >= 0) {
+				if (fichas[pInd]->Get_PosicionX() == i && fichas[pInd]->Get_PosicionY() == j)C_R = 100;
+			}
 			glColor3ub(C_R, Mcasillas[i][j].colG, Mcasillas[i][j].colB);
 			glVertex3f(Mcasillas[i][j].vx, Mcasillas[i][j].vy, 0.0f);
 			glVertex3f(Mcasillas[i][j].vx, Mcasillas[i][j].vy + 6, 0.0f);
@@ -473,8 +474,7 @@ bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
 }
 
 bool Tablero::Jaque(bool col) {		// Comprueba si el rey del color que le mandes está en jaque
-	int aux1 = pI;
-	int aux2 = pJ;
+
 	int iR = 0, jR = 0;
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
