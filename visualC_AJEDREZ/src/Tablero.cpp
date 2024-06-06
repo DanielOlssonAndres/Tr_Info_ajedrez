@@ -38,35 +38,6 @@ void Tablero::dibuja()
 		}
 	}
 
-	//INDICADOR DE TURNO 
-	glPushMatrix();
-	if (!color) {
-		colorR = 0;
-		colorG = 105;
-		colorB = 148;
-	}
-	else{
-		colorR = 139;
-		colorG = 69;
-		colorB = 19;
-	}
-
-	glTranslatef(-7, 21.5, 1);
-	glColor3ub(colorR, colorG, colorB);
-	glutSolidSphere(3, 30, 30);
-	glPopMatrix();
-	
-	if (color)
-	{
-		ETSIDI::setTextColor(1, 1, 1);//negro
-		ETSIDI::setFont("fuentes/Arial.ttf", 10);
-		ETSIDI::printxy("TIERRA", -9, 17);
-	}
-	if(!color){
-		ETSIDI::setTextColor(1, 1, 1);//blanco
-		ETSIDI::setFont("fuentes/Arial.ttf", 10);
-		ETSIDI::printxy("AGUA", -9, 17);
-	}
 
 	//FONDO
 	glEnable(GL_TEXTURE_2D);
@@ -184,6 +155,37 @@ void Tablero::dibuja()
 			}
 
 		}
+	}
+
+	//INDICADOR DE TURNO 
+	glPushMatrix();
+	if (!color) {
+		colorR = 0;
+		colorG = 105;
+		colorB = 148;
+	}
+	else {
+		colorR = 139;
+		colorG = 69;
+		colorB = 19;
+	}
+
+	glTranslatef(-7, 21.5, 1);
+	glColor3ub(colorR, colorG, colorB);
+	glutSolidSphere(3, 30, 30);
+	glPopMatrix();
+
+
+	if (color)
+	{
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/Arial.ttf", 12);
+		ETSIDI::printxy("TIERRA", -10, 17);
+	}
+	if (!color) {
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/Arial.ttf", 12);
+		ETSIDI::printxy("AGUA", -10, 17);
 	}
 
 	//INDICADOR DE JAQUE
