@@ -189,7 +189,7 @@ void Tablero::dibuja()
 	}
 
 	//INDICADOR DE JAQUE
-
+	Tablero::Comprobar_Jaque();
 	ETSIDI::setTextColor(1, 1, 1);
 	ETSIDI::setFont("fuentes/Arial.ttf", 12);
 
@@ -202,7 +202,7 @@ void Tablero::dibuja()
 			ETSIDI::printxy("Jaque a Tierra", -12, 8);
 	}
 
-	if (jaqN) {
+	if (jaqN && !jaqB) {
 		if (jaqMN) {
 			ETSIDI::printxy("JAQUE MATE", -12, 9);
 			ETSIDI::printxy("A AGUA", -11.5, 7);
@@ -214,10 +214,6 @@ void Tablero::dibuja()
 	if (tablas) {
 		ETSIDI::printxy("TABLAS", -12, 8);
 	}
-
-	//if ((jaqMN && !jaqN) || (jaqMB && !jaqB)) {
-		//ETSIDI::printxy("TABLAS", -12, 8);
-	//}
 
 	if (!jaqB && !jaqN && !jaqMB && !jaqMN) {
 		ETSIDI::printxy("No hay amenazas", -12, 9);
@@ -255,21 +251,16 @@ void Tablero::inicializa(const int& TJ)
 	if (Tjuego == 0) { //Modalidad 5x6EO
 		matriz =
 		{
-			/*
+			
 			{ TORRE, CABALLO, ALFIL, DAMA, REY },				// BLANCAS
 			{ PEON, PEON, PEON, PEON, PEON },				// BLANCAS
 			{ 0, 0, 0, 0, 0 },
 			{ 0, 0, 0, 0, 0 },
 			{ -PEON, -PEON, -PEON, -PEON, -PEON },		// NEGRAS
 			{ -REY, -DAMA, -ALFIL, -CABALLO, -TORRE }		// NEGRAS
-			*/
+			
 
-			{ 0, TORRE, 0, 0, REY },				// BLANCAS
-			{ 0, 0, TORRE, 0, 0 },				// BLANCAS
-			{ 0, 0, 0, 0, 0 },
-			{ 0, 0, 0, 0, 0 },
-			{ 0, 0, 0, 0, 0 },		// NEGRAS
-			{ -REY, 0, 0, 0, 0 }		// NEGRAS
+		
 
 		};
 	}
@@ -482,7 +473,8 @@ bool Tablero::Selec_Mover(int i, int j, bool f) {			// i = FILAS, j = COLUMNAS
 }
 
 bool Tablero::Jaque(bool col) {		// Comprueba si el rey del color que le mandes está en jaque
-
+	int aux1 = pI;
+	int aux2 = pJ;
 	int iR = 0, jR = 0;
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 5; j++) {
