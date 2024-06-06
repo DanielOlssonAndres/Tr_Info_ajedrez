@@ -75,8 +75,8 @@ public:
 	//bool Get_JaqueNegras() { return jaqN; }
 	bool Get_JaqueMateNegras() { return jaqMN; }
 
-	void Borrar_Vector();
-	void Borrar_Matriz();
+	void Borrar();
+
 
 	bool Jaque(bool col);
 	bool JaqueMate(bool col);

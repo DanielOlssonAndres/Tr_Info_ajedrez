@@ -756,21 +756,19 @@ void Tablero::Promocion(int pInd, int pI, int pJ, Vector2xy destino) {
 }
 
 
-void Tablero:: Borrar_Vector() {
+void Tablero:: Borrar() {
 	for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
 		
 		delete fichas[z];
 		fichas.erase(fichas.begin() + z);
-		
-	}
-}
 
-void Tablero::Borrar_Matriz(){
-	for (int i = 0; i < 6; i++)
-	{
-		for (int j = 0; j < 5; j++)
+		for (int i = 0; i < 6; i++)
 		{
-			matriz[i][j]= 0;
+			for (int j = 0; j < 5; j++)
+			{
+				matriz[i][j] = 0;
+			}
 		}
+		
 	}
 }
