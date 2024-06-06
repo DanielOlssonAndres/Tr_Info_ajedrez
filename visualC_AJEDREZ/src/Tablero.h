@@ -79,6 +79,7 @@ public:
 	void Borrar_Matriz();
 
 	bool Jaque(bool col);
+	bool JaqueMate(bool col);
 
 	friend class Mundo;
 };

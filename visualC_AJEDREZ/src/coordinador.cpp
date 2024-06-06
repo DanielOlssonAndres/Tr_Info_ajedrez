@@ -231,7 +231,7 @@ void coordinador::dibuja() {
 	case GANA_TIERRA:
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
-			ETSIDI::getTexture("imagenes/GANA_TIERRA.png").id);
+			ETSIDI::getTexture("imagenes/TIERRA_GANA.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 1);
@@ -246,7 +246,7 @@ void coordinador::dibuja() {
 	case GANA_AGUA:
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
-			ETSIDI::getTexture("imagenes/GANA_AGUA.png").id);
+			ETSIDI::getTexture("imagenes/AGUA_GANA.png").id);
 		glDisable(GL_LIGHTING);
 		glBegin(GL_POLYGON);
 		glColor3f(1, 1, 1);
