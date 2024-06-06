@@ -354,13 +354,13 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 			matriz[destino.x][destino.y] = matriz[pI][pJ];
 			matriz[pI][pJ] = 0;
 
-			Comprobar_Jaque();
+			Comprobar_Jaque();				// Comprobar si el contrario esta en jaque
 
 			//Cambio de turno
 			if (color) color = false;		// Ahora es turno de las NEGRAS
 			else color = true;				// Ahora es turno de las BLANCAS 
 
-			Comprobar_JaqueMate();
+			Comprobar_JaqueMate();			// Comprobar si el contrario esta en jaque mate
 
 		}
 		else
@@ -424,7 +424,12 @@ void Tablero::Auto_Mov() {
 		//Actualización de los valores
 		matriz[pIA_x][pIA_y] = matriz[pI][pJ];
 		matriz[pI][pJ] = 0;
-		color = true;
+
+		Comprobar_Jaque();		// Comprobar si el jugador esta en jaque
+
+		color = true;			// Cambio de turno al jugador
+
+		Comprobar_JaqueMate();	// Comprobar si el jugador esta en jaque mate
 		pInd = -1;
 
 }

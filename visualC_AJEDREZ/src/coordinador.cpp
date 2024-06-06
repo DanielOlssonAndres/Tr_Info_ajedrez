@@ -223,7 +223,25 @@ void coordinador::dibuja() {
 		break;
 	case JUEGO:
 		// mundo.inicializa();
+
 		mundo.dibuja();
+
+		switch (mundo.get_Jaques()) {
+		case 0:break;
+		case 1:
+			Sleep(2000);
+			estado = GANA_AGUA;
+			break;
+		case 2:
+			Sleep(2000);
+			estado = GANA_TIERRA;
+			break;
+		case 3:
+			Sleep(2000);
+			estado = TABLAS;
+			break;
+		}
+
 		break;
 		
 	default:
@@ -257,6 +275,9 @@ void coordinador::dibuja() {
 		glEnd();
 		glEnable(GL_LIGHTING);
 		glDisable(GL_TEXTURE_2D);
+		break;
+	case TABLAS:
+		// Pon el fondo o lo que sea de cuando haya tablas (empate)
 		break;
 	}
 }
@@ -388,15 +409,6 @@ void coordinador::tecla(unsigned char key) {
 		break;
 
 	case JUEGO:
-		if (mundo.get_JMB())
-		{
-			estado = GANA_AGUA;
-		}
-		break;
-		if (mundo.get_JMN())
-		{
-			estado = GANA_TIERRA;
-		}
 		break;
 	case GANA_AGUA:
 		ETSIDI::play("sonidos/Perder.wav");
@@ -420,7 +432,9 @@ void coordinador::tecla(unsigned char key) {
 			exit;
 		}
 		break;
-		
+	case TABLAS:
+		// Poner aqui algo si es que quereis que haga algo
+		break;
 	default:
 		break;
 	}
