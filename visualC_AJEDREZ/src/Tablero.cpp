@@ -56,26 +56,6 @@ void Tablero::dibuja()
 	glutSolidSphere(3, 30, 30);
 	glPopMatrix();
 
-	//INDICADOR DE JAQUE//////////////////////////////////////////////////////////////////////////////////
-	/*
-	glPushMatrix();
-
-	if ( jaqN || jaqB || jaqMN || jaqMB ) {
-		colorJR = 0;
-		colorJG = 0;
-		colorJB = 0;
-	}
-	else {
-		colorJR = 255;
-		colorJG = 255;
-		colorJB = 255;
-	}
-	glTranslatef(-7, 12, 1);
-	glColor3ub(colorJR, colorJG, colorJB);
-	glutSolidSphere(2, 30, 30);
-	glPopMatrix();
-	*/
-
 	//FONDO
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D,
@@ -287,7 +267,6 @@ void Tablero::Tomar_Pieza_1VS1(Vector2xy origen) //posicion del raton -> origen
 
 void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> destino
 {
-	int a;
 	cout << "Soltar_Pieza_1VS1" << endl;
 
 	if (pInd != -1) { // Si es una casilla permitida
@@ -614,11 +593,8 @@ bool Tablero::Selec_Alfil(int i, int j) {
 		while (I != i - difI && J != j - difJ) {
 			I += difI;
 			J += difJ;
-			if (I < 0 || J < 0) {
-				I = 0;
-				J = 0;
-			}
-			if (matriz[I][J] != 0)return false;
+			if (I < 0 || J < 0)return false;
+			else if (matriz[I][J] != 0)return false;
 		}
 		if (color && matriz[i][j] <= 0) return true;
 		else if (!color && matriz[i][j] >= 0)return true;
@@ -631,21 +607,6 @@ bool Tablero::Selec_Dama(int i, int j) {
 	if (Selec_Torre(i, j) || Selec_Alfil(i, j))return true;
 	return false;
 }
-
-/*//////////////////////////////////////////////////////////////////
-
-despues de jaq = true;
-
-if (color) {
-	if (jaqN) jaqMN = true;
-	jaqN = true;
-}
-else {
-	if (jaqB) jaqMB = true;
-	jaqB = true;
-}
-
-*/
 
 bool Tablero::Consultar_Turno(){
 	return color;
