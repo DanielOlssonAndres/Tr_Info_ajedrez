@@ -314,14 +314,13 @@ void Tablero::Tomar_Pieza_1VS1(Vector2xy origen) //posicion del raton -> origen
 		if (pInd != -1) {
 			if ((color && fichas[pInd]->Get_Valor() < 0) || (!color && fichas[pInd]->Get_Valor() > 0)) { //Si la pieza no corresponde con el color del turno
 				pInd = -1;
-				std::cout << "No puedes mover esa ficha en tu turno." << std::endl;
 				ETSIDI::play("sonidos/SonidoError.wav");
 			}
 
 			if (pInd != -1) {
 				pI = origen.x;
 				pJ = origen.y;
-				std::cout << "Se ha seleccionado la ficha " << matriz[pI][pJ] << std::endl;
+
 			}
 		}
 	}
@@ -342,7 +341,6 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 
 				for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
 					if (fichas[z]->Get_PosicionX() == destino.x && fichas[z]->Get_PosicionY() == destino.y) {
-						std::cout << "se elimina la ficha " << matriz[destino.x][destino.y] << std::endl;
 						ETSIDI::play("sonidos/ComerFicha.wav");
 
 						delete fichas[z];
@@ -670,14 +668,14 @@ bool Tablero::Consultar_Turno(){
 void Tablero::Promocion(int pInd, int pI, int pJ, Vector2xy destino) {
 
 	if (destino.x == 5 && fichas[pInd]->Get_Valor() == 6) {
-		std::cout << "Se llama a promocion correctamente " << std::endl;
+	
 
 		fichas[pInd]->Cambiar_Valor(DAMA);
 		matriz[pI][pJ] = DAMA;
 	}
 
 	if (destino.x == 0 && fichas[pInd]->Get_Valor() == -6) {
-		std::cout << "Se llama a promocion correctamente " << std::endl;
+
 
 		fichas[pInd]->Cambiar_Valor(-DAMA);
 		matriz[pI][pJ] = -DAMA;
