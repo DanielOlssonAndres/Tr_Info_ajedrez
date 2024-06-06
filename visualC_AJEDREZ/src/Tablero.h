@@ -70,10 +70,12 @@ public:
 	void Set_Oponente(const int& TIPO_OPO) { Toponente = TIPO_OPO; }
 	int Get_Oponente() { return Toponente; }
 
-	bool Get_JaqueBlancas() { return jaqB; }
+	//bool Get_JaqueBlancas() { return jaqB; }
 	bool Get_JaqueMateBlancas() { return jaqMB; }
-	bool Get_JaqueNegras() { return jaqN; }
+	//bool Get_JaqueNegras() { return jaqN; }
 	bool Get_JaqueMateNegras() { return jaqMN; }
+
+
 
 	bool Jaque(bool col);
 

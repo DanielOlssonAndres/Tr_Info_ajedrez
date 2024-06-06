@@ -28,10 +28,10 @@ public:
 	// FUNCIONES RELACIONADAS CON LA SELECCIÓN POR RATÓN---------------------------------------------------
 	void MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr);
 	// ----------------------------------------------------------------------------------------------------
-
 	int get_oponente() { return tablero.Get_Oponente(); }
 
-	bool hay_jaque_mate_blancas() { return tablero.Get_JaqueMateBlancas(); }
-	bool hay_jaque_mate_negras() {return tablero.Get_JaqueMateNegras();}
+	int get_JMB() { return tablero.Get_JaqueMateBlancas(); }
+	int get_JMN() { return tablero.Get_JaqueMateNegras(); }
+
 
 };

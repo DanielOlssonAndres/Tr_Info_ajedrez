@@ -388,12 +388,12 @@ void coordinador::tecla(unsigned char key) {
 		break;
 
 	case JUEGO:
-		if (mundo.hay_jaque_mate_blancas()==TRUE)
+		if (mundo.get_JMB())
 		{
 			estado = GANA_AGUA;
 		}
 		break;
-		if (mundo.hay_jaque_mate_negras()==TRUE)
+		if (mundo.get_JMN())
 		{
 			estado = GANA_TIERRA;
 		}

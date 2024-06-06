@@ -17,7 +17,7 @@ void Mundo::inicializa(int tipo_juego, const int& tipo_oponente)
 void Mundo::dibuja()
 {
 
-	// dibujo de elementos
+	// dibujo de elementos y avisos
 	tablero.dibuja();
 
 }
