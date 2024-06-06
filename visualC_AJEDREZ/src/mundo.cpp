@@ -20,43 +20,6 @@ void Mundo::dibuja()
 	// dibujo de elementos
 	tablero.dibuja();
 
-	//INDICADOR DE TURNO
-	if (tablero.Consulta_color(139, 69, 19) == TRUE)
-	{
-
-		ETSIDI::setTextColor(1, 1, 1);//negro
-		ETSIDI::setFont("fuentes/Arial.ttf", 10);
-		ETSIDI::printxy("Tierra", -9, 17);
-	}
-	else {
-		ETSIDI::setTextColor(1, 1, 1);//blanco
-		ETSIDI::setFont("fuentes/Arial.ttf", 10);
-		ETSIDI::printxy("Agua", -9, 17);
-	}
-	
-	//INDICADOR DE JAQUE
-	if (tablero.Consulta_color(0, 0, 0) == TRUE)	// BLANCAS
-	{
-		ETSIDI::setTextColor(1, 1, 1);
-		ETSIDI::setFont("fuentes/Arial.ttf", 12);
-		ETSIDI::printxy("El Rey León", -11, 9);
-
-		if (tablero.Get_JaqueBlancas() || tablero.Get_JaqueMateBlancas())
-			ETSIDI::printxy("está en jaque", -11, 7);
-		else
-			ETSIDI::printxy("está a salvo", -11, 7);
-	}
-
-	else {	// NEGRAS
-		ETSIDI::setTextColor(1, 1, 1);
-		ETSIDI::setFont("fuentes/Arial.ttf", 12);
-		ETSIDI::printxy("El Rey Tiburón", -11.5, 9);
-		
-		if (tablero.Get_JaqueNegras() || tablero.Get_JaqueMateNegras())
-			ETSIDI::printxy("está en jaque", -11, 7);
-		else
-			ETSIDI::printxy("está a salvo", -11, 7);
-	}
 }
 
 void Mundo::MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, bool TeclaSp, bool TeclaCtr) 

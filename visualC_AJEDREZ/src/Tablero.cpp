@@ -173,6 +173,48 @@ void Tablero::dibuja()
 
 		}
 	}
+
+
+	//INDICADOR DE TURNO
+	if (Consulta_color(139, 69, 19) == TRUE)
+	{
+
+		ETSIDI::setTextColor(1, 1, 1);//negro
+		ETSIDI::setFont("fuentes/Arial.ttf", 10);
+		ETSIDI::printxy("Tierra", -9, 17);
+	}
+	else {
+		ETSIDI::setTextColor(1, 1, 1);//blanco
+		ETSIDI::setFont("fuentes/Arial.ttf", 10);
+		ETSIDI::printxy("Agua", -9, 17);
+	}
+
+	//INDICADOR DE JAQUE
+	if (Consulta_color(0, 0, 0) == TRUE)	// BLANCAS
+	{
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/Arial.ttf", 12);
+
+		if (Get_JaqueBlancas() || Get_JaqueMateBlancas()) {
+			ETSIDI::printxy("El Rey León", -11, 9);
+			ETSIDI::printxy("está en jaque", -11, 7);
+		}
+		else
+			ETSIDI::printxy("No hay jaque", -11, 8);
+	}
+
+	else {	// NEGRAS
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/Arial.ttf", 12);
+
+		if (Get_JaqueNegras() || Get_JaqueMateNegras()) {
+			ETSIDI::printxy("El Rey Tiburón", -11.5, 9);
+			ETSIDI::printxy("está en jaque", -11, 7);
+		}
+		else
+			ETSIDI::printxy("No hay jaque", -11, 8);
+	}
+
 }
 
 void Tablero::inicializa(const int& TJ)
