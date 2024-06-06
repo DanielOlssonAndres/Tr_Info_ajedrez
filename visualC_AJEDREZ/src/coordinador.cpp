@@ -251,6 +251,7 @@ void coordinador::dibuja() {
 	default:
 		break;
 	case GANA_TIERRA:
+		ETSIDI::play("sonidos/Perder.wav");
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
 			ETSIDI::getTexture("imagenes/TIERRA_GANA.png").id);
@@ -266,6 +267,7 @@ void coordinador::dibuja() {
 		glDisable(GL_TEXTURE_2D);
 		break;
 	case GANA_AGUA:
+		ETSIDI::play("sonidos/Perder.wav");
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
 			ETSIDI::getTexture("imagenes/AGUA_GANA.png").id);

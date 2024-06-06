@@ -297,6 +297,14 @@ void Tablero::inicializa(const int& TJ)
 		}
 	}
 
+	// Inicialización de las variables
+	pIA_x = -1, pIA_y = -1;
+	pInd = -1;
+	pI = -1, pJ = -1;
+	pI_IA = 0, pJ_IA = 0;
+	color = true;
+	jaqB = false, jaqMB = false, jaqN = false, jaqMN = false, tablas = false;
+
 }
 
 
