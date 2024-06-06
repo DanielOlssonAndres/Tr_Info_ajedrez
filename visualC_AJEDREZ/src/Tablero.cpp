@@ -55,6 +55,18 @@ void Tablero::dibuja()
 	glColor3ub(colorR, colorG, colorB);
 	glutSolidSphere(3, 30, 30);
 	glPopMatrix();
+	
+	if (color)
+	{
+		ETSIDI::setTextColor(1, 1, 1);//negro
+		ETSIDI::setFont("fuentes/Arial.ttf", 10);
+		ETSIDI::printxy("TIERRA", -9, 17);
+	}
+	if(!color){
+		ETSIDI::setTextColor(1, 1, 1);//blanco
+		ETSIDI::setFont("fuentes/Arial.ttf", 10);
+		ETSIDI::printxy("AGUA", -9, 17);
+	}
 
 	//FONDO
 	glEnable(GL_TEXTURE_2D);
@@ -174,42 +186,23 @@ void Tablero::dibuja()
 		}
 	}
 
-
-	//INDICADOR DE TURNO
-	if (Consulta_color(139, 69, 19) == TRUE)
-	{
-
-		ETSIDI::setTextColor(1, 1, 1);//negro
-		ETSIDI::setFont("fuentes/Arial.ttf", 10);
-		ETSIDI::printxy("Tierra", -9, 17);
-	}
-	else {
-		ETSIDI::setTextColor(1, 1, 1);//blanco
-		ETSIDI::setFont("fuentes/Arial.ttf", 10);
-		ETSIDI::printxy("Agua", -9, 17);
-	}
-
 	//INDICADOR DE JAQUE
+	Tablero::Comprobar_Jaque();
+	ETSIDI::setTextColor(1, 1, 1);
+	ETSIDI::setFont("fuentes/Arial.ttf", 12);
 
+	if (jaqB) {
+		ETSIDI::printxy("Jaque a Tierra", -12, 8);
+	}
 
-	
-		ETSIDI::setTextColor(1, 1, 1);
-		ETSIDI::setFont("fuentes/Arial.ttf", 12);
+	if (jaqN) {
+		ETSIDI::printxy("JAQUE a Agua", -12, 8);
+	}
 
-		if (jaqB) {
-			ETSIDI::printxy("El Rey León", -11, 9);
-			ETSIDI::printxy("está en jaque", -11, 7);
-		}
-
-		if (jaqN) {
-			ETSIDI::printxy("El Rey Tiburón", -11.5, 9);
-			ETSIDI::printxy("está en jaque", -11, 7);
-		}
-
-		if(!jaqB && !jaqN){
-			ETSIDI::printxy("Sin amenazas", -11.5, 9);
-			ETSIDI::printxy("hacia los Reyes", -12, 7);
-		}
+	if(!jaqB && !jaqN){
+		ETSIDI::printxy("No hay amenazas", -12, 9);
+		ETSIDI::printxy("a los reyes", -10.95, 7);
+	}
 	
 }
 
