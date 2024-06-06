@@ -251,7 +251,7 @@ void coordinador::dibuja() {
 	default:
 		break;
 	case GANA_TIERRA:
-		ETSIDI::play("sonidos/Perder.wav");
+		ETSIDI::play("sonidos/Ganar.wav");
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,
 			ETSIDI::getTexture("imagenes/TIERRA_GANA.png").id);
@@ -417,7 +417,6 @@ void coordinador::tecla(unsigned char key) {
 	case JUEGO:
 		break;
 	case GANA_AGUA:
-		ETSIDI::play("sonidos/Perder.wav");
 		if (key == 'r'||key=='R')
 		{
 			estado = START;
@@ -428,7 +427,6 @@ void coordinador::tecla(unsigned char key) {
 		}
 		break;
 	case GANA_TIERRA:
-		ETSIDI::play("sonidos/Ganar.wav");
 		if (key == 'r' || key == 'R')
 		{
 			estado = START;
