@@ -38,7 +38,7 @@ private:
 	int pI = -1, pJ = -1; //Guardar la posición de la pieza seleccionada
 	int pI_IA = 0, pJ_IA = 0; //Guardar la posición de la pieza seleccionada (IA)
 	bool color = true; //Indica de quién es el turno TRUE = BLANCAS (MARRÓN) / FALSE = NEGRAS (AZUL)
-	bool jaqB = false, jaqMB = false, jaqN = false, jaqMN = false; //Identificación de Jaque y Jaque mate de NEGRAS y BLANCAS
+	bool jaqB = false, jaqMB = false, jaqN = false, jaqMN = false, tablas = false; //Identificación de Jaque y Jaque mate de NEGRAS y BLANCAS
 
 	int colorR, colorG, colorB; //Para indicador de turno
 	int colorJR, colorJG, colorJB; //Para indicar el turno
@@ -70,16 +70,15 @@ public:
 	void Set_Oponente(const int& TIPO_OPO) { Toponente = TIPO_OPO; }
 	int Get_Oponente() { return Toponente; }
 
-	//bool Get_JaqueBlancas() { return jaqB; }
+	bool Get_JaqueBlancas() { return jaqB; }
 	bool Get_JaqueMateBlancas() { return jaqMB; }
-	//bool Get_JaqueNegras() { return jaqN; }
+	bool Get_JaqueNegras() { return jaqN; }
 	bool Get_JaqueMateNegras() { return jaqMN; }
+	bool Get_Tablas() { return tablas; }
 
 	void Borrar();
 
-
 	bool Jaque(bool col);
-	bool JaqueMate(bool col);
 
 	friend class Mundo;
 };
