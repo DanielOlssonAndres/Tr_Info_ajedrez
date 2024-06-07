@@ -427,6 +427,7 @@ void coordinador::tecla(unsigned char key) {
 	case GANA_AGUA:
 		if (key == 'r'||key=='R')
 		{
+			ETSIDI::play("sonidos/InicioJuego.wav");
 			estado = START;
 		}
 		if (key == 'e' || key == 'E')
@@ -437,6 +438,7 @@ void coordinador::tecla(unsigned char key) {
 	case GANA_TIERRA:
 		if (key == 'r' || key == 'R')
 		{
+			ETSIDI::play("sonidos/InicioJuego.wav");
 			estado = START;
 		}
 		if (key == 'e'|| key == 'E')
@@ -447,6 +449,7 @@ void coordinador::tecla(unsigned char key) {
 	case TABLAS:
 		if (key == 'r' || key == 'R')
 		{
+			ETSIDI::play("sonidos/InicioJuego.wav");
 			estado = START;
 		}
 		if (key == 'e' || key == 'E')
