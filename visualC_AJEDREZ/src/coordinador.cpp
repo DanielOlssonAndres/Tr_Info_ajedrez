@@ -418,7 +418,7 @@ void coordinador::tecla(unsigned char key) {
 		}
 		if (key == 'e' || key == 'E')
 		{
-			exit;
+			exit(0);
 		}
 		break;
 	case GANA_TIERRA:
@@ -428,7 +428,7 @@ void coordinador::tecla(unsigned char key) {
 		}
 		if (key == 'e'|| key == 'E')
 		{
-			exit;
+			exit(0);
 		}
 		break;
 	case TABLAS:
