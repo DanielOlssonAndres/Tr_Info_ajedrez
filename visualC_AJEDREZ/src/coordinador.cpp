@@ -222,7 +222,6 @@ void coordinador::dibuja() {
 		glDisable(GL_TEXTURE_2D);
 		break;
 	case JUEGO:
-		// mundo.inicializa();
 
 		mundo.dibuja();
 
@@ -232,15 +231,12 @@ void coordinador::dibuja() {
 
 			switch (mundo.get_Jaques()) {
 			case 1:
-				// Sleep(2000);
 				estado = GANA_AGUA;
 				break;
 			case 2:
-				// Sleep(2000);
 				estado = GANA_TIERRA;
 				break;
 			case 3:
-				// Sleep(2000);
 				estado = TABLAS;
 				break;
 			}
@@ -326,7 +322,6 @@ void coordinador::tecla(unsigned char key) {
 			ETSIDI::play("sonidos/InicioJuego.wav");
 		}
 		else if (key == 'p' || key == 'P') {
-			//tablero.inicializa(0);//Tablero 5x6
 			mundo.inicializa(0,0); 
 			estado = RATON; 
 			ETSIDI::play("sonidos/InicioJuego.wav");

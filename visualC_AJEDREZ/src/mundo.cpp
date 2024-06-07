@@ -79,7 +79,6 @@ void Mundo::MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, 
 						tablero.Soltar_Pieza_1VS1(CasillaDestino);
 						
 					}
-					return;
 				}
 		
 			}
