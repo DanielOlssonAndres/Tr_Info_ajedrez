@@ -5,6 +5,8 @@
 #include <ETSIDI.h>
 #include "Tablero.h"
 #include "Ficha.h"
+#include <thread>  
+#include <chrono>  
 
 using namespace std;
 void Mundo::inicializa(int tipo_juego, const int& tipo_oponente)
@@ -16,7 +18,6 @@ void Mundo::inicializa(int tipo_juego, const int& tipo_oponente)
 }
 void Mundo::dibuja()
 {
-
 	// dibujo de elementos y avisos
 	tablero.dibuja();
 
@@ -26,7 +27,7 @@ void Mundo::MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, 
 {
 
 	tipo_oponente = tablero.Get_Oponente();
-
+	
 	if (abajo) {
 
 		GLint viewport[4];
@@ -76,16 +77,17 @@ void Mundo::MouseButton(int tipo_oponente, int x, int y, int boton, bool abajo, 
 						CasillaDestino.x = (int)(posY / ancho);
 						CasillaDestino.y = (int)(posX / ancho);
 						tablero.Soltar_Pieza_1VS1(CasillaDestino);
+						
 					}
+					return;
 				}
-
-				if (tablero.Consultar_Turno() == false) {
-					tablero.Auto_Mov();
-					
-				}
-				
+		
 			}
 		}
+	}
+	if (!abajo && tipo_oponente == 1 && !tablero.Consultar_Turno()) {
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+		tablero.Auto_Mov();
 	}
 }
 

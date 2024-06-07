@@ -1,8 +1,9 @@
 
-//#include <cstdlib>
 #include "freeglut.h"
 #include "Tablero.h"
 #include "mundo.h"
+#include <thread>  
+#include <chrono>
 
 bool Tablero::Consulta_color(int R, int G, int B) {
 	R = colorR;
@@ -252,16 +253,12 @@ void Tablero::inicializa(const int& TJ)
 	if (Tjuego == 0) { //Modalidad 5x6EO
 		matriz =
 		{
-			
 			{ TORRE, CABALLO, ALFIL, DAMA, REY },				// BLANCAS
 			{ PEON, PEON, PEON, PEON, PEON },				// BLANCAS
 			{ 0, 0, 0, 0, 0 },
 			{ 0, 0, 0, 0, 0 },
 			{ -PEON, -PEON, -PEON, -PEON, -PEON },		// NEGRAS
 			{ -REY, -DAMA, -ALFIL, -CABALLO, -TORRE }		// NEGRAS
-			
-
-		
 
 		};
 	}
@@ -375,12 +372,12 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 	}
 
 	pInd = -1;
-
 }
 
 void Tablero::Auto_Mov() {
 
 	bool flag = false;
+	
 		for (int i = 0; i < 6 && !flag; i++) {
 			for (int j = 4; j >= 0 && !flag; j--) {
 
@@ -401,6 +398,7 @@ void Tablero::Auto_Mov() {
 								pIA_x = l;
 								pIA_y = k;
 								flag = true;
+								
 							}
 						}
 
@@ -409,7 +407,6 @@ void Tablero::Auto_Mov() {
 				}
 			}
 		}
-
 		ETSIDI::play("sonidos/MoverFicha.wav");
 
 		if (matriz[pIA_x][pIA_y] > 0) {
@@ -423,7 +420,6 @@ void Tablero::Auto_Mov() {
 			}
 		}
 
-		
 		Promocion(pInd, pI, pJ, { pIA_x, pIA_y });
 		fichas[pInd]->Set_Posicion(pIA_x, pIA_y);
 
