@@ -279,7 +279,20 @@ void coordinador::dibuja() {
 		glDisable(GL_TEXTURE_2D);
 		break;
 	case TABLAS:
-		// Pon el fondo o lo que sea de cuando haya tablas (empate)
+		ETSIDI::play("sonidos/SonidoTablas.wav");
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,
+			ETSIDI::getTexture("imagenes/TABLAS.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex2d(-15, -4); //inferior izquierda
+		glTexCoord2d(1, 1); glVertex2d(45, -4); //Inferior derecha
+		glTexCoord2d(1, 0); glVertex2d(45, 40); //Superior derecha
+		glTexCoord2d(0, 0); glVertex2d(-15, 40); //Superior izquierda
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
 		break;
 	}
 }
@@ -432,7 +445,14 @@ void coordinador::tecla(unsigned char key) {
 		}
 		break;
 	case TABLAS:
-		// Poner aqui algo si es que quereis que haga algo
+		if (key == 'r' || key == 'R')
+		{
+			estado = START;
+		}
+		if (key == 'e' || key == 'E')
+		{
+			exit(0);
+		}
 		break;
 	default:
 		break;
