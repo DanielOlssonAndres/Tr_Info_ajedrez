@@ -29,7 +29,7 @@ void Tablero::dibuja()
 			glBegin(GL_POLYGON);
 			int C_R = Mcasillas[i][j].colR;
 			if (pInd >= 0) {
-				if (fichas[pInd]->Get_PosicionX() == i && fichas[pInd]->Get_PosicionY() == j)C_R = 100;
+				if (fichas[pInd]->Get_Posicion().x == i && fichas[pInd]->Get_Posicion().y == j)C_R = 100;
 			}
 			glColor3ub(C_R, Mcasillas[i][j].colG, Mcasillas[i][j].colB);
 			glVertex3f(Mcasillas[i][j].vx, Mcasillas[i][j].vy, 0.0f);
@@ -303,7 +303,7 @@ void Tablero::Tomar_Pieza_1VS1(Vector2xy origen) //posicion del raton -> origen
 
 	if (matriz[origen.x][origen.y] != 0) { //Si hemos seleccionado una casilla con ficha
 		for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su índice del vector en pInd
-			if (fichas[z]->Get_PosicionX() == origen.x && fichas[z]->Get_PosicionY() == origen.y) {
+			if (fichas[z]->Get_Posicion().x == origen.x && fichas[z]->Get_Posicion().y == origen.y) {
 				pInd = z;
 				break;
 			}
@@ -337,7 +337,7 @@ void Tablero::Soltar_Pieza_1VS1(Vector2xy destino) //posición del ratón -> des
 			if ((color && matriz[destino.x][destino.y] < 0) || (!color && matriz[destino.x][destino.y] > 0)) {
 
 				for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
-					if (fichas[z]->Get_PosicionX() == destino.x && fichas[z]->Get_PosicionY() == destino.y) {
+					if (fichas[z]->Get_Posicion().x == destino.x && fichas[z]->Get_Posicion().y == destino.y) {
 						ETSIDI::play("sonidos/ComerFicha.wav");
 
 						delete fichas[z];
@@ -385,7 +385,7 @@ void Tablero::Auto_Mov() {
 					pI = i;
 					pJ = j;
 					for (int z = 0; z < static_cast<int>(fichas.size()); z++) { //Buscamos la ficha que estamos seleccionando y guardamos su índice del vector en pInd
-						if (fichas[z]->Get_PosicionX() == pI && fichas[z]->Get_PosicionY() == pJ) {
+						if (fichas[z]->Get_Posicion().x == pI && fichas[z]->Get_Posicion().y == pJ) {
 							pInd = z;
 							break;
 						}
@@ -411,7 +411,7 @@ void Tablero::Auto_Mov() {
 
 		if (matriz[pIA_x][pIA_y] > 0) {
 			for (int z = 0; z < static_cast<int>(fichas.size()); z++) {
-				if (fichas[z]->Get_PosicionX() == pIA_x && fichas[z]->Get_PosicionY() == pIA_y) {
+				if (fichas[z]->Get_Posicion().x == pIA_x && fichas[z]->Get_Posicion().y == pIA_y) {
 					ETSIDI::play("sonidos/ComerFicha.wav");
 					delete fichas[z];
 					if (z < pInd) pInd--;
